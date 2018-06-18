@@ -2,7 +2,10 @@ package org.honk.seller;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -13,8 +16,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-
-import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,24 +28,45 @@ public class MainActivity extends AppCompatActivity {
 
     protected Location currentBestLocation = null;
 
+    protected ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //TODO: controllare se il device ha la funzionalità richiesta (PackageManager.hasSystemFeature(String))
-        // Register the listener with the Location Manager to receive location updates
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            this.getLocation();
-        } else {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Sto cercando venditori nei paraggi...");
+        progressDialog.setIndeterminate(false);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        // Check whether the device supports accessing coarse location.
+        if (this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION_NETWORK)) {
+            // Register the listener with the Location Manager to receive location updates.
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                this.getLocation();
             } else {
-                // No explanation needed; request the permission
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, ACCESS_COARSE_LOCATION_CODE);
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                    // The user has denied permission, show an explanation and try again.
+                    //TODO Show an explanation to the user *asynchronously* -- don't block
+                    // this thread waiting for the user's response! After the user
+                    // sees the explanation, try again to request the permission.
+                } else {
+                    // Request the permission.
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, ACCESS_COARSE_LOCATION_CODE);
+                }
             }
+        } else {
+            // The device is not compatible with this app.
+            progressDialog.dismiss();
+            AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setMessage(R.string.featureUnavailableAlertMessage)
+                    .setTitle(R.string.alertTitle)
+                    .setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {}
+                    })
+                    .show();
         }
     }
 
@@ -56,8 +78,15 @@ public class MainActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     this.getLocation();
                 } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
+                    // User denied permission to access location info.
+                    progressDialog.dismiss();
+                    AlertDialog dialog = new AlertDialog.Builder(this)
+                            .setMessage(R.string.permissionDeniedAlertMessage)
+                            .setTitle(R.string.alertTitle)
+                            .setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {}
+                            })
+                            .show();
                 }
 
                 return;
@@ -70,12 +99,13 @@ public class MainActivity extends AppCompatActivity {
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         TextView txtLocation = (TextView) findViewById(R.id.txtLocation);
         if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-            currentBestLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            // Don't want to use last known location here: if the device is not connected, a message must be shown.
+            currentBestLocation = null; //locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             locationListener = new LocationListener() {
 
                 public void onLocationChanged(Location location) {
                     // Called when a new location is found.
-                    if (isBetterLocation(location, currentBestLocation)) {
+                    if (IsNewBestLocation(location)) {
                         currentBestLocation = location;
                     }
                 }
@@ -94,26 +124,40 @@ public class MainActivity extends AppCompatActivity {
             Handler handler = new Handler();
             Runnable runnable = new Runnable() {
                 public void run() {
+                    // Stop listening to location events, to save power.
                     locationManager.removeUpdates(locationListener);
 
+                    progressDialog.dismiss();
                     if (currentBestLocation != null) {
                         txtLocation.setText(currentBestLocation.getLatitude() + " " + currentBestLocation.getLongitude());
                     } else {
-                        txtLocation.setText("Non ho ottenuto la posizione");
+                        AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
+                                .setMessage(R.string.offlineAlertMessage)
+                                .setTitle(R.string.alertTitle)
+                                .setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {}
+                                })
+                                .show();
                     }
                 }
             };
             handler.postDelayed(runnable, WAIT_TIME_MS);
         } else {
-            txtLocation.setText("Il rilevamento della posizione non è abilitato");
+            progressDialog.dismiss();
+            AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setMessage(R.string.featureUnavailableAlertMessage)
+                    .setTitle(R.string.alertTitle)
+                    .setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {}
+                    })
+                    .show();
         }
     }
 
     /** Determines whether one Location reading is better than the current Location fix
      * @param location  The new Location that you want to evaluate
-     * @param currentBestLocation  The current Location fix, to which you want to compare the new one
      */
-    protected boolean isBetterLocation(Location location, Location currentBestLocation) {
+    protected boolean IsNewBestLocation(Location location) {
         if (currentBestLocation == null) {
             // A new location is always better than no location
             return true;
@@ -141,8 +185,7 @@ public class MainActivity extends AppCompatActivity {
         boolean isSignificantlyLessAccurate = accuracyDelta > 200;
 
         // Check if the old and new location are from the same provider
-        boolean isFromSameProvider = isSameProvider(location.getProvider(),
-                currentBestLocation.getProvider());
+        boolean isFromSameProvider = isSameProvider(location.getProvider(), currentBestLocation.getProvider());
 
         // Determine location quality using a combination of timeliness and accuracy
         if (isMoreAccurate) {
