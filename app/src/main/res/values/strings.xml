@@ -1,7 +1,7 @@
 <resources>
-    <string name="permissionDeniedAlertMessage">This app can\'t work without knowing your location. If you change your mind, please restart the app and grant the authorization.</string>
+    <string name="permissionDeniedAlertMessage">This app can\'t work without knowing your location. If you change your mind, please grant the authorization through the Settings panel of your device.</string>
     <string name="close">Close</string>
-    <string name="featureUnavailableAlertMessage">In order to work, this app needs to access your location. Sadly, looks like your device cannot provide this information, so the app can't work properly.</string>
+    <string name="featureUnavailableAlertMessage">In order to work, this app needs to access your location. Sadly, looks like your device cannot provide this information, so the app can\'t work properly.</string>
     <string name="alertTitle">Alert</string>
     <string name="offlineAlertMessage">Looks like you are offline! Please check that your device is connected to the phone network.</string>
 </resources>
