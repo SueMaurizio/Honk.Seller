@@ -4,4 +4,16 @@
     <string name="featureUnavailableAlertMessage">In order to work, this app needs to access your location. Sadly, looks like your device cannot provide this information, so the app can\'t work properly.</string>
     <string name="alertTitle">Alert</string>
     <string name="offlineAlertMessage">Looks like you are offline! Please check that your device is connected to the phone network.</string>
+    <string name="intro">If you are a travelling worker, this app is made just for you.\nTo start, I will ask you to specify your working schedule; only within this schedule, I will share your location with your potential customers, who will be able to see it on a map.\n\nDo you agree?</string>
+    <string name="iAgree">Yes, I agree</string>
+    <string name="noThanks">No, thanks</string>
+    <string name="hello">Hello</string>
+    <string name="specifySchedule">Set here your working schedule.</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
 </resources>

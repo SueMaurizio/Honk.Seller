@@ -2,10 +2,8 @@ package org.honk.seller;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -23,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int WAIT_TIME_MS = 5000;
     private static final int ACCESS_COARSE_LOCATION_CODE = 0;
+    //private static final int TEN_MINUTES = 1000 * 60 * 10;
 
     private LocationManager locationManager;
     private LocationListener locationListener;
@@ -35,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //this.loadLocation();
+        //this.displayMessages();
+    }
+
+    private void loadLocation() {
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.setIndeterminate(false);
@@ -62,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
             progressDialog.dismiss();
             UIHelper.showAlert(getString(R.string.featureUnavailableAlertMessage), this);
         }
+    }
+
+    private void displayMessages() {
+        LocationBroadcastReceiver.setAlarm(this.getBaseContext());
     }
 
     @Override

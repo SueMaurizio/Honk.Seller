@@ -5,4 +5,16 @@
     <string name="featureUnavailableAlertMessage">Per poter funzionare, questa app deve accedere alla tua posizione. Sembra che il tuo dispositivo non sia in grad di fornire questa informazione, quindi l\'app non può funzionare.</string>
     <string name="alertTitle">Attenzione</string>
     <string name="offlineAlertMessage">Sembra che tu sia offline. Per favore, controlla che il tuo dispositivo sia collegato alla rete telefonica.</string>
+    <string name="intro">"Se svolgi un lavoro itinerante,\nquesta app è fatta apposta per te.\nPer cominciare, ti chiederò di indicare il tuo orario di lavoro; solo all'interno di questo orario, renderò nota la tua posizione ai tuoi potenziali clienti, che potranno vederla su una mappa.\n\nSei d'accordo?"</string>
+    <string name="iAgree">Sì, accetto</string>
+    <string name="noThanks">No, grazie</string>
+    <string name="hello">Ciao</string>
+    <string name="specifySchedule">In quali orari lavori?</string>
+    <string name="monday">Lunedì</string>
+    <string name="tuesday">Martedì</string>
+    <string name="wednesday">Mercoledì</string>
+    <string name="thursday">Giovedì</string>
+    <string name="friday">Venerdì</string>
+    <string name="saturday">Sabato</string>
+    <string name="sunday">Domenica</string>
 </resources>
