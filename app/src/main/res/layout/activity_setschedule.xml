@@ -6,80 +6,627 @@
     android:layout_height="match_parent"
     android:backgroundTint="@color/colorPrimary">
 
+    <!-- Title -->
+
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/specifySchedule"
-        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/subtitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Indica i giorni in cui lavori e tocca gli orari per cambiarli."
+        android:textColor="@color/colorPrimary"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+    <!-- Monday -->
+
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/mondayCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
+        android:checked="true"
         android:text="@string/monday"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/subtitleTextView" />
 
-    <CheckBox
-        android:id="@+id/checkBox2"
+    <TextView
+        android:id="@+id/startMondayTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="7dp"
+        android:text="08:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toEndOf="@+id/mondayCheckBox"
+        app:layout_constraintTop_toTopOf="@+id/mondayCheckBox" />
+
+    <TextView
+        android:id="@+id/separatorMondayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="7dp"
+        android:text="/"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toEndOf="@+id/startMondayTextView"
+        app:layout_constraintTop_toTopOf="@+id/mondayCheckBox" />
+
+    <TextView
+        android:id="@+id/endMondayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="7dp"
+        android:text="18:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toEndOf="@+id/separatorMondayTextView"
+        app:layout_constraintTop_toTopOf="@+id/mondayCheckBox" />
+
+    <CheckBox
+        android:id="@+id/mondayPauseCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="pausa"
+        app:layout_constraintStart_toEndOf="@+id/endMondayTextView"
+        app:layout_constraintTop_toBottomOf="@+id/subtitleTextView" />
+
+    <TextView
+        android:id="@+id/startMondayPauseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="7dp"
+        android:text="13:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toEndOf="@+id/mondayPauseCheckBox"
+        app:layout_constraintTop_toTopOf="@+id/mondayCheckBox" />
+
+    <TextView
+        android:id="@+id/mondayPauseSeparatorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="7dp"
+        android:text="/"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toEndOf="@+id/startMondayPauseTextView"
+        app:layout_constraintTop_toTopOf="@+id/mondayCheckBox" />
+
+    <TextView
+        android:id="@+id/endMondayPauseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="7dp"
+        android:text="14:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toEndOf="@+id/mondayPauseSeparatorTextView"
+        app:layout_constraintTop_toTopOf="@+id/mondayCheckBox" />
+
+    <!-- Tuesday -->
+
+    <CheckBox
+        android:id="@+id/tuesdayCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:checked="true"
         android:text="@string/tuesday"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mondayCheckBox" />
+
+    <TextView
+        android:id="@+id/startTuesdayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="08:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/startMondayTextView"
+        app:layout_constraintTop_toTopOf="@+id/tuesdayCheckBox" />
+
+    <TextView
+        android:id="@+id/separatorTuesdayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="/"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/separatorMondayTextView"
+        app:layout_constraintTop_toTopOf="@+id/tuesdayCheckBox" />
+
+    <TextView
+        android:id="@+id/endTuesdayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="18:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/endMondayTextView"
+        app:layout_constraintTop_toTopOf="@+id/tuesdayCheckBox" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/tuesdayPauseCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="pausa"
+        app:layout_constraintStart_toStartOf="@+id/mondayPauseCheckBox"
+        app:layout_constraintTop_toBottomOf="@+id/mondayPauseCheckBox" />
+
+    <TextView
+        android:id="@+id/startTuesdayPauseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="13:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/startMondayPauseTextView"
+        app:layout_constraintTop_toTopOf="@+id/tuesdayCheckBox" />
+
+    <TextView
+        android:id="@+id/tuesdayPauseSeparatorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="/"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/mondayPauseSeparatorTextView"
+        app:layout_constraintTop_toTopOf="@+id/tuesdayCheckBox" />
+
+    <TextView
+        android:id="@+id/endTuesdayPauseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="14:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/endMondayPauseTextView"
+        app:layout_constraintTop_toTopOf="@+id/tuesdayCheckBox" />
+
+    <!-- Wednesday -->
+
+    <CheckBox
+        android:id="@+id/wednesdayCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:checked="true"
         android:text="@string/wednesday"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tuesdayCheckBox" />
+
+    <TextView
+        android:id="@+id/startWednesdayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="08:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/startTuesdayTextView"
+        app:layout_constraintTop_toTopOf="@+id/wednesdayCheckBox" />
+
+    <TextView
+        android:id="@+id/separatorWednesdayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="/"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/separatorTuesdayTextView"
+        app:layout_constraintTop_toTopOf="@+id/wednesdayCheckBox" />
+
+    <TextView
+        android:id="@+id/endWednesdayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="18:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/endTuesdayTextView"
+        app:layout_constraintTop_toTopOf="@+id/wednesdayCheckBox" />
 
     <CheckBox
-        android:id="@+id/checkBox4"
+        android:id="@+id/wednesdayPauseCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="pausa"
+        app:layout_constraintStart_toStartOf="@+id/tuesdayPauseCheckBox"
+        app:layout_constraintTop_toBottomOf="@+id/tuesdayPauseCheckBox" />
+
+    <TextView
+        android:id="@+id/startWednesdayPauseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="13:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/startTuesdayPauseTextView"
+        app:layout_constraintTop_toTopOf="@+id/wednesdayCheckBox" />
+
+    <TextView
+        android:id="@+id/wednesdayPauseSeparatorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="/"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/tuesdayPauseSeparatorTextView"
+        app:layout_constraintTop_toTopOf="@+id/wednesdayCheckBox" />
+
+    <TextView
+        android:id="@+id/endWednesdayPauseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="14:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/endTuesdayPauseTextView"
+        app:layout_constraintTop_toTopOf="@+id/wednesdayCheckBox" />
+
+    <!-- Thursday -->
+
+    <CheckBox
+        android:id="@+id/thursdayCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:checked="true"
         android:text="@string/thursday"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wednesdayCheckBox" />
+
+    <TextView
+        android:id="@+id/startThursdayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="08:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/startWednesdayTextView"
+        app:layout_constraintTop_toTopOf="@+id/thursdayCheckBox" />
+
+    <TextView
+        android:id="@+id/separatorThursdayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="/"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/separatorWednesdayTextView"
+        app:layout_constraintTop_toTopOf="@+id/thursdayCheckBox" />
+
+    <TextView
+        android:id="@+id/endThursdayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="18:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/endWednesdayTextView"
+        app:layout_constraintTop_toTopOf="@+id/thursdayCheckBox" />
 
     <CheckBox
-        android:id="@+id/checkBox5"
+        android:id="@+id/thursdayPauseCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/friday"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox4"
-        tools:layout_editor_absoluteX="16dp" />
+        android:text="pausa"
+        app:layout_constraintStart_toStartOf="@+id/wednesdayPauseCheckBox"
+        app:layout_constraintTop_toBottomOf="@+id/wednesdayPauseCheckBox" />
 
-    <CheckBox
-        android:id="@+id/checkBox6"
+    <TextView
+        android:id="@+id/startThursdayPauseTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="13:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/startWednesdayPauseTextView"
+        app:layout_constraintTop_toTopOf="@+id/thursdayCheckBox" />
+
+    <TextView
+        android:id="@+id/thursdayPauseSeparatorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="/"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/wednesdayPauseSeparatorTextView"
+        app:layout_constraintTop_toTopOf="@+id/thursdayCheckBox" />
+
+    <TextView
+        android:id="@+id/endThursdayPauseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="14:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/endWednesdayPauseTextView"
+        app:layout_constraintTop_toTopOf="@+id/thursdayCheckBox" />
+
+    <!-- Friday -->
+
+    <CheckBox
+        android:id="@+id/fridayCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:checked="true"
+        android:text="@string/friday"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thursdayCheckBox" />
+
+    <TextView
+        android:id="@+id/startFridayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="08:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/startThursdayTextView"
+        app:layout_constraintTop_toTopOf="@+id/fridayCheckBox" />
+
+    <TextView
+        android:id="@+id/separatorFridayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="/"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/separatorThursdayTextView"
+        app:layout_constraintTop_toTopOf="@+id/fridayCheckBox" />
+
+    <TextView
+        android:id="@+id/endFridayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="18:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/endThursdayTextView"
+        app:layout_constraintTop_toTopOf="@+id/fridayCheckBox" />
+
+    <CheckBox
+        android:id="@+id/fridayPauseCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="pausa"
+        app:layout_constraintStart_toStartOf="@+id/thursdayPauseCheckBox"
+        app:layout_constraintTop_toBottomOf="@+id/thursdayPauseCheckBox" />
+
+    <TextView
+        android:id="@+id/startFridayPauseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="13:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/startThursdayPauseTextView"
+        app:layout_constraintTop_toTopOf="@+id/fridayCheckBox" />
+
+    <TextView
+        android:id="@+id/fridayPauseSeparatorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="/"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/thursdayPauseSeparatorTextView"
+        app:layout_constraintTop_toTopOf="@+id/fridayCheckBox" />
+
+    <TextView
+        android:id="@+id/endFridayPauseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="14:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/endThursdayPauseTextView"
+        app:layout_constraintTop_toTopOf="@+id/fridayCheckBox" />
+
+    <!-- Saturday -->
+
+    <CheckBox
+        android:id="@+id/saturdayCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/saturday"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox5"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fridayCheckBox" />
+
+    <TextView
+        android:id="@+id/startSaturdayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="08:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/startFridayTextView"
+        app:layout_constraintTop_toTopOf="@+id/saturdayCheckBox" />
+
+    <TextView
+        android:id="@+id/separatorSaturdayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="/"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/separatorFridayTextView"
+        app:layout_constraintTop_toTopOf="@+id/saturdayCheckBox" />
+
+    <TextView
+        android:id="@+id/endSaturdayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="18:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/endFridayTextView"
+        app:layout_constraintTop_toTopOf="@+id/saturdayCheckBox" />
 
     <CheckBox
-        android:id="@+id/checkBox7"
+        android:id="@+id/saturdayPauseCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="pausa"
+        app:layout_constraintStart_toStartOf="@+id/fridayPauseCheckBox"
+        app:layout_constraintTop_toBottomOf="@+id/fridayPauseCheckBox" />
+
+    <TextView
+        android:id="@+id/startSaturdayPauseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="13:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/startFridayPauseTextView"
+        app:layout_constraintTop_toTopOf="@+id/saturdayCheckBox" />
+
+    <TextView
+        android:id="@+id/saturdayPauseSeparatorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="/"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/fridayPauseSeparatorTextView"
+        app:layout_constraintTop_toTopOf="@+id/saturdayCheckBox" />
+
+    <TextView
+        android:id="@+id/endSaturdayPauseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="14:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/endFridayPauseTextView"
+        app:layout_constraintTop_toTopOf="@+id/saturdayCheckBox" />
+    
+    <!-- Sunday -->
+
+    <CheckBox
+        android:id="@+id/sundayCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/sunday"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox6"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saturdayCheckBox" />
+
+    <TextView
+        android:id="@+id/startSundayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="08:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/startSaturdayTextView"
+        app:layout_constraintTop_toTopOf="@+id/sundayCheckBox" />
+
+    <TextView
+        android:id="@+id/separatorSundayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="/"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/separatorSaturdayTextView"
+        app:layout_constraintTop_toTopOf="@+id/sundayCheckBox" />
+
+    <TextView
+        android:id="@+id/endSundayTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="18:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/endSaturdayTextView"
+        app:layout_constraintTop_toTopOf="@+id/sundayCheckBox" />
+
+    <CheckBox
+        android:id="@+id/sundayPauseCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="pausa"
+        app:layout_constraintStart_toStartOf="@+id/saturdayPauseCheckBox"
+        app:layout_constraintTop_toBottomOf="@+id/saturdayPauseCheckBox" />
+
+    <TextView
+        android:id="@+id/startSundayPauseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="13:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/startSaturdayPauseTextView"
+        app:layout_constraintTop_toTopOf="@+id/sundayCheckBox" />
+
+    <TextView
+        android:id="@+id/sundayPauseSeparatorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="/"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/saturdayPauseSeparatorTextView"
+        app:layout_constraintTop_toTopOf="@+id/sundayCheckBox" />
+
+    <TextView
+        android:id="@+id/endSundayPauseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="14:00"
+        android:textAppearance="@android:style/TextAppearance.Material"
+        app:layout_constraintStart_toStartOf="@+id/endSaturdayPauseTextView"
+        app:layout_constraintTop_toTopOf="@+id/sundayCheckBox" />
+    
+    <!-- Time picker -->
+
+    <TimePicker
+        android:id="@+id/timePicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:headerBackground="@color/colorAccent"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
 </android.support.constraint.ConstraintLayout>

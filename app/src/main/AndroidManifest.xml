@@ -19,20 +19,33 @@
         android:fullBackupContent="true"
         android:enabled="true">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".UI.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <receiver android:process=":remote" android:name=".LocationBroadcastReceiver" android:enabled="true" android:exported="true">
+        <activity android:name=".UI.SetScheduleActivity"></activity>
+
+        <!--<receiver android:process=":remote" android:name=".LocationBroadcastReceiver" android:enabled="true" android:exported="true">
             <intent-filter>
                 <action android:name="org.honk.seller.ACTION_GET_LOCATION"/>
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
-        <receiver android:name=".BootReceiver" android:enabled="true" android:exported="false">
+        <service
+            android:name=".services.LocationJobService"
+            android:label="Location job service"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
+
+        <service
+            android:name=".services.LocationService"
+            android:label="Location service" >
+        </service>
+
+        <receiver android:name=".services.BootReceiver" android:enabled="true" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>

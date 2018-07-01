@@ -1,20 +1,27 @@
-package org.honk.seller;
+package org.honk.seller.UI;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
+import org.honk.seller.services.LocationBroadcastReceiver;
+import org.honk.seller.LocationHelper;
+import org.honk.seller.R;
 import org.honk.sharedlibrary.UIHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,9 +40,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TextView txtLocation = (TextView) findViewById(R.id.txtLocation);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
+        int id = sharedPreferences.getInt("PREFERENCE_LAST_NOTIFICATION_ID", 0);
+        txtLocation.setText(txtLocation.getText() + " " + id);
 
         //this.loadLocation();
         //this.displayMessages();
+    }
+
+    public void openSetScheduleActivity(View view) {
+        Intent openScheduleIntent = new Intent(this, SetScheduleActivity.class);
+        this.startActivity(openScheduleIntent);
     }
 
     private void loadLocation() {

@@ -17,4 +17,6 @@
     <string name="friday">Venerdì</string>
     <string name="saturday">Sabato</string>
     <string name="sunday">Domenica</string>
+    <string name="from">dalle</string>
+    <string name="to">alle</string>
 </resources>

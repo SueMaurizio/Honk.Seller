@@ -11,7 +11,7 @@ public class LocationHelper {
     /** Determines whether one Location reading is better than the current Location fix
      * @param location  The new Location that you want to evaluate
      */
-    protected void SetNewBestLocation(Location location) {
+    public void SetNewBestLocation(Location location) {
         if (currentBestLocation == null) {
             // A new location is always better than no location
             this.currentBestLocation = location;
