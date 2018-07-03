@@ -9,19 +9,6 @@
     <!-- Title -->
 
     <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/specifySchedule"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/subtitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,597 +23,925 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
-    <!-- Monday -->
-
-    <CheckBox
-        android:id="@+id/mondayCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:checked="true"
-        android:text="@string/monday"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subtitleTextView" />
-
     <TextView
-        android:id="@+id/startMondayTextView"
+        android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="7dp"
-        android:text="08:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toEndOf="@+id/mondayCheckBox"
-        app:layout_constraintTop_toTopOf="@+id/mondayCheckBox" />
-
-    <TextView
-        android:id="@+id/separatorMondayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="7dp"
-        android:text="/"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toEndOf="@+id/startMondayTextView"
-        app:layout_constraintTop_toTopOf="@+id/mondayCheckBox" />
-
-    <TextView
-        android:id="@+id/endMondayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="7dp"
-        android:text="18:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toEndOf="@+id/separatorMondayTextView"
-        app:layout_constraintTop_toTopOf="@+id/mondayCheckBox" />
-
-    <CheckBox
-        android:id="@+id/mondayPauseCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:text="pausa"
-        app:layout_constraintStart_toEndOf="@+id/endMondayTextView"
-        app:layout_constraintTop_toBottomOf="@+id/subtitleTextView" />
-
-    <TextView
-        android:id="@+id/startMondayPauseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="7dp"
-        android:text="13:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toEndOf="@+id/mondayPauseCheckBox"
-        app:layout_constraintTop_toTopOf="@+id/mondayCheckBox" />
-
-    <TextView
-        android:id="@+id/mondayPauseSeparatorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="7dp"
-        android:text="/"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toEndOf="@+id/startMondayPauseTextView"
-        app:layout_constraintTop_toTopOf="@+id/mondayCheckBox" />
-
-    <TextView
-        android:id="@+id/endMondayPauseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="7dp"
-        android:text="14:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toEndOf="@+id/mondayPauseSeparatorTextView"
-        app:layout_constraintTop_toTopOf="@+id/mondayCheckBox" />
-
-    <!-- Tuesday -->
-
-    <CheckBox
-        android:id="@+id/tuesdayCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:checked="true"
-        android:text="@string/tuesday"
+        android:text="@string/specifySchedule"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mondayCheckBox" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/startTuesdayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="08:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/startMondayTextView"
-        app:layout_constraintTop_toTopOf="@+id/tuesdayCheckBox" />
-
-    <TextView
-        android:id="@+id/separatorTuesdayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="/"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/separatorMondayTextView"
-        app:layout_constraintTop_toTopOf="@+id/tuesdayCheckBox" />
-
-    <TextView
-        android:id="@+id/endTuesdayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="18:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/endMondayTextView"
-        app:layout_constraintTop_toTopOf="@+id/tuesdayCheckBox" />
-
-    <CheckBox
-        android:id="@+id/tuesdayPauseCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="378dp"
         android:layout_marginTop="8dp"
-        android:text="pausa"
-        app:layout_constraintStart_toStartOf="@+id/mondayPauseCheckBox"
-        app:layout_constraintTop_toBottomOf="@+id/mondayPauseCheckBox" />
+        app:layout_constraintTop_toBottomOf="@+id/subtitleTextView">
 
-    <TextView
-        android:id="@+id/startTuesdayPauseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="13:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/startMondayPauseTextView"
-        app:layout_constraintTop_toTopOf="@+id/tuesdayCheckBox" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tuesdayPauseSeparatorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="/"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/mondayPauseSeparatorTextView"
-        app:layout_constraintTop_toTopOf="@+id/tuesdayCheckBox" />
+            <!-- Monday -->
 
-    <TextView
-        android:id="@+id/endTuesdayPauseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="14:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/endMondayPauseTextView"
-        app:layout_constraintTop_toTopOf="@+id/tuesdayCheckBox" />
+            <TextView
+                android:id="@+id/mondayLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/monday"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Wednesday -->
+            <RadioButton
+                android:id="@+id/mondayWorkRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="lavoro dalle"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mondayLabel" />
 
-    <CheckBox
-        android:id="@+id/wednesdayCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:checked="true"
-        android:text="@string/wednesday"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tuesdayCheckBox" />
+            <TextView
+                android:id="@+id/startMondayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="08:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/mondayWorkRadio"
+                app:layout_constraintTop_toTopOf="@+id/mondayWorkRadio" />
 
-    <TextView
-        android:id="@+id/startWednesdayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="08:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/startTuesdayTextView"
-        app:layout_constraintTop_toTopOf="@+id/wednesdayCheckBox" />
+            <TextView
+                android:id="@+id/toMondayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="alle"
+                app:layout_constraintStart_toEndOf="@+id/startMondayTextView"
+                app:layout_constraintTop_toTopOf="@+id/mondayWorkRadio" />
 
-    <TextView
-        android:id="@+id/separatorWednesdayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="/"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/separatorTuesdayTextView"
-        app:layout_constraintTop_toTopOf="@+id/wednesdayCheckBox" />
+            <TextView
+                android:id="@+id/endMondayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="18:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/toMondayTextView"
+                app:layout_constraintTop_toTopOf="@+id/mondayWorkRadio" />
 
-    <TextView
-        android:id="@+id/endWednesdayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="18:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/endTuesdayTextView"
-        app:layout_constraintTop_toTopOf="@+id/wednesdayCheckBox" />
+            <RadioButton
+                android:id="@+id/mondayNoWorkRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:text="non lavoro"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/endMondayTextView"
+                app:layout_constraintTop_toBottomOf="@+id/mondayLabel" />
 
-    <CheckBox
-        android:id="@+id/wednesdayPauseCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="pausa"
-        app:layout_constraintStart_toStartOf="@+id/tuesdayPauseCheckBox"
-        app:layout_constraintTop_toBottomOf="@+id/tuesdayPauseCheckBox" />
+            <RadioButton
+                android:id="@+id/mondayPauseRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:checked="true"
+                android:text="pausa dalle"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mondayWorkRadio" />
 
-    <TextView
-        android:id="@+id/startWednesdayPauseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="13:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/startTuesdayPauseTextView"
-        app:layout_constraintTop_toTopOf="@+id/wednesdayCheckBox" />
+            <TextView
+                android:id="@+id/startMondayPauseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="13:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toStartOf="@+id/startMondayTextView"
+                app:layout_constraintTop_toTopOf="@+id/mondayPauseRadio" />
 
-    <TextView
-        android:id="@+id/wednesdayPauseSeparatorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="/"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/tuesdayPauseSeparatorTextView"
-        app:layout_constraintTop_toTopOf="@+id/wednesdayCheckBox" />
+            <TextView
+                android:id="@+id/mondayPauseSeparatorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="alle"
+                app:layout_constraintStart_toEndOf="@+id/startMondayPauseTextView"
+                app:layout_constraintTop_toTopOf="@+id/mondayPauseRadio" />
 
-    <TextView
-        android:id="@+id/endWednesdayPauseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="14:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/endTuesdayPauseTextView"
-        app:layout_constraintTop_toTopOf="@+id/wednesdayCheckBox" />
+            <TextView
+                android:id="@+id/endMondayPauseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="14:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/mondayPauseSeparatorTextView"
+                app:layout_constraintTop_toTopOf="@+id/mondayPauseRadio" />
 
-    <!-- Thursday -->
+            <RadioButton
+                android:id="@+id/mondayNoPauseRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="niente pausa"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="@+id/mondayNoWorkRadio"
+                app:layout_constraintTop_toBottomOf="@+id/mondayNoWorkRadio" />
 
-    <CheckBox
-        android:id="@+id/thursdayCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:checked="true"
-        android:text="@string/thursday"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wednesdayCheckBox" />
+            <!-- Tuesday -->
 
-    <TextView
-        android:id="@+id/startThursdayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="08:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/startWednesdayTextView"
-        app:layout_constraintTop_toTopOf="@+id/thursdayCheckBox" />
+            <TextView
+                android:id="@+id/tuesdayLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/tuesday"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mondayPauseRadio" />
 
-    <TextView
-        android:id="@+id/separatorThursdayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="/"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/separatorWednesdayTextView"
-        app:layout_constraintTop_toTopOf="@+id/thursdayCheckBox" />
+            <RadioButton
+                android:id="@+id/tuesdayWorkRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="lavoro dalle"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tuesdayLabel" />
 
-    <TextView
-        android:id="@+id/endThursdayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="18:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/endWednesdayTextView"
-        app:layout_constraintTop_toTopOf="@+id/thursdayCheckBox" />
+            <TextView
+                android:id="@+id/startTuesdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="08:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/tuesdayWorkRadio"
+                app:layout_constraintTop_toTopOf="@+id/tuesdayWorkRadio" />
 
-    <CheckBox
-        android:id="@+id/thursdayPauseCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="pausa"
-        app:layout_constraintStart_toStartOf="@+id/wednesdayPauseCheckBox"
-        app:layout_constraintTop_toBottomOf="@+id/wednesdayPauseCheckBox" />
+            <TextView
+                android:id="@+id/toTuesdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="alle"
+                app:layout_constraintStart_toEndOf="@+id/startTuesdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/tuesdayWorkRadio" />
 
-    <TextView
-        android:id="@+id/startThursdayPauseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="13:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/startWednesdayPauseTextView"
-        app:layout_constraintTop_toTopOf="@+id/thursdayCheckBox" />
+            <TextView
+                android:id="@+id/endTuesdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="18:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/toTuesdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/tuesdayWorkRadio" />
 
-    <TextView
-        android:id="@+id/thursdayPauseSeparatorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="/"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/wednesdayPauseSeparatorTextView"
-        app:layout_constraintTop_toTopOf="@+id/thursdayCheckBox" />
+            <RadioButton
+                android:id="@+id/tuesdayNoWorkRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:text="non lavoro"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/endTuesdayTextView"
+                app:layout_constraintTop_toBottomOf="@+id/tuesdayLabel" />
 
-    <TextView
-        android:id="@+id/endThursdayPauseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="14:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/endWednesdayPauseTextView"
-        app:layout_constraintTop_toTopOf="@+id/thursdayCheckBox" />
+            <RadioButton
+                android:id="@+id/tuesdayPauseRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:checked="true"
+                android:text="pausa dalle"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tuesdayWorkRadio" />
 
-    <!-- Friday -->
+            <TextView
+                android:id="@+id/startTuesdayPauseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="13:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toStartOf="@+id/startTuesdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/tuesdayPauseRadio" />
 
-    <CheckBox
-        android:id="@+id/fridayCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:checked="true"
-        android:text="@string/friday"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/thursdayCheckBox" />
+            <TextView
+                android:id="@+id/tuesdayPauseSeparatorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="alle"
+                app:layout_constraintStart_toEndOf="@+id/startTuesdayPauseTextView"
+                app:layout_constraintTop_toTopOf="@+id/tuesdayPauseRadio" />
 
-    <TextView
-        android:id="@+id/startFridayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="08:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/startThursdayTextView"
-        app:layout_constraintTop_toTopOf="@+id/fridayCheckBox" />
+            <TextView
+                android:id="@+id/endTuesdayPauseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="14:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/tuesdayPauseSeparatorTextView"
+                app:layout_constraintTop_toTopOf="@+id/tuesdayPauseRadio" />
 
-    <TextView
-        android:id="@+id/separatorFridayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="/"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/separatorThursdayTextView"
-        app:layout_constraintTop_toTopOf="@+id/fridayCheckBox" />
+            <RadioButton
+                android:id="@+id/tuesdayNoPauseRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="niente pausa"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="@+id/tuesdayNoWorkRadio"
+                app:layout_constraintTop_toBottomOf="@+id/tuesdayNoWorkRadio" />
 
-    <TextView
-        android:id="@+id/endFridayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="18:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/endThursdayTextView"
-        app:layout_constraintTop_toTopOf="@+id/fridayCheckBox" />
+            <!-- Wednesday -->
 
-    <CheckBox
-        android:id="@+id/fridayPauseCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="pausa"
-        app:layout_constraintStart_toStartOf="@+id/thursdayPauseCheckBox"
-        app:layout_constraintTop_toBottomOf="@+id/thursdayPauseCheckBox" />
+            <TextView
+                android:id="@+id/wednesdayLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/wednesday"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tuesdayPauseRadio" />
 
-    <TextView
-        android:id="@+id/startFridayPauseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="13:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/startThursdayPauseTextView"
-        app:layout_constraintTop_toTopOf="@+id/fridayCheckBox" />
+            <RadioButton
+                android:id="@+id/wednesdayWorkRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="lavoro dalle"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wednesdayLabel" />
 
-    <TextView
-        android:id="@+id/fridayPauseSeparatorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="/"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/thursdayPauseSeparatorTextView"
-        app:layout_constraintTop_toTopOf="@+id/fridayCheckBox" />
+            <TextView
+                android:id="@+id/startWednesdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="08:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/wednesdayWorkRadio"
+                app:layout_constraintTop_toTopOf="@+id/wednesdayWorkRadio" />
 
-    <TextView
-        android:id="@+id/endFridayPauseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="14:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/endThursdayPauseTextView"
-        app:layout_constraintTop_toTopOf="@+id/fridayCheckBox" />
+            <TextView
+                android:id="@+id/toWednesdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="alle"
+                app:layout_constraintStart_toEndOf="@+id/startWednesdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/wednesdayWorkRadio" />
 
-    <!-- Saturday -->
+            <TextView
+                android:id="@+id/endWednesdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="18:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/toWednesdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/wednesdayWorkRadio" />
 
-    <CheckBox
-        android:id="@+id/saturdayCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/saturday"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fridayCheckBox" />
+            <RadioButton
+                android:id="@+id/wednesdayNoWorkRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:text="non lavoro"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/endWednesdayTextView"
+                app:layout_constraintTop_toBottomOf="@+id/wednesdayLabel" />
 
-    <TextView
-        android:id="@+id/startSaturdayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="08:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/startFridayTextView"
-        app:layout_constraintTop_toTopOf="@+id/saturdayCheckBox" />
+            <RadioButton
+                android:id="@+id/wednesdayPauseRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:checked="true"
+                android:text="pausa dalle"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wednesdayWorkRadio" />
 
-    <TextView
-        android:id="@+id/separatorSaturdayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="/"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/separatorFridayTextView"
-        app:layout_constraintTop_toTopOf="@+id/saturdayCheckBox" />
+            <TextView
+                android:id="@+id/startWednesdayPauseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="13:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toStartOf="@+id/startWednesdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/wednesdayPauseRadio" />
 
-    <TextView
-        android:id="@+id/endSaturdayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="18:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/endFridayTextView"
-        app:layout_constraintTop_toTopOf="@+id/saturdayCheckBox" />
+            <TextView
+                android:id="@+id/wednesdayPauseSeparatorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="alle"
+                app:layout_constraintStart_toEndOf="@+id/startWednesdayPauseTextView"
+                app:layout_constraintTop_toTopOf="@+id/wednesdayPauseRadio" />
 
-    <CheckBox
-        android:id="@+id/saturdayPauseCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="pausa"
-        app:layout_constraintStart_toStartOf="@+id/fridayPauseCheckBox"
-        app:layout_constraintTop_toBottomOf="@+id/fridayPauseCheckBox" />
+            <TextView
+                android:id="@+id/endWednesdayPauseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="14:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/wednesdayPauseSeparatorTextView"
+                app:layout_constraintTop_toTopOf="@+id/wednesdayPauseRadio" />
 
-    <TextView
-        android:id="@+id/startSaturdayPauseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="13:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/startFridayPauseTextView"
-        app:layout_constraintTop_toTopOf="@+id/saturdayCheckBox" />
+            <RadioButton
+                android:id="@+id/wednesdayNoPauseRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="niente pausa"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="@+id/wednesdayNoWorkRadio"
+                app:layout_constraintTop_toBottomOf="@+id/wednesdayNoWorkRadio" />
 
-    <TextView
-        android:id="@+id/saturdayPauseSeparatorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="/"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/fridayPauseSeparatorTextView"
-        app:layout_constraintTop_toTopOf="@+id/saturdayCheckBox" />
+            <!-- Thursday -->
 
-    <TextView
-        android:id="@+id/endSaturdayPauseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="14:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/endFridayPauseTextView"
-        app:layout_constraintTop_toTopOf="@+id/saturdayCheckBox" />
-    
-    <!-- Sunday -->
+            <TextView
+                android:id="@+id/thursdayLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/thursday"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wednesdayPauseRadio" />
 
-    <CheckBox
-        android:id="@+id/sundayCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/sunday"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saturdayCheckBox" />
+            <RadioButton
+                android:id="@+id/thursdayWorkRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="lavoro dalle"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/thursdayLabel" />
 
-    <TextView
-        android:id="@+id/startSundayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="08:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/startSaturdayTextView"
-        app:layout_constraintTop_toTopOf="@+id/sundayCheckBox" />
+            <TextView
+                android:id="@+id/startThursdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="08:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/thursdayWorkRadio"
+                app:layout_constraintTop_toTopOf="@+id/thursdayWorkRadio" />
 
-    <TextView
-        android:id="@+id/separatorSundayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="/"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/separatorSaturdayTextView"
-        app:layout_constraintTop_toTopOf="@+id/sundayCheckBox" />
+            <TextView
+                android:id="@+id/toThursdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="alle"
+                app:layout_constraintStart_toEndOf="@+id/startThursdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/thursdayWorkRadio" />
 
-    <TextView
-        android:id="@+id/endSundayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="18:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/endSaturdayTextView"
-        app:layout_constraintTop_toTopOf="@+id/sundayCheckBox" />
+            <TextView
+                android:id="@+id/endThursdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="18:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/toThursdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/thursdayWorkRadio" />
 
-    <CheckBox
-        android:id="@+id/sundayPauseCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="pausa"
-        app:layout_constraintStart_toStartOf="@+id/saturdayPauseCheckBox"
-        app:layout_constraintTop_toBottomOf="@+id/saturdayPauseCheckBox" />
+            <RadioButton
+                android:id="@+id/thursdayNoWorkRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:text="non lavoro"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/endThursdayTextView"
+                app:layout_constraintTop_toBottomOf="@+id/thursdayLabel" />
 
-    <TextView
-        android:id="@+id/startSundayPauseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="13:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/startSaturdayPauseTextView"
-        app:layout_constraintTop_toTopOf="@+id/sundayCheckBox" />
+            <RadioButton
+                android:id="@+id/thursdayPauseRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:checked="true"
+                android:text="pausa dalle"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/thursdayWorkRadio" />
 
-    <TextView
-        android:id="@+id/sundayPauseSeparatorTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="/"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/saturdayPauseSeparatorTextView"
-        app:layout_constraintTop_toTopOf="@+id/sundayCheckBox" />
+            <TextView
+                android:id="@+id/startThursdayPauseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="13:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toStartOf="@+id/startThursdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/thursdayPauseRadio" />
 
-    <TextView
-        android:id="@+id/endSundayPauseTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="14:00"
-        android:textAppearance="@android:style/TextAppearance.Material"
-        app:layout_constraintStart_toStartOf="@+id/endSaturdayPauseTextView"
-        app:layout_constraintTop_toTopOf="@+id/sundayCheckBox" />
-    
-    <!-- Time picker -->
+            <TextView
+                android:id="@+id/thursdayPauseSeparatorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="alle"
+                app:layout_constraintStart_toEndOf="@+id/startThursdayPauseTextView"
+                app:layout_constraintTop_toTopOf="@+id/thursdayPauseRadio" />
 
-    <TimePicker
-        android:id="@+id/timePicker1"
-        android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/endThursdayPauseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="14:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/thursdayPauseSeparatorTextView"
+                app:layout_constraintTop_toTopOf="@+id/thursdayPauseRadio" />
+
+            <RadioButton
+                android:id="@+id/thursdayNoPauseRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="niente pausa"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="@+id/thursdayNoWorkRadio"
+                app:layout_constraintTop_toBottomOf="@+id/thursdayNoWorkRadio" />
+
+            <!-- Friday -->
+
+            <TextView
+                android:id="@+id/fridayLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/friday"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/thursdayPauseRadio" />
+
+            <RadioButton
+                android:id="@+id/fridayWorkRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="lavoro dalle"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fridayLabel" />
+
+            <TextView
+                android:id="@+id/startFridayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="08:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/fridayWorkRadio"
+                app:layout_constraintTop_toTopOf="@+id/fridayWorkRadio" />
+
+            <TextView
+                android:id="@+id/toFridayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="alle"
+                app:layout_constraintStart_toEndOf="@+id/startFridayTextView"
+                app:layout_constraintTop_toTopOf="@+id/fridayWorkRadio" />
+
+            <TextView
+                android:id="@+id/endFridayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="18:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/toFridayTextView"
+                app:layout_constraintTop_toTopOf="@+id/fridayWorkRadio" />
+
+            <RadioButton
+                android:id="@+id/fridayNoWorkRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:text="non lavoro"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/endFridayTextView"
+                app:layout_constraintTop_toBottomOf="@+id/fridayLabel" />
+
+            <RadioButton
+                android:id="@+id/fridayPauseRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:checked="true"
+                android:text="pausa dalle"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fridayWorkRadio" />
+
+            <TextView
+                android:id="@+id/startFridayPauseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="13:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toStartOf="@+id/startFridayTextView"
+                app:layout_constraintTop_toTopOf="@+id/fridayPauseRadio" />
+
+            <TextView
+                android:id="@+id/fridayPauseSeparatorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="alle"
+                app:layout_constraintStart_toEndOf="@+id/startFridayPauseTextView"
+                app:layout_constraintTop_toTopOf="@+id/fridayPauseRadio" />
+
+            <TextView
+                android:id="@+id/endFridayPauseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="14:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/fridayPauseSeparatorTextView"
+                app:layout_constraintTop_toTopOf="@+id/fridayPauseRadio" />
+
+            <RadioButton
+                android:id="@+id/fridayNoPauseRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="niente pausa"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="@+id/fridayNoWorkRadio"
+                app:layout_constraintTop_toBottomOf="@+id/fridayNoWorkRadio" />
+
+            <!-- Saturday -->
+
+            <TextView
+                android:id="@+id/saturdayLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/saturday"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fridayPauseRadio" />
+
+            <RadioButton
+                android:id="@+id/saturdayWorkRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="lavoro dalle"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/saturdayLabel" />
+
+            <TextView
+                android:id="@+id/startSaturdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="08:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/saturdayWorkRadio"
+                app:layout_constraintTop_toTopOf="@+id/saturdayWorkRadio" />
+
+            <TextView
+                android:id="@+id/toSaturdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="alle"
+                app:layout_constraintStart_toEndOf="@+id/startSaturdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/saturdayWorkRadio" />
+
+            <TextView
+                android:id="@+id/endSaturdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="18:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/toSaturdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/saturdayWorkRadio" />
+
+            <RadioButton
+                android:id="@+id/saturdayNoWorkRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="non lavoro"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/endSaturdayTextView"
+                app:layout_constraintTop_toBottomOf="@+id/saturdayLabel" />
+
+            <RadioButton
+                android:id="@+id/saturdayPauseRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:checked="false"
+                android:text="pausa dalle"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/saturdayWorkRadio" />
+
+            <TextView
+                android:id="@+id/startSaturdayPauseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="13:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toStartOf="@+id/startSaturdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/saturdayPauseRadio" />
+
+            <TextView
+                android:id="@+id/saturdayPauseSeparatorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="alle"
+                app:layout_constraintStart_toEndOf="@+id/startSaturdayPauseTextView"
+                app:layout_constraintTop_toTopOf="@+id/saturdayPauseRadio" />
+
+            <TextView
+                android:id="@+id/endSaturdayPauseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="14:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/saturdayPauseSeparatorTextView"
+                app:layout_constraintTop_toTopOf="@+id/saturdayPauseRadio" />
+
+            <RadioButton
+                android:id="@+id/saturdayNoPauseRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:checked="true"
+                android:text="niente pausa"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="@+id/saturdayNoWorkRadio"
+                app:layout_constraintTop_toBottomOf="@+id/saturdayNoWorkRadio" />
+
+            <!-- Sunday -->
+
+            <TextView
+                android:id="@+id/sundayLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/sunday"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/saturdayPauseRadio" />
+
+            <RadioButton
+                android:id="@+id/sundayWorkRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:checked="false"
+                android:text="lavoro dalle"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sundayLabel" />
+
+            <TextView
+                android:id="@+id/startSundayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="08:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/sundayWorkRadio"
+                app:layout_constraintTop_toTopOf="@+id/sundayWorkRadio" />
+
+            <TextView
+                android:id="@+id/toSundayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="alle"
+                app:layout_constraintStart_toEndOf="@+id/startSundayTextView"
+                app:layout_constraintTop_toTopOf="@+id/sundayWorkRadio" />
+
+            <TextView
+                android:id="@+id/endSundayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="18:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/toSundayTextView"
+                app:layout_constraintTop_toTopOf="@+id/sundayWorkRadio" />
+
+            <RadioButton
+                android:id="@+id/sundayNoWorkRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="non lavoro"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/endSundayTextView"
+                app:layout_constraintTop_toBottomOf="@+id/sundayLabel" />
+
+            <RadioButton
+                android:id="@+id/sundayPauseRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:checked="false"
+                android:text="pausa dalle"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sundayWorkRadio" />
+
+            <TextView
+                android:id="@+id/startSundayPauseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="13:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toStartOf="@+id/startSundayTextView"
+                app:layout_constraintTop_toTopOf="@+id/sundayPauseRadio" />
+
+            <TextView
+                android:id="@+id/sundayPauseSeparatorTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="alle"
+                app:layout_constraintStart_toEndOf="@+id/startSundayPauseTextView"
+                app:layout_constraintTop_toTopOf="@+id/sundayPauseRadio" />
+
+            <TextView
+                android:id="@+id/endSundayPauseTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="6dp"
+                android:text="14:00"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintStart_toEndOf="@+id/sundayPauseSeparatorTextView"
+                app:layout_constraintTop_toTopOf="@+id/sundayPauseRadio" />
+
+            <RadioButton
+                android:id="@+id/sundayNoPauseRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:checked="true"
+                android:text="niente pausa"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="@+id/sundayNoWorkRadio"
+                app:layout_constraintTop_toBottomOf="@+id/sundayNoWorkRadio" />
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button3"
+        style="@android:style/Widget.Material.Button"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:headerBackground="@color/colorAccent"
-        android:visibility="invisible"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="@color/colorAccent"
+        android:onClick="openSetScheduleActivity"
+        android:text="fatto"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button2" />
 
 </android.support.constraint.ConstraintLayout>
