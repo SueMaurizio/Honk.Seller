@@ -1,14 +1,19 @@
 package org.honk.seller.UI;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import org.honk.seller.R;
+
+import java.text.MessageFormat;
+import java.util.Date;
 
 public class SetScheduleActivity extends AppCompatActivity {
 
@@ -92,9 +97,21 @@ public class SetScheduleActivity extends AppCompatActivity {
     }
 
     public void pickTime(View view) {
-        TimePicker timePicker = findViewById(R.id.timePicker);
-        timePicker.setVisibility(View.VISIBLE);
-        Button doneButton = findViewById(R.id.doneButton);
-        doneButton.setVisibility(View.INVISIBLE);
+
+        // Parse value from TextView.
+        TextView textView = (TextView)view;
+        String text = textView.getText().toString();
+        int hour = Integer.parseInt(text.substring(0, 2));
+        int minute = Integer.parseInt(text.substring(3, 5));
+
+        TimePickerDialog timePickerDialog;
+        timePickerDialog = new TimePickerDialog(SetScheduleActivity.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                textView.setText(String.format("%02d:%02d", selectedHour, selectedMinute));
+            }
+        }, hour, minute, true);
+        timePickerDialog.setTitle("Select Time");
+        timePickerDialog.show();
     }
 }
