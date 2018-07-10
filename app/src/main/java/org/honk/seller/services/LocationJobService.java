@@ -15,9 +15,10 @@ public class LocationJobService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
-        Intent service = new Intent(getApplicationContext(), LocationService.class);
-        getApplicationContext().startService(service);
-        scheduleJob(getApplicationContext()); // reschedule the job
+        Context context = this.getApplicationContext();
+        Intent service = new Intent(context, LocationService.class);
+        context.startService(service);
+        scheduleJob(context); // Reschedule the job.
         return true;
     }
 
@@ -29,11 +30,8 @@ public class LocationJobService extends JobService {
     public static void scheduleJob(Context context) {
         ComponentName serviceComponent = new ComponentName(context, LocationJobService.class);
         JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
-        builder.setMinimumLatency(MINIMUM_LATENCY); // wait at least
-        builder.setOverrideDeadline(MAXIMUM_LATENCY); // maximum delay
-        //builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED); // require unmetered network
-        //builder.setRequiresDeviceIdle(true); // device should be idle
-        //builder.setRequiresCharging(false); // we don't care if the device is charging or not
+        builder.setMinimumLatency(MINIMUM_LATENCY);
+        builder.setOverrideDeadline(MAXIMUM_LATENCY);
         JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
         jobScheduler.schedule(builder.build());
     }
