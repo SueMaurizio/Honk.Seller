@@ -19,7 +19,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import org.honk.seller.services.LocationBroadcastReceiver;
 import org.honk.seller.LocationHelper;
 import org.honk.seller.R;
 import org.honk.sharedlibrary.UIHelper;
@@ -40,13 +39,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView txtLocation = (TextView) findViewById(R.id.txtLocation);
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
-        int id = sharedPreferences.getInt("PREFERENCE_LAST_NOTIFICATION_ID", 0);
-        txtLocation.setText(txtLocation.getText() + " " + id);
 
         //this.loadLocation();
-        //this.displayMessages();
     }
 
     public void openSetScheduleActivity(View view) {
@@ -84,10 +78,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void displayMessages() {
-        LocationBroadcastReceiver.setAlarm(this.getBaseContext());
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
@@ -109,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("MissingPermission")
     private void getLocation() {
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        TextView txtLocation = (TextView) findViewById(R.id.txtLocation);
+        TextView txtLocation = (TextView) findViewById(R.id.txtIntro);
         if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
             // Don't want to use last known location here: if the device is not connected, a message must be shown.
             this.locationHelper = new LocationHelper();

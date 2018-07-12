@@ -19,4 +19,15 @@
     <string name="sunday">Domenica</string>
     <string name="from">dalle</string>
     <string name="to">alle</string>
+    <string name="haveANiceDay">Buon lavoro!</string>
+    <string name="locationDetectionStarts">Da questo momento, i tuoi clienti possono vedere dove ti trovi.</string>
+    <string name="selectTime">Scegli l'ora</string>
+    <string name="done">Fatto</string>
+    <string name="workingFrom">lavoro dalle</string>
+    <string name="breakFrom">pausa dalle</string>
+    <string name="notWorking">non lavoro</string>
+    <string name="noBreak">niente pausa</string>
+    <string name="scheduleHint">Indica i giorni in cui lavori e tocca gli orari per cambiarli.</string>
+    <string name="ready">Sono pronto a cominciare!</string>
+    <string name="setSchedule">Imposta i tuoi orari di lavoro per far conoscere ai tuoi clienti la tua posizione.</string>
 </resources>

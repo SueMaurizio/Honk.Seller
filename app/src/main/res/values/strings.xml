@@ -18,4 +18,15 @@
     <string name="sunday">Sunday</string>
     <string name="from">from</string>
     <string name="to">to</string>
+    <string name="haveANiceDay">Have a nice day at work!</string>
+    <string name="locationDetectionStarts">From now on, your customers can view your location.</string>
+    <string name="selectTime">Select time</string>
+    <string name="done">Done</string>
+    <string name="workingFrom">working from</string>
+    <string name="breakFrom">break from</string>
+    <string name="notWorking">not working</string>
+    <string name="noBreak">no break</string>
+    <string name="scheduleHint">Set your working days and tap on hours to change them.</string>
+    <string name="ready">I\'m ready to start!</string>
+    <string name="setSchedule">Please set your working schedule to let your customers know your location.</string>
 </resources>

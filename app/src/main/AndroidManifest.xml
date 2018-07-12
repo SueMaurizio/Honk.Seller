@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <uses-feature android:name="android.hardware.location.gps" />
     <uses-feature android:name="android.hardware.location.network" />
@@ -28,14 +27,8 @@
 
         <activity android:name=".UI.SetScheduleActivity"></activity>
 
-        <!--<receiver android:process=":remote" android:name=".LocationBroadcastReceiver" android:enabled="true" android:exported="true">
-            <intent-filter>
-                <action android:name="org.honk.seller.ACTION_GET_LOCATION"/>
-            </intent-filter>
-        </receiver>-->
-
         <service
-            android:name=".services.LocationJobService"
+            android:name=".services.SchedulerJobService"
             android:label="Location job service"
             android:permission="android.permission.BIND_JOB_SERVICE" >
         </service>
@@ -45,7 +38,7 @@
             android:label="Location service" >
         </service>
 
-        <receiver android:name=".services.BootReceiver" android:enabled="true" android:exported="false">
+        <receiver android:name=".services.BootBroadcastReceiver" android:enabled="true" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>

@@ -12,18 +12,17 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.honk.seller.R;
 import org.honk.seller.model.DailySchedulePreferences;
-import org.honk.seller.model.DayOfWeek;
 import org.honk.seller.model.TimeSpan;
 
+import java.util.Calendar;
 import java.util.Hashtable;
 
 public class SetScheduleActivity extends AppCompatActivity {
 
-    private static final String PREFERENCE_SCHEDULE = "PREFERENCE_SCHEDULE";
+    public static final String PREFERENCE_SCHEDULE = "PREFERENCE_SCHEDULE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +119,7 @@ public class SetScheduleActivity extends AppCompatActivity {
                 textView.setText(String.format("%02d:%02d", selectedHour, selectedMinute));
             }
         }, hour, minute, true);
-        timePickerDialog.setTitle("Select Time");
+        timePickerDialog.setTitle(this.getString(R.string.selectTime));
         timePickerDialog.show();
     }
 
@@ -130,20 +129,18 @@ public class SetScheduleActivity extends AppCompatActivity {
 
     private void save() {
 
-        Hashtable<DayOfWeek, DailySchedulePreferences> allPreferences = new Hashtable<DayOfWeek, DailySchedulePreferences>();
-        allPreferences.put(DayOfWeek.MONDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
-        allPreferences.put(DayOfWeek.TUESDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
-        allPreferences.put(DayOfWeek.WEDNESDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
-        allPreferences.put(DayOfWeek.THURSDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
-        allPreferences.put(DayOfWeek.FRIDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
-        allPreferences.put(DayOfWeek.SATURDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
-        allPreferences.put(DayOfWeek.SUNDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
+        // TODO: fetch preferences from page.
+        Hashtable<Integer, DailySchedulePreferences> allPreferences = new Hashtable<Integer, DailySchedulePreferences>();
+        allPreferences.put(Calendar.MONDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
+        allPreferences.put(Calendar.TUESDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
+        allPreferences.put(Calendar.WEDNESDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
+        allPreferences.put(Calendar.THURSDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
+        allPreferences.put(Calendar.FRIDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
+        allPreferences.put(Calendar.SATURDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
+        allPreferences.put(Calendar.SUNDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
 
         Context context = this.getApplicationContext();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPreferences.edit().putString(PREFERENCE_SCHEDULE, new Gson().toJson(allPreferences)).apply();
-
-        String test = sharedPreferences.getString(PREFERENCE_SCHEDULE, "");
-        Hashtable<DayOfWeek, DailySchedulePreferences> result = new Gson().fromJson(test, TypeToken.getParameterized(Hashtable.class, DayOfWeek.class, DailySchedulePreferences.class).getType());
     }
 }
