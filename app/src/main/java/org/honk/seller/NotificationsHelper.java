@@ -1,6 +1,8 @@
 package org.honk.seller;
 
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
@@ -10,16 +12,26 @@ public class NotificationsHelper {
 
     private static final String PREFERENCE_LAST_NOTIFICATION_ID = "PREFERENCE_LAST_NOTIFICATION_ID";
 
-    public static void ShowNotification(Context context, String title, String content) {
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "org.honk.seller")
+    public static void showNotification(Context context, String title, String content) {
+        showNotification(context, title, content, null, null);
+    }
+
+    public static void showNotification(Context context, String title, String content, Intent intent, String intentLabel) {
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, "org.honk.seller")
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(title)
                 .setContentText(content)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setLights(0xffffff00, 300, 100);
+        if (intent != null) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            notificationBuilder.addAction(R.drawable.ic_launcher_background, intentLabel, pendingIntent);
+        }
+
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 
         // The notification ID must be unique for each notification.
-        notificationManager.notify(getNextNotificationId(context), mBuilder.build());
+        notificationManager.notify(getNextNotificationId(context), notificationBuilder.build());
     }
 
     private static int getNextNotificationId(Context context) {

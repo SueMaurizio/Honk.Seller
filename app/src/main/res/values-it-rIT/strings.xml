@@ -30,4 +30,13 @@
     <string name="scheduleHint">Indica i giorni in cui lavori e tocca gli orari per cambiarli.</string>
     <string name="ready">Sono pronto a cominciare!</string>
     <string name="setSchedule">Imposta i tuoi orari di lavoro per far conoscere ai tuoi clienti la tua posizione.</string>
+    <string name="stop">Fermati</string>
+    <string name="serviceStopped">Ho arrestato il servizio.</string>
+    <string name="stopSendingLocation">Devo smettere di inviare la tua posizione?</string>
+    <string name="resumeSendingLocation">No, riprendi a trasmettere la mia posizione</string>
+    <string name="wontWorkToday">Sì, oggi non lavoro</string>
+    <string name="awayForAWhile">Sì, sarò assente per un po'</string>
+    <string name="doNotSendLocation">Sì, non trasmettere più la mia posizione</string>
+    <string name="whenWillYouBeBack">Quando tornerai?</string>
+    <string name="dontKnowYet">Non lo so ancora</string>
 </resources>

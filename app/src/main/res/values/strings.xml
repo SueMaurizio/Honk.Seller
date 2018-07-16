@@ -29,4 +29,13 @@
     <string name="scheduleHint">Set your working days and tap on hours to change them.</string>
     <string name="ready">I\'m ready to start!</string>
     <string name="setSchedule">Please set your working schedule to let your customers know your location.</string>
+    <string name="stop">Stop</string>
+    <string name="serviceStopped">I have stopped the service.</string>
+    <string name="stopSendingLocation">Should I stop sending your location?</string>
+    <string name="resumeSendingLocation">No, resume sending my location</string>
+    <string name="wontWorkToday">Yes, I won't work today</string>
+    <string name="awayForAWhile">Yes, I'll be away for a while</string>
+    <string name="doNotSendLocation">Yes, don't send my location anymore</string>
+    <string name="whenWillYouBeBack">When will you be back?</string>
+    <string name="dontKnowYet">I don't know yet</string>
 </resources>

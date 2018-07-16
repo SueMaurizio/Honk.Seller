@@ -7,17 +7,16 @@ import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 
 import org.honk.seller.NotificationsHelper;
 import org.honk.seller.R;
+import org.honk.seller.UI.StopServiceActivity;
 
 import java.util.Calendar;
 
 public class LocationService extends Service {
 
-    private final IBinder mBinder = new LocationBinder();
+    private final IBinder locationBinder = new LocationBinder();
 
     private static final String PREFERENCE_LAST_DAY = "PREFERENCE_LAST_DAY";
 
@@ -30,7 +29,7 @@ public class LocationService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         getLocation(this.getBaseContext());
-        return mBinder;
+        return locationBinder;
     }
 
     public class LocationBinder extends Binder {
@@ -45,7 +44,9 @@ public class LocationService extends Service {
         int lastDay = sharedPreferences.getInt(PREFERENCE_LAST_DAY, 0);
         if (currentDay != lastDay) {
             // This is the first location detection today: display a message to the user.
-            NotificationsHelper.ShowNotification(context, context.getString(R.string.haveANiceDay), context.getString(R.string.locationDetectionStarts));
+            Intent stopServiceIntent = new Intent(context, StopServiceActivity.class);
+            NotificationsHelper.showNotification(
+                    context, context.getString(R.string.haveANiceDay), context.getString(R.string.locationDetectionStarts), stopServiceIntent, context.getString(R.string.stop));
             sharedPreferences.edit().putInt(PREFERENCE_LAST_DAY, currentDay).apply();
         }
     }

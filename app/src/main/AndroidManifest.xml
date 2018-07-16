@@ -27,6 +27,8 @@
 
         <activity android:name=".UI.SetScheduleActivity"></activity>
 
+        <activity android:name=".UI.StopServiceActivity"></activity>
+
         <service
             android:name=".services.SchedulerJobService"
             android:label="Location job service"

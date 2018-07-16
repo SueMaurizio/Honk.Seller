@@ -111,9 +111,8 @@ public class SetScheduleActivity extends AppCompatActivity {
         int hour = Integer.parseInt(text.substring(0, 2));
         int minute = Integer.parseInt(text.substring(3, 5));
 
-        TimePickerDialog timePickerDialog;
         // TODO: set parameter is24HourView based on the current locale.
-        timePickerDialog = new TimePickerDialog(SetScheduleActivity.this, new TimePickerDialog.OnTimeSetListener() {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(SetScheduleActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 textView.setText(String.format("%02d:%02d", selectedHour, selectedMinute));
