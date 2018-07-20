@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import org.honk.seller.R;
 import org.honk.seller.model.DailySchedulePreferences;
 import org.honk.seller.model.TimeSpan;
+import org.honk.seller.services.SchedulerJobService;
 
 import java.util.Calendar;
 import java.util.Hashtable;
@@ -141,5 +142,7 @@ public class SetScheduleActivity extends AppCompatActivity {
         Context context = this.getApplicationContext();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPreferences.edit().putString(PREFERENCE_SCHEDULE, new Gson().toJson(allPreferences)).apply();
+
+        SchedulerJobService.startScheduling(context);
     }
 }
