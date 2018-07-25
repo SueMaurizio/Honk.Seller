@@ -143,6 +143,6 @@ public class SetScheduleActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPreferences.edit().putString(PREFERENCE_SCHEDULE, new Gson().toJson(allPreferences)).apply();
 
-        SchedulerJobService.startScheduling(context);
+        SchedulerJobService.checkAndSchedule(context);
     }
 }

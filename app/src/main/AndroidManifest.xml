@@ -18,12 +18,18 @@
         android:fullBackupContent="true"
         android:enabled="true">
 
-        <activity android:name=".UI.MainActivity">
+        <activity
+            android:name=".UI.StartupActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".UI.FirstConfigurationActivity"></activity>
+
+        <activity android:name=".UI.MainActivity"></activity>
 
         <activity android:name=".UI.SetScheduleActivity"></activity>
 

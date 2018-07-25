@@ -66,7 +66,7 @@ public class SchedulerJobService extends JobService {
         scheduleJob(context, MINIMUM_LATENCY, MAXIMUM_LATENCY);
     }
 
-    public static void startScheduling(Context context) {
+    public static void checkAndSchedule(Context context) {
         // Get schedule preferences.
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String settingsString = sharedPreferences.getString(SetScheduleActivity.PREFERENCE_SCHEDULE, "");

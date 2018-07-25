@@ -2,11 +2,13 @@ package org.honk.seller.UI;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.DatePicker;
 
+import org.honk.seller.NotificationsHelper;
 import org.honk.seller.R;
 import org.honk.seller.services.SchedulerJobService;
 
@@ -19,6 +21,9 @@ public class StopServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         SchedulerJobService.active = false;
         setContentView(R.layout.activity_stopservice);
+
+        // Dismiss the message the user clicked on to open this activity.
+        NotificationsHelper.dismissCurrentNotification((this.getBaseContext()));
     }
 
     public void pickDate(View view) {
@@ -39,5 +44,10 @@ public class StopServiceActivity extends AppCompatActivity {
             }
         });
         datePickerDialog.show();
+    }
+
+    public void restartServiceAndClose(View view) {
+        SchedulerJobService.active = true;
+        this.finishAffinity();
     }
 }

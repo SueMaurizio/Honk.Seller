@@ -35,8 +35,9 @@
     <string name="stopSendingLocation">Devo smettere di inviare la tua posizione?</string>
     <string name="resumeSendingLocation">No, riprendi a trasmettere la mia posizione</string>
     <string name="wontWorkToday">Sì, oggi non lavoro</string>
-    <string name="awayForAWhile">Sì, sarò assente per un po'</string>
+    <string name="awayForAWhile">Sì, sarò assente per un po\'</string>
     <string name="doNotSendLocation">Sì, non trasmettere più la mia posizione</string>
     <string name="whenWillYouBeBack">Quando tornerai?</string>
     <string name="dontKnowYet">Non lo so ancora</string>
+    <string name="whatCanIDo">Cosa posso fare per te?</string>
 </resources>

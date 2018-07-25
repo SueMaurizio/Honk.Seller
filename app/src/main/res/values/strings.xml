@@ -38,4 +38,5 @@
     <string name="doNotSendLocation">Yes, don't send my location anymore</string>
     <string name="whenWillYouBeBack">When will you be back?</string>
     <string name="dontKnowYet">I don't know yet</string>
+    <string name="whatCanIDo">What can I do for you?</string>
 </resources>
