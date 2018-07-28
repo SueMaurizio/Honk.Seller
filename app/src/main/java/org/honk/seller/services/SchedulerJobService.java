@@ -1,5 +1,6 @@
 package org.honk.seller.services;
 
+import android.app.Application;
 import android.app.job.JobInfo;
 import android.app.job.JobParameters;
 import android.app.job.JobScheduler;
@@ -23,8 +24,8 @@ import java.util.Hashtable;
 
 public class SchedulerJobService extends JobService {
 
-    private static final int MINIMUM_LATENCY = 1000 * 60 * 1;
-    private static final int MAXIMUM_LATENCY = 1000 * 60 * 3;
+    private static final int MINIMUM_LATENCY = 1000 * 60 * 30;
+    private static final int MAXIMUM_LATENCY = 1000 * 60 * 35;
 
     // Can be set to false if the user forcibly stops the service through the daily notification.
     public static boolean active = true;
@@ -35,10 +36,16 @@ public class SchedulerJobService extends JobService {
     @Override
     public boolean onStartJob(JobParameters params) {
         Context context = this.getApplicationContext();
-        Intent service = new Intent(context, LocationService.class);
-        context.startService(service);
-        scheduleJob(context);
-        return true;
+        try {
+            Intent service = new Intent(context, LocationService.class);
+            context.startService(service);
+            scheduleJob(context);
+            return true;
+        }
+        catch (Exception x) {
+            NotificationsHelper.showNotification(context, "debug", "Eccezione: " + x.getMessage());
+            return false;
+        }
     }
 
     @Override
@@ -47,18 +54,23 @@ public class SchedulerJobService extends JobService {
     }
 
     public static void scheduleJob(Context context, int minimumLatency, int maximumLatency) {
-        // The job should be scheduled if the service is active and not paused.
-        if (active && (pausedUntil == null || pausedUntil.before(Calendar.getInstance()))) {
-            // The pause is not set or expired. In either case, it should be set to null.
-            pausedUntil = null;
+        try {
+            // The job should be scheduled if the service is active and not paused.
+            if (active && (pausedUntil == null || pausedUntil.before(Calendar.getInstance()))) {
+                // The pause is not set or expired. In either case, it should be set to null.
+                pausedUntil = null;
 
-            // Schedule the job.
-            ComponentName serviceComponent = new ComponentName(context, SchedulerJobService.class);
-            JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
-            builder.setMinimumLatency(minimumLatency);
-            builder.setOverrideDeadline(maximumLatency);
-            JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
-            jobScheduler.schedule(builder.build());
+                // Schedule the job.
+                ComponentName serviceComponent = new ComponentName(context, SchedulerJobService.class);
+                JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
+                builder.setMinimumLatency(minimumLatency);
+                builder.setOverrideDeadline(maximumLatency);
+                JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
+                jobScheduler.schedule(builder.build());
+            }
+        }
+        catch (Exception x) {
+            NotificationsHelper.showNotification(context, "debug", "Eccezione: " + x.getMessage());
         }
     }
 
@@ -215,6 +227,12 @@ public class SchedulerJobService extends JobService {
         } else {
             // There are no working days configured: show a message to the user.
             NotificationsHelper.showNotification(context, context.getString(R.string.ready), context.getString(R.string.setSchedule));
+            // TODO: add an action button
         }
+    }
+
+    public static void cancelAllJobs(Context context) {
+        JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
+        jobScheduler.cancelAll();
     }
 }

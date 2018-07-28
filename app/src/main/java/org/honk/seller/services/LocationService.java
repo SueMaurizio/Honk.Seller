@@ -28,7 +28,6 @@ public class LocationService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        getLocation(this.getBaseContext());
         return locationBinder;
     }
 
@@ -48,6 +47,9 @@ public class LocationService extends Service {
             NotificationsHelper.showNotification(
                     context, context.getString(R.string.haveANiceDay), context.getString(R.string.locationDetectionStarts), stopServiceIntent, context.getString(R.string.stop));
             sharedPreferences.edit().putInt(PREFERENCE_LAST_DAY, currentDay).apply();
+        }
+        else {
+            NotificationsHelper.showNotification(context, "debug", "Il servizio è stato chiamato");
         }
     }
 }

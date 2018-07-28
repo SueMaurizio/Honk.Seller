@@ -12,6 +12,9 @@ public class BootBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
             try {
+                // First of all, cancel all pending jobs.
+                SchedulerJobService.cancelAllJobs(context);
+
                 NotificationsHelper.showNotification(context, "debug", "Inizio schedulazione");
                 SchedulerJobService.checkAndSchedule(context);
             }
