@@ -1,6 +1,5 @@
 package org.honk.seller.services;
 
-import android.app.Application;
 import android.app.job.JobInfo;
 import android.app.job.JobParameters;
 import android.app.job.JobScheduler;
@@ -18,6 +17,7 @@ import org.honk.seller.NotificationsHelper;
 import org.honk.seller.R;
 import org.honk.seller.UI.SetScheduleActivity;
 import org.honk.seller.model.DailySchedulePreferences;
+import org.honk.seller.model.TimeSpan;
 
 import java.util.Calendar;
 import java.util.Hashtable;
@@ -37,9 +37,19 @@ public class SchedulerJobService extends JobService {
     public boolean onStartJob(JobParameters params) {
         Context context = this.getApplicationContext();
         try {
-            Intent service = new Intent(context, LocationService.class);
-            context.startService(service);
-            scheduleJob(context);
+            int millisToNextAction = getMillisToNextAction(context);
+            if (millisToNextAction == 0) {
+                /* It's still work time: execute location detection and reschedule this job after a predefined time interval.
+                 * Notice that I need to check if it's still work time since android scheduling is not deterministic. */
+                Intent service = new Intent(context, LocationService.class);
+                context.startService(service);
+                scheduleJob(context, MINIMUM_LATENCY, MAXIMUM_LATENCY);
+            } else if (millisToNextAction > 0) {
+                /* Location detection will start after <millisToNextAction>. A negative value means no configuration found,
+                 * so location detection cannot start. */
+                scheduleJob(context, millisToNextAction, millisToNextAction);
+            }
+
             return true;
         }
         catch (Exception x) {
@@ -75,10 +85,10 @@ public class SchedulerJobService extends JobService {
     }
 
     public static void scheduleJob(Context context) {
-        scheduleJob(context, MINIMUM_LATENCY, MAXIMUM_LATENCY);
+        scheduleJob(context, 0, 0);
     }
 
-    public static void checkAndSchedule(Context context) {
+    public static int getMillisToNextAction(Context context) {
         // Get schedule preferences.
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String settingsString = sharedPreferences.getString(SetScheduleActivity.PREFERENCE_SCHEDULE, "");
@@ -98,86 +108,74 @@ public class SchedulerJobService extends JobService {
             int nowMillis = now.get(Calendar.HOUR_OF_DAY) * 60 * 60 * 1000 + now.get(Calendar.MINUTE) * 60 * 1000;
             if (todayPreferences.workStartTime != null) {
                 // The user works today.
-                Calendar workStart = Calendar.getInstance();
-                workStart.set(currentYear, currentMonth, currentDay, todayPreferences.workStartTime.hours, todayPreferences.workStartTime.minutes, 0);
+                Calendar workStart = getCalendarFromToday(todayPreferences.workStartTime);
                 if (now.before(workStart)) {
                     // The working day has not begun yet: schedule location detection for later.
-                    scheduleLocationDetection(workStart, nowMillis, context);
+                    NotificationsHelper.showNotification(context, "debug", "La giornata lavorativa non è ancora cominciata.");
+                    int workStartMillis = workStart.get(Calendar.HOUR_OF_DAY) * 60 * 60 * 1000 + workStart.get(Calendar.MINUTE) * 60 * 1000;
+                    return workStartMillis - nowMillis;
                 } else {
                     // The working day has already begun: let's verify whether the pause has begun.
                     if (todayPreferences.pauseStartTime != null) {
                         // The user has a pause today.
-                        Calendar pauseStart = Calendar.getInstance();
-                        pauseStart.set(currentYear, currentMonth, currentDay, todayPreferences.pauseStartTime.hours, todayPreferences.pauseStartTime.minutes, 0);
+                        Calendar pauseStart = getCalendarFromToday(todayPreferences.pauseStartTime);
                         if (now.after(pauseStart)) {
                             // The pause has already begun, let's verify whether it has also ended.
-                            Calendar pauseEnd = Calendar.getInstance();
-                            pauseEnd.set(currentYear, currentMonth, currentDay, todayPreferences.pauseEndTime.hours, todayPreferences.pauseEndTime.minutes, 0);
+                            Calendar pauseEnd = getCalendarFromToday(todayPreferences.pauseEndTime);
                             if (now.after(pauseEnd)) {
                                 // The pause has ended, let's verify whether the working day has ended as well.
-                                checkIfWorkingDayHasEnded(currentYear, currentMonth, currentDay, currentDayOfWeek, nowMillis, now, context, scheduleSettings, todayPreferences);
+                                NotificationsHelper.showNotification(context, "debug", "La pausa è finita.");
+                                Calendar workEnd = getCalendarFromToday(todayPreferences.workEndTime);
+                                if (now.before(workEnd)) {
+                                    // The working day has not ended yet: location detection must start now.
+                                    NotificationsHelper.showNotification(context, "debug", "Lavoro in corso (pomeriggio).");
+                                    return 0;
+                                } else {
+                                    // The working day has ended: schedule for the next working day.
+                                    NotificationsHelper.showNotification(context, "debug", "La giornata lavorativa è finita.");
+                                    return getMillisToNextWorkingDay(currentYear, currentMonth, currentDay, currentDayOfWeek, nowMillis, now, context, scheduleSettings);
+                                }
                             } else {
                                 // The pause has not ended, schedule location detection for later.
-                                scheduleLocationDetection(pauseEnd, nowMillis, context);
+                                NotificationsHelper.showNotification(context, "debug", "Pausa in corso.");
+                                int pauseEndMillis = pauseEnd.get(Calendar.HOUR_OF_DAY) * 60 * 60 * 1000 + pauseEnd.get(Calendar.MINUTE) * 60 * 1000;
+                                return pauseEndMillis - nowMillis;
                             }
                         } else {
                             // The pause has not begun yet: location detection must start now.
-                            scheduleLocationDetection(context, 0);
+                            NotificationsHelper.showNotification(context, "debug", "Lavoro in corso (mattina).");
+                            return 0;
                         }
                     } else {
                         // No pause today, let's just check whether the working day has ended or not.
-                        checkIfWorkingDayHasEnded(currentYear, currentMonth, currentDay, currentDayOfWeek, nowMillis, now, context, scheduleSettings, todayPreferences);
+                        NotificationsHelper.showNotification(context, "debug", "Oggi niente pausa.");
+                        Calendar workEnd = getCalendarFromToday(todayPreferences.workEndTime);
+                        if (now.before(workEnd)) {
+                            // The working day has not ended yet: location detection must start now.
+                            NotificationsHelper.showNotification(context, "debug", "Lavoro in corso (orario continuato).");
+                            return 0;
+                        } else {
+                            // The working day has ended: schedule for the next working day.
+                            NotificationsHelper.showNotification(context, "debug", "La giornata lavorativa è finita.");
+                            return getMillisToNextWorkingDay(currentYear, currentMonth, currentDay, currentDayOfWeek, nowMillis, now, context, scheduleSettings);
+                        }
                     }
                 }
             } else {
                 // The user does not work today: let's schedule for the next working day.
-                scheduleForNextWorkingDay(currentYear, currentMonth, currentDay, currentDayOfWeek, nowMillis, now, context, scheduleSettings);
+                NotificationsHelper.showNotification(context, "debug", "Oggi niente lavoro.");
+                return getMillisToNextWorkingDay(currentYear, currentMonth, currentDay, currentDayOfWeek, nowMillis, now, context, scheduleSettings);
             }
         }
         else
         {
             // The working schedule is not configured: show a message to the user.
             NotificationsHelper.showNotification(context, context.getString(R.string.ready), context.getString(R.string.setSchedule));
+            return -1;
         }
     }
 
-    private static void scheduleLocationDetection(Context context, int latencyMillis) {
-        if (latencyMillis < 0) {
-            latencyMillis = 0;
-        }
-
-        NotificationsHelper.showNotification(context, "debug", "Partenza schedulata fra " + latencyMillis + " millisecondi.");
-        SchedulerJobService.scheduleJob(context, latencyMillis, latencyMillis);
-    }
-
-    private static void scheduleLocationDetection(Calendar nextStart, int nowMillis, Context context) {
-        int pauseEndMillis = nextStart.get(Calendar.HOUR_OF_DAY) * 60 * 60 * 1000 + nextStart.get(Calendar.MINUTE) * 60 * 1000;
-        int latency = pauseEndMillis - nowMillis;
-        scheduleLocationDetection(context, latency);
-    }
-
-    private static void checkIfWorkingDayHasEnded(
-            int currentYear,
-            int currentMonth,
-            int currentDay,
-            int currentDayOfWeek,
-            int nowMillis,
-            Calendar now,
-            Context context,
-            Hashtable<Integer, DailySchedulePreferences> scheduleSettings,
-            DailySchedulePreferences todayPreferences) {
-        Calendar workEnd = Calendar.getInstance();
-        workEnd.set(currentYear, currentMonth, currentDay, todayPreferences.workEndTime.hours, todayPreferences.workEndTime.minutes, 0);
-        if (now.before(workEnd)) {
-            // The working day has not ended yet: location detection must start now.
-            scheduleLocationDetection(context, 0);
-        } else {
-            // The working day has ended: schedule for the next working day.
-            scheduleForNextWorkingDay(currentYear, currentMonth, currentDay, currentDayOfWeek, nowMillis, now, context, scheduleSettings);
-        }
-    }
-
-    private static void scheduleForNextWorkingDay(
+    private static int getMillisToNextWorkingDay(
             int currentYear,
             int currentMonth,
             int currentDay,
@@ -186,6 +184,7 @@ public class SchedulerJobService extends JobService {
             Calendar now,
             Context context,
             Hashtable<Integer, DailySchedulePreferences> scheduleSettings) {
+
         // Compute next day adding one day to the current date and resetting hour and minute.
         Calendar nextWorkingDayStart = Calendar.getInstance();
         nextWorkingDayStart.set(currentYear, currentMonth, currentDay, 0, 0);
@@ -223,16 +222,23 @@ public class SchedulerJobService extends JobService {
             int timeToWorkStart = (nextDayPreferences.workStartTime.hours * 60 * 60 * 1000) + (nextDayPreferences.workStartTime.minutes * 60 * 1000);
 
             // Schedule location detection.
-            scheduleLocationDetection(context, timeToMidnight + timeToNextWorkingDay + timeToWorkStart);
+            return timeToMidnight + timeToNextWorkingDay + timeToWorkStart;
         } else {
             // There are no working days configured: show a message to the user.
             NotificationsHelper.showNotification(context, context.getString(R.string.ready), context.getString(R.string.setSchedule));
             // TODO: add an action button
+            return -1;
         }
     }
 
     public static void cancelAllJobs(Context context) {
         JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
         jobScheduler.cancelAll();
+    }
+
+    private static Calendar getCalendarFromToday(TimeSpan time) {
+        Calendar result = Calendar.getInstance();
+        result.set(result.get(Calendar.YEAR), result.get(Calendar.MONTH), result.get(Calendar.DAY_OF_MONTH), time.hours, time.minutes, 0);
+        return result;
     }
 }

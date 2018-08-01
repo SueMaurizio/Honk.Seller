@@ -49,7 +49,7 @@ public class LocationService extends Service {
             sharedPreferences.edit().putInt(PREFERENCE_LAST_DAY, currentDay).apply();
         }
         else {
-            NotificationsHelper.showNotification(context, "debug", "Il servizio è stato chiamato");
+            //NotificationsHelper.showNotification(context, "debug", "Il servizio è stato chiamato");
         }
     }
 }
