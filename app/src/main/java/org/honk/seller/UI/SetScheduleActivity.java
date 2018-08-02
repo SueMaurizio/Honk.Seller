@@ -129,20 +129,54 @@ public class SetScheduleActivity extends AppCompatActivity {
 
     private void save() {
 
-        // TODO: fetch preferences from page.
         Hashtable<Integer, DailySchedulePreferences> allPreferences = new Hashtable<Integer, DailySchedulePreferences>();
-        allPreferences.put(Calendar.MONDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
-        allPreferences.put(Calendar.TUESDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
-        allPreferences.put(Calendar.WEDNESDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
-        allPreferences.put(Calendar.THURSDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
-        allPreferences.put(Calendar.FRIDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
-        allPreferences.put(Calendar.SATURDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
-        allPreferences.put(Calendar.SUNDAY, new DailySchedulePreferences(new TimeSpan(8, 0), new TimeSpan(17, 0)));
+
+        allPreferences.put(Calendar.MONDAY, this.getPreferences(
+                R.id.mondayWorkRadio, R.id.startMondayTextView, R.id.endMondayTextView, R.id.mondayPauseRadio, R.id.startMondayPauseTextView, R.id.endMondayPauseTextView));
+        allPreferences.put(Calendar.TUESDAY, this.getPreferences(
+                R.id.tuesdayWorkRadio, R.id.startTuesdayTextView, R.id.endTuesdayTextView, R.id.tuesdayPauseRadio, R.id.startTuesdayPauseTextView, R.id.endTuesdayPauseTextView));
+        allPreferences.put(Calendar.WEDNESDAY, this.getPreferences(
+                R.id.wednesdayWorkRadio, R.id.startWednesdayTextView, R.id.endWednesdayTextView, R.id.wednesdayPauseRadio, R.id.startWednesdayPauseTextView, R.id.endWednesdayPauseTextView));
+        allPreferences.put(Calendar.THURSDAY, this.getPreferences(
+                R.id.thursdayWorkRadio, R.id.startThursdayTextView, R.id.endThursdayTextView, R.id.thursdayPauseRadio, R.id.startThursdayPauseTextView, R.id.endThursdayPauseTextView));
+        allPreferences.put(Calendar.FRIDAY, this.getPreferences(
+                R.id.fridayWorkRadio, R.id.startFridayTextView, R.id.endFridayTextView, R.id.fridayPauseRadio, R.id.startFridayPauseTextView, R.id.endFridayPauseTextView));
+        allPreferences.put(Calendar.SATURDAY, this.getPreferences(
+                R.id.saturdayWorkRadio, R.id.startSaturdayTextView, R.id.endSaturdayTextView, R.id.saturdayPauseRadio, R.id.startSaturdayPauseTextView, R.id.endSaturdayPauseTextView));
+        allPreferences.put(Calendar.SUNDAY, this.getPreferences(
+                R.id.sundayWorkRadio, R.id.startSundayTextView, R.id.endSundayTextView, R.id.sundayPauseRadio, R.id.startSundayPauseTextView, R.id.endSundayPauseTextView));
 
         Context context = this.getApplicationContext();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPreferences.edit().putString(PREFERENCE_SCHEDULE, new Gson().toJson(allPreferences)).apply();
 
+        SchedulerJobService.cancelAllJobs(context);
         SchedulerJobService.scheduleJob(context);
+
+        // TODO: Add "congratulations" activity
+    }
+
+    private TimeSpan getTimeSpanFromTextView(int radioButtonId) {
+        TextView textView = this.findViewById(radioButtonId);
+        String hours = textView.getText().toString().substring(0, 2);
+        String minutes = textView.getText().toString().substring(3, 5);
+        return new TimeSpan(Integer.parseInt(hours), Integer.parseInt(minutes));
+    }
+
+    private DailySchedulePreferences getPreferences(
+            int workRadioId, int startWorkTextViewId, int endWorkTextViewId, int pauseRadioId, int startPauseTextViewId, int endPauseTextViewId) {
+        DailySchedulePreferences preferences = new DailySchedulePreferences();
+        RadioButton workRadio = this.findViewById(workRadioId);
+        if (workRadio.isChecked()) {
+            preferences.workStartTime = getTimeSpanFromTextView(startWorkTextViewId);
+            preferences.workEndTime = getTimeSpanFromTextView(endWorkTextViewId);
+            RadioButton mondayPauseRadio = this.findViewById(pauseRadioId);
+            if (mondayPauseRadio.isChecked()) {
+                preferences.pauseStartTime = getTimeSpanFromTextView(startPauseTextViewId);
+                preferences.pauseEndTime = getTimeSpanFromTextView(endPauseTextViewId);
+            }
+        }
+
+        return preferences;
     }
 }

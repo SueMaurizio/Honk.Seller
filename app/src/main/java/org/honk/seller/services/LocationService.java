@@ -44,6 +44,7 @@ public class LocationService extends Service {
         if (currentDay != lastDay) {
             // This is the first location detection today: display a message to the user.
             Intent stopServiceIntent = new Intent(context, StopServiceActivity.class);
+            // TODO: here I should display the time stored in settings, not the actual time of the notification.
             NotificationsHelper.showNotification(
                     context, context.getString(R.string.haveANiceDay), context.getString(R.string.locationDetectionStarts), stopServiceIntent, context.getString(R.string.stop));
             sharedPreferences.edit().putInt(PREFERENCE_LAST_DAY, currentDay).apply();

@@ -34,8 +34,8 @@ public class NotificationsHelper {
                 .setContentTitle(title)
                 .setContentText(content)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setLights(0xffffff00, 300, 100)
-                // .setLights(ContextCompat.getColor(context, R.color.colorPrimary), 500, 200)
+                //.setLights(0xffffff00, 300, 100)
+                .setLights(ContextCompat.getColor(context, R.color.colorPrimary), 300, 100)
                 .setAutoCancel(false);
 
         setVibrationPattern(notificationBuilder);
