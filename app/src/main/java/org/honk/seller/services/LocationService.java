@@ -8,11 +8,17 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.honk.seller.NotificationsHelper;
 import org.honk.seller.R;
+import org.honk.seller.UI.SetScheduleActivity;
 import org.honk.seller.UI.StopServiceActivity;
+import org.honk.seller.model.DailySchedulePreferences;
 
 import java.util.Calendar;
+import java.util.Hashtable;
 
 public class LocationService extends Service {
 
@@ -44,9 +50,22 @@ public class LocationService extends Service {
         if (currentDay != lastDay) {
             // This is the first location detection today: display a message to the user.
             Intent stopServiceIntent = new Intent(context, StopServiceActivity.class);
-            // TODO: here I should display the time stored in settings, not the actual time of the notification.
+
+            // Here I want to display the time stored in settings, not the actual time of the notification, so I try to load it from the app settings.
+            String settingsString = sharedPreferences.getString(SetScheduleActivity.PREFERENCE_SCHEDULE, "");
+            Long exactNotificationTime = null;
+            if (settingsString != "") {
+                Hashtable<Integer, DailySchedulePreferences> scheduleSettings =
+                        new Gson().fromJson(settingsString, TypeToken.getParameterized(Hashtable.class, Integer.class, DailySchedulePreferences.class).getType());
+                DailySchedulePreferences todaySchedule = scheduleSettings.get(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
+                Calendar todayWorkStart = Calendar.getInstance();
+                todayWorkStart.set(Calendar.HOUR_OF_DAY, todaySchedule.workStartTime.hours);
+                todayWorkStart.set(Calendar.MINUTE, todaySchedule.workStartTime.minutes);
+                exactNotificationTime = todayWorkStart.getTimeInMillis();
+            }
+
             NotificationsHelper.showNotification(
-                    context, context.getString(R.string.haveANiceDay), context.getString(R.string.locationDetectionStarts), stopServiceIntent, context.getString(R.string.stop));
+                    context, context.getString(R.string.haveANiceDay), context.getString(R.string.locationDetectionStarts), stopServiceIntent, context.getString(R.string.stop), exactNotificationTime);
             sharedPreferences.edit().putInt(PREFERENCE_LAST_DAY, currentDay).apply();
         }
         else {

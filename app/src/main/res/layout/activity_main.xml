@@ -60,6 +60,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:background="@color/colorPrimaryDark"
+        android:onClick="setSchedule"
         android:text="voglio cambiare il mio orario di lavoro"
         android:textColor="@color/colorPrimaryLight"
         app:layout_constraintEnd_toEndOf="parent"

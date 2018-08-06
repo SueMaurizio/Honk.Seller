@@ -28,15 +28,23 @@ public class NotificationsHelper {
     }
 
     public static void showNotification(Context context, String title, String content, Intent intent, String intentLabel) {
+        showNotification(context, title, content, intent, intentLabel, null);
+    }
+
+    public static void showNotification(Context context, String title, String content, Intent intent, String intentLabel, Long when) {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context.getApplicationContext(), CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(content))
                 .setContentTitle(title)
                 .setContentText(content)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                //.setLights(0xffffff00, 300, 100)
-                .setLights(ContextCompat.getColor(context, R.color.colorPrimary), 300, 100)
+                .setLights(0xffffff00, 300, 100)
                 .setAutoCancel(false);
+
+        if (when != null) {
+            notificationBuilder.setShowWhen(true);
+            notificationBuilder.setWhen(when);
+        }
 
         setVibrationPattern(notificationBuilder);
 

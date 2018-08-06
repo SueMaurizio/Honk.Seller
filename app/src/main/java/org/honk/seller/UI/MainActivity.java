@@ -2,17 +2,21 @@ package org.honk.seller.UI;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.DatePicker;
 
 import org.honk.seller.R;
+import org.honk.seller.UI.commons.DatePickerFragment;
 import org.honk.seller.services.SchedulerJobService;
 
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity implements DatePickerDialog.OnDateSetListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pickDate(View view) {
-        Calendar now = Calendar.getInstance();
+        /*Calendar now = Calendar.getInstance();
         DatePickerDialog datePickerDialog = new DatePickerDialog(this.getBaseContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -35,7 +39,21 @@ public class MainActivity extends AppCompatActivity {
                 // TODO
             }
         });
-        datePickerDialog.show();
+        datePickerDialog.show();*/
+
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int day) {
+        // TODO
+    }
+
+    public void setSchedule(View view) {
+        Intent intent = new Intent(this, SetScheduleActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     public void close(View view) {
