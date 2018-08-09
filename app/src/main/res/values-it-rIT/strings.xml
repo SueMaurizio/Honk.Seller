@@ -38,6 +38,6 @@
     <string name="awayForAWhile">Sì, sarò assente per un po\'</string>
     <string name="doNotSendLocation">Sì, non trasmettere più la mia posizione</string>
     <string name="whenWillYouBeBack">Quando tornerai?</string>
-    <string name="dontKnowYet">Non lo so ancora</string>
+    <string name="dontKnowYet">Non lo so</string>
     <string name="whatCanIDo">Cosa posso fare per te?</string>
 </resources>

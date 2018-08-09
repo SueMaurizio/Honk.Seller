@@ -16,7 +16,7 @@ import org.honk.seller.services.SchedulerJobService;
 
 import java.util.Calendar;
 
-public class MainActivity extends FragmentActivity implements DatePickerDialog.OnDateSetListener {
+public class MainActivity extends FragmentActivity implements DatePickerDialog.OnDateSetListener, DialogInterface.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +41,24 @@ public class MainActivity extends FragmentActivity implements DatePickerDialog.O
         });
         datePickerDialog.show();*/
 
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
+        DialogFragment datePickerFragment = new DatePickerFragment();
+        Bundle args = new Bundle();
+        args.putString(DatePickerFragment.ARGUMENT_TITLE, this.getString(R.string.whenWillYouBeBack));
+        args.putBoolean(DatePickerFragment.ARGUMENT_ADDDONTKNOWBUTTON, true);
+        datePickerFragment.setArguments(args);
+        datePickerFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
+        SchedulerJobService.cancelAllJobs(this.getBaseContext());
+        Calendar pauseEnd = Calendar.getInstance();
+        pauseEnd.set(year, month, day);
+        SchedulerJobService.pausedUntil = pauseEnd;
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
         // TODO
     }
 
