@@ -39,4 +39,8 @@
     <string name="whenWillYouBeBack">When will you be back?</string>
     <string name="dontKnowYet">I don't know</string>
     <string name="whatCanIDo">What can I do for you?</string>
+    <string name="imWorking">I'm working with you right now: your potential customers can currently see your location.</string>
+    <string name="imNotWorking">Location detection is currently off: nobody can see your current location right now.</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="scheduleSet">You have successfully set your working schedule.</string>
 </resources>

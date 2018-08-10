@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.TextView;
 
 import org.honk.seller.R;
 import org.honk.seller.UI.commons.DatePickerFragment;
@@ -22,25 +23,16 @@ public class MainActivity extends FragmentActivity implements DatePickerDialog.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView txtStatus = this.findViewById(R.id.txtStatus);
+        if (SchedulerJobService.isWorkTime(this.getBaseContext())) {
+            txtStatus.setText(this.getString(R.string.ImWorking));
+        } else {
+            txtStatus.setText(this.getString(R.string.ImNotWorking));
+        }
     }
 
     public void pickDate(View view) {
-        /*Calendar now = Calendar.getInstance();
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this.getBaseContext(), new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                // TODO
-            }
-        }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
-        datePickerDialog.setTitle(this.getString(R.string.whenWillYouBeBack));
-        datePickerDialog.setButton(DialogInterface.BUTTON_NEUTRAL, this.getString(R.string.dontKnowYet), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // TODO
-            }
-        });
-        datePickerDialog.show();*/
-
         DialogFragment datePickerFragment = new DatePickerFragment();
         Bundle args = new Bundle();
         args.putString(DatePickerFragment.ARGUMENT_TITLE, this.getString(R.string.whenWillYouBeBack));
@@ -57,9 +49,10 @@ public class MainActivity extends FragmentActivity implements DatePickerDialog.O
         SchedulerJobService.pausedUntil = pauseEnd;
     }
 
+    // Called when the user presses "I don't know".
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        // TODO
+        // Do nothing, the user hasn't selected a date.
     }
 
     public void setSchedule(View view) {

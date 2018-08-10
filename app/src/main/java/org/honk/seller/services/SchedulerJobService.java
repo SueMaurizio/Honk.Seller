@@ -241,4 +241,55 @@ public class SchedulerJobService extends JobService {
         result.set(result.get(Calendar.YEAR), result.get(Calendar.MONTH), result.get(Calendar.DAY_OF_MONTH), time.hours, time.minutes, 0);
         return result;
     }
+
+    public static Boolean isWorkTime(Context context) {
+        // Get schedule preferences.
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String settingsString = sharedPreferences.getString(SetScheduleActivity.PREFERENCE_SCHEDULE, "");
+
+        if (settingsString != "") {
+            Hashtable<Integer, DailySchedulePreferences> scheduleSettings =
+                    new Gson().fromJson(settingsString, TypeToken.getParameterized(Hashtable.class, Integer.class, DailySchedulePreferences.class).getType());
+
+            Calendar now = Calendar.getInstance();
+            int currentDayOfWeek = now.get(Calendar.DAY_OF_WEEK);
+            DailySchedulePreferences todayPreferences = scheduleSettings.get(currentDayOfWeek);
+            if (todayPreferences.workStartTime != null) {
+                // The user works today.
+                Calendar workStart = getCalendarFromToday(todayPreferences.workStartTime);
+                if (now.after(workStart)) {
+                    // The working day has already begun: let's verify whether the pause has begun.
+                    if (todayPreferences.pauseStartTime != null) {
+                        // The user has a pause today.
+                        Calendar pauseStart = getCalendarFromToday(todayPreferences.pauseStartTime);
+                        if (now.after(pauseStart)) {
+                            // The pause has already begun, let's verify whether it has also ended.
+                            Calendar pauseEnd = getCalendarFromToday(todayPreferences.pauseEndTime);
+                            if (now.after(pauseEnd)) {
+                                // The pause has ended, let's verify whether the working day has ended as well.
+                                Calendar workEnd = getCalendarFromToday(todayPreferences.workEndTime);
+                                if (now.before(workEnd)) {
+                                    // The working day has not ended yet.
+                                    return true;
+                                }
+                            }
+                        } else {
+                            // The pause has not begun yet.
+                            return true;
+                        }
+                    } else {
+                        // No pause today, let's just check whether the working day has ended or not.
+                        Calendar workEnd = getCalendarFromToday(todayPreferences.workEndTime);
+                        if (now.before(workEnd)) {
+                            // The working day has not ended yet.
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        // The user is not working right now, or the working schedule is not configured.
+        return false;
+    }
 }

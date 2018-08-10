@@ -13,6 +13,7 @@ import android.widget.TimePicker;
 
 import com.google.gson.Gson;
 
+import org.honk.seller.NotificationsHelper;
 import org.honk.seller.R;
 import org.honk.seller.model.DailySchedulePreferences;
 import org.honk.seller.model.TimeSpan;
@@ -131,6 +132,7 @@ public class SetScheduleActivity extends AppCompatActivity {
 
         Hashtable<Integer, DailySchedulePreferences> allPreferences = new Hashtable<Integer, DailySchedulePreferences>();
 
+        // Get all the user preferences
         allPreferences.put(Calendar.MONDAY, this.getPreferences(
                 R.id.mondayWorkRadio, R.id.startMondayTextView, R.id.endMondayTextView, R.id.mondayPauseRadio, R.id.startMondayPauseTextView, R.id.endMondayPauseTextView));
         allPreferences.put(Calendar.TUESDAY, this.getPreferences(
@@ -146,14 +148,18 @@ public class SetScheduleActivity extends AppCompatActivity {
         allPreferences.put(Calendar.SUNDAY, this.getPreferences(
                 R.id.sundayWorkRadio, R.id.startSundayTextView, R.id.endSundayTextView, R.id.sundayPauseRadio, R.id.startSundayPauseTextView, R.id.endSundayPauseTextView));
 
+        // Save the new schedule.
         Context context = this.getApplicationContext();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPreferences.edit().putString(PREFERENCE_SCHEDULE, new Gson().toJson(allPreferences)).apply();
 
+        // Cancel all pending jobs and restart with the new schedule.
         SchedulerJobService.cancelAllJobs(context);
         SchedulerJobService.scheduleJob(context);
 
-        // TODO: Add "congratulations" activity
+        // Show a message and close the activity.
+        NotificationsHelper.showNotification(this.getBaseContext(),this.getString(R.string.congratulations), this.getString(R.string.scheduleSet));
+        this.finishAffinity();
     }
 
     private TimeSpan getTimeSpanFromTextView(int radioButtonId) {

@@ -40,4 +40,8 @@
     <string name="whenWillYouBeBack">Quando tornerai?</string>
     <string name="dontKnowYet">Non lo so</string>
     <string name="whatCanIDo">Cosa posso fare per te?</string>
+    <string name="ImWorking">Sto lavorando con te: i tuoi potenziali clienti in questo momento possono vedere la tua posizione.</string>
+    <string name="ImNotWorking">La rilevazione della posizione in questo momento è disattivata: nessuno può conoscere la tua posizione.</string>
+    <string name="congratulations">Congratulazioni!</string>
+    <string name="scheduleSet">Hai impostato correttamente il tuo orario di lavoro.</string>
 </resources>

@@ -37,6 +37,7 @@ public class DatePickerFragment extends DialogFragment {
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH));
 
+        // TODO: this should actually be the day after today, and it should also be configurable.
         dialog.getDatePicker().setMinDate(System.currentTimeMillis());
 
         String title = this.getArguments().getString(ARGUMENT_TITLE);
