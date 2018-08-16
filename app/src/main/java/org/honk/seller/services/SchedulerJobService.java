@@ -53,7 +53,6 @@ public class SchedulerJobService extends JobService {
             return true;
         }
         catch (Exception x) {
-            NotificationsHelper.showNotification(context, "debug", "Eccezione: " + x.getMessage());
             return false;
         }
     }
@@ -64,23 +63,18 @@ public class SchedulerJobService extends JobService {
     }
 
     public static void scheduleJob(Context context, int minimumLatency, int maximumLatency) {
-        try {
-            // The job should be scheduled if the service is active and not paused.
-            if (active && (pausedUntil == null || pausedUntil.before(Calendar.getInstance()))) {
-                // The pause is not set or expired. In either case, it should be set to null.
-                pausedUntil = null;
+        // The job should be scheduled if the service is active and not paused.
+        if (active && (pausedUntil == null || pausedUntil.before(Calendar.getInstance()))) {
+            // The pause is not set or expired. In either case, it should be set to null.
+            pausedUntil = null;
 
-                // Schedule the job.
-                ComponentName serviceComponent = new ComponentName(context, SchedulerJobService.class);
-                JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
-                builder.setMinimumLatency(minimumLatency);
-                builder.setOverrideDeadline(maximumLatency);
-                JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
-                jobScheduler.schedule(builder.build());
-            }
-        }
-        catch (Exception x) {
-            NotificationsHelper.showNotification(context, "debug", "Eccezione: " + x.getMessage());
+            // Schedule the job.
+            ComponentName serviceComponent = new ComponentName(context, SchedulerJobService.class);
+            JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
+            builder.setMinimumLatency(minimumLatency);
+            builder.setOverrideDeadline(maximumLatency);
+            JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
+            jobScheduler.schedule(builder.build());
         }
     }
 
@@ -111,7 +105,6 @@ public class SchedulerJobService extends JobService {
                 Calendar workStart = getCalendarFromToday(todayPreferences.workStartTime);
                 if (now.before(workStart)) {
                     // The working day has not begun yet: schedule location detection for later.
-                    NotificationsHelper.showNotification(context, "debug", "La giornata lavorativa non è ancora cominciata.");
                     int workStartMillis = workStart.get(Calendar.HOUR_OF_DAY) * 60 * 60 * 1000 + workStart.get(Calendar.MINUTE) * 60 * 1000;
                     return workStartMillis - nowMillis;
                 } else {
@@ -124,46 +117,37 @@ public class SchedulerJobService extends JobService {
                             Calendar pauseEnd = getCalendarFromToday(todayPreferences.pauseEndTime);
                             if (now.after(pauseEnd)) {
                                 // The pause has ended, let's verify whether the working day has ended as well.
-                                NotificationsHelper.showNotification(context, "debug", "La pausa è finita.");
                                 Calendar workEnd = getCalendarFromToday(todayPreferences.workEndTime);
                                 if (now.before(workEnd)) {
                                     // The working day has not ended yet: location detection must start now.
-                                    NotificationsHelper.showNotification(context, "debug", "Lavoro in corso (pomeriggio).");
                                     return 0;
                                 } else {
                                     // The working day has ended: schedule for the next working day.
-                                    NotificationsHelper.showNotification(context, "debug", "La giornata lavorativa è finita.");
                                     return getMillisToNextWorkingDay(currentYear, currentMonth, currentDay, currentDayOfWeek, nowMillis, now, context, scheduleSettings);
                                 }
                             } else {
                                 // The pause has not ended, schedule location detection for later.
-                                NotificationsHelper.showNotification(context, "debug", "Pausa in corso.");
                                 int pauseEndMillis = pauseEnd.get(Calendar.HOUR_OF_DAY) * 60 * 60 * 1000 + pauseEnd.get(Calendar.MINUTE) * 60 * 1000;
                                 return pauseEndMillis - nowMillis;
                             }
                         } else {
                             // The pause has not begun yet: location detection must start now.
-                            NotificationsHelper.showNotification(context, "debug", "Lavoro in corso (mattina).");
                             return 0;
                         }
                     } else {
                         // No pause today, let's just check whether the working day has ended or not.
-                        NotificationsHelper.showNotification(context, "debug", "Oggi niente pausa.");
                         Calendar workEnd = getCalendarFromToday(todayPreferences.workEndTime);
                         if (now.before(workEnd)) {
                             // The working day has not ended yet: location detection must start now.
-                            NotificationsHelper.showNotification(context, "debug", "Lavoro in corso (orario continuato).");
                             return 0;
                         } else {
                             // The working day has ended: schedule for the next working day.
-                            NotificationsHelper.showNotification(context, "debug", "La giornata lavorativa è finita.");
                             return getMillisToNextWorkingDay(currentYear, currentMonth, currentDay, currentDayOfWeek, nowMillis, now, context, scheduleSettings);
                         }
                     }
                 }
             } else {
                 // The user does not work today: let's schedule for the next working day.
-                NotificationsHelper.showNotification(context, "debug", "Oggi niente lavoro.");
                 return getMillisToNextWorkingDay(currentYear, currentMonth, currentDay, currentDayOfWeek, nowMillis, now, context, scheduleSettings);
             }
         }

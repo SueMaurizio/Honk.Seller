@@ -68,8 +68,5 @@ public class LocationService extends Service {
                     context, context.getString(R.string.haveANiceDay), context.getString(R.string.locationDetectionStarts), stopServiceIntent, context.getString(R.string.stop), exactNotificationTime);
             sharedPreferences.edit().putInt(PREFERENCE_LAST_DAY, currentDay).apply();
         }
-        else {
-            //NotificationsHelper.showNotification(context, "debug", "Il servizio è stato chiamato");
-        }
     }
 }

@@ -36,7 +36,7 @@
     <string name="resumeSendingLocation">No, riprendi a trasmettere la mia posizione</string>
     <string name="wontWorkToday">Sì, oggi non lavoro</string>
     <string name="awayForAWhile">Sì, sarò assente per un po\'</string>
-    <string name="doNotSendLocation">Sì, non trasmettere più la mia posizione</string>
+    <string name="yesDoNotSendLocation">Sì, non trasmettere più la mia posizione</string>
     <string name="whenWillYouBeBack">Quando tornerai?</string>
     <string name="dontKnowYet">Non lo so</string>
     <string name="whatCanIDo">Cosa posso fare per te?</string>
@@ -44,4 +44,11 @@
     <string name="ImNotWorking">La rilevazione della posizione in questo momento è disattivata: nessuno può conoscere la tua posizione.</string>
     <string name="congratulations">Congratulazioni!</string>
     <string name="scheduleSet">Hai impostato correttamente il tuo orario di lavoro.</string>
+    <string name="setVacations">Voglio impostare le mie ferie/assenze</string>
+    <string name="doNotSendLocation">Non trasmettere più la mia posizione</string>
+    <string name="keepRunning">Niente, continua così!</string>
+    <string name="startRunning">Ricomincia a trasmettere la mia posizione</string>
+    <string name="schedulerStarted">Da questo momento, durante il tuo orario di lavoro la tua posizione verrà trasmessa ai tuoi potenziali clienti.</string>
+    <string name="seeYouSoon">A presto!</string>
+    <string name="comeBackToResume">Il servizio è stato arrestato. Se vuoi farlo ripartire, riapri l\'app.</string>
 </resources>

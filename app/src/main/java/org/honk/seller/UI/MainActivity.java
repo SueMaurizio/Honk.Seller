@@ -1,58 +1,47 @@
 package org.honk.seller.UI;
 
-import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.TextView;
 
+import org.honk.seller.NotificationsHelper;
 import org.honk.seller.R;
-import org.honk.seller.UI.commons.DatePickerFragment;
 import org.honk.seller.services.SchedulerJobService;
 
-import java.util.Calendar;
-
-public class MainActivity extends FragmentActivity implements DatePickerDialog.OnDateSetListener, DialogInterface.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Show the current status of the job scheduler.
         TextView txtStatus = this.findViewById(R.id.txtStatus);
-        if (SchedulerJobService.isWorkTime(this.getBaseContext())) {
-            txtStatus.setText(this.getString(R.string.ImWorking));
+        if (SchedulerJobService.active) {
+            if (SchedulerJobService.isWorkTime(this.getBaseContext())) {
+                txtStatus.setText(this.getString(R.string.ImWorking));
+            } else {
+                txtStatus.setText(this.getString(R.string.ImNotWorking));
+            }
         } else {
-            txtStatus.setText(this.getString(R.string.ImNotWorking));
+            // The service is disabled: change the label of the "keep running" button to "start running".
+            TextView btnRun = this.findViewById(R.id.btnRun);
+            btnRun.setText(this.getString(R.string.startRunning));
         }
     }
 
-    public void pickDate(View view) {
-        DialogFragment datePickerFragment = new DatePickerFragment();
-        Bundle args = new Bundle();
-        args.putString(DatePickerFragment.ARGUMENT_TITLE, this.getString(R.string.whenWillYouBeBack));
-        args.putBoolean(DatePickerFragment.ARGUMENT_ADDDONTKNOWBUTTON, true);
-        datePickerFragment.setArguments(args);
-        datePickerFragment.show(getSupportFragmentManager(), "datePicker");
-    }
-
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int day) {
+    // Called when the user asks to stop the service indefinitely.
+    public void stopService(View view) {
         SchedulerJobService.cancelAllJobs(this.getBaseContext());
-        Calendar pauseEnd = Calendar.getInstance();
-        pauseEnd.set(year, month, day);
-        SchedulerJobService.pausedUntil = pauseEnd;
-    }
+        SchedulerJobService.active = false;
 
-    // Called when the user presses "I don't know".
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-        // Do nothing, the user hasn't selected a date.
+        // Show a message and close the app.
+        NotificationsHelper.showNotification(
+                this.getBaseContext(), this.getString(R.string.seeYouSoon), this.getString(R.string.comeBackToResume), null, null, null, true);
+        this.finishAffinity();
     }
 
     public void setSchedule(View view) {
@@ -61,7 +50,23 @@ public class MainActivity extends FragmentActivity implements DatePickerDialog.O
         finish();
     }
 
-    public void close(View view) {
+    public void keepRunning(View view) {
+        // If the job scheduler was disabled, I resume it, then I close this activity.
+        if (!SchedulerJobService.active || SchedulerJobService.pausedUntil != null) {
+            SchedulerJobService.active = true;
+            SchedulerJobService.pausedUntil = null;
+            SchedulerJobService.scheduleJob(this.getBaseContext());
+
+            NotificationsHelper.showNotification(
+                    this.getBaseContext(), this.getString(R.string.congratulations), this.getString(R.string.schedulerStarted), null, null, null, true);
+        }
+
         this.finishAffinity();
+    }
+
+    public void setVacations(View view) {
+        Intent intent = new Intent(this, SetVacationsActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

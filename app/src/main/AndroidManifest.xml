@@ -28,13 +28,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".UI.FirstConfigurationActivity"></activity>
+        <activity android:name=".UI.FirstConfigurationActivity"/>
 
-        <activity android:name=".UI.MainActivity"></activity>
+        <activity android:name=".UI.MainActivity"/>
 
-        <activity android:name=".UI.SetScheduleActivity"></activity>
+        <activity android:name=".UI.SetScheduleActivity"/>
 
-        <activity android:name=".UI.StopServiceActivity"></activity>
+        <activity android:name=".UI.StopServiceActivity"/>
+
+        <activity android:name=".UI.SetVacationsActivity"/>
 
         <service
             android:name=".services.SchedulerJobService"

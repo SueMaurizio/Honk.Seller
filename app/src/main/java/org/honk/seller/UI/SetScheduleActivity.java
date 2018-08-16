@@ -157,8 +157,8 @@ public class SetScheduleActivity extends AppCompatActivity {
         SchedulerJobService.cancelAllJobs(context);
         SchedulerJobService.scheduleJob(context);
 
-        // Show a message and close the activity.
-        NotificationsHelper.showNotification(this.getBaseContext(),this.getString(R.string.congratulations), this.getString(R.string.scheduleSet));
+        // Show a message and keepRunning the activity.
+        NotificationsHelper.showNotification(this.getBaseContext(),this.getString(R.string.congratulations), this.getString(R.string.scheduleSet), null, null, null,true);
         this.finishAffinity();
     }
 

@@ -19,7 +19,8 @@ import java.util.Calendar;
 public class DatePickerFragment extends DialogFragment {
 
     public static final String ARGUMENT_TITLE = "ARGUMENT_TITLE";
-    public static final String ARGUMENT_ADDDONTKNOWBUTTON = "ARGUMENT_ADDDONTKNOWBUTTON";
+    public static final String ARGUMENT_ADD_DON_T_KNOW_BUTTON = "ARGUMENT_ADD_DON_T_KNOW_BUTTON";
+    public static final String ARGUMENT_MIN_DATE_MILLIS = "ARGUMENT_MIN_DATE_MILLIS";
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -37,15 +38,15 @@ public class DatePickerFragment extends DialogFragment {
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH));
 
-        // TODO: this should actually be the day after today, and it should also be configurable.
-        dialog.getDatePicker().setMinDate(System.currentTimeMillis());
+        long minDateMillis = this.getArguments().getLong(ARGUMENT_MIN_DATE_MILLIS);
+        dialog.getDatePicker().setMinDate(minDateMillis);
 
         String title = this.getArguments().getString(ARGUMENT_TITLE);
         if (title != null) {
             dialog.setPermanentTitle(title);
         }
 
-        boolean addDontKnowButton = this.getArguments().getBoolean(ARGUMENT_ADDDONTKNOWBUTTON);
+        boolean addDontKnowButton = this.getArguments().getBoolean(ARGUMENT_ADD_DON_T_KNOW_BUTTON);
         if (addDontKnowButton) {
             dialog.setButton(DialogInterface.BUTTON_NEUTRAL, this.getString(R.string.dontKnowYet), (DialogInterface.OnClickListener)activity);
         }
@@ -57,11 +58,11 @@ public class DatePickerFragment extends DialogFragment {
 
         private String title;
 
-        public FixedTitleDatePickerDialog(Context context, OnDateSetListener callBack, int year, int monthOfYear, int dayOfMonth) {
+        FixedTitleDatePickerDialog(Context context, OnDateSetListener callBack, int year, int monthOfYear, int dayOfMonth) {
             super(context, callBack, year, monthOfYear, dayOfMonth);
         }
 
-        public void setPermanentTitle(String title) {
+        void setPermanentTitle(String title) {
             this.title = title;
             setTitle(title);
         }

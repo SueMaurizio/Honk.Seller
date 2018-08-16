@@ -35,7 +35,7 @@
     <string name="resumeSendingLocation">No, resume sending my location</string>
     <string name="wontWorkToday">Yes, I won't work today</string>
     <string name="awayForAWhile">Yes, I'll be away for a while</string>
-    <string name="doNotSendLocation">Yes, don't send my location anymore</string>
+    <string name="yesDoNotSendLocation">Yes, don't send my location anymore</string>
     <string name="whenWillYouBeBack">When will you be back?</string>
     <string name="dontKnowYet">I don't know</string>
     <string name="whatCanIDo">What can I do for you?</string>
@@ -43,4 +43,11 @@
     <string name="imNotWorking">Location detection is currently off: nobody can see your current location right now.</string>
     <string name="congratulations">Congratulations!</string>
     <string name="scheduleSet">You have successfully set your working schedule.</string>
+    <string name="setVacations">I want to set my vacations</string>
+    <string name="doNotSendLocation">Don't send my location anymore</string>
+    <string name="keepRunning">Nothing, keep running!</string>
+    <string name="startRunning">Resume sending my location</string>
+    <string name="schedulerStarted">From now on, your location will be sent to your potential customers, according to your work schedule.</string>
+    <string name="seeYouSoon">See you soon!</string>
+    <string name="comeBackToResume">The service was stopped. If you want it to start again, just open the app.</string>
 </resources>
