@@ -33,5 +33,5 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation project(':sharedLibrary')
-    implementation 'com.squareup:android-times-square:1.6.5@aar'
+    implementation 'com.savvi.datepicker:rangepicker:1.2.0'
 }

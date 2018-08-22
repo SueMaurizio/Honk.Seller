@@ -16,6 +16,16 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.honk.seller.UI.SetScheduleActivity;
+import org.honk.seller.UI.StartupActivity;
+import org.honk.seller.model.DailySchedulePreferences;
+
+import java.util.Calendar;
+import java.util.Hashtable;
+
 public class NotificationsHelper {
 
     private static final String PREFERENCE_LAST_NOTIFICATION_ID = "PREFERENCE_LAST_NOTIFICATION_ID";
@@ -62,10 +72,15 @@ public class NotificationsHelper {
             notificationBuilder.addAction(R.drawable.ic_launcher_background, intentLabel, pendingIntent);
         }
 
+        // By default, tapping on any notification must start the app.
+        Intent showAppIntent = new Intent(context, StartupActivity.class);
+        PendingIntent showAppPendingIntent = PendingIntent.getActivity(context,0, showAppIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notificationBuilder.setContentIntent(showAppPendingIntent);
+
         NotificationManager notificationManager = (NotificationManager)context.getSystemService(Service.NOTIFICATION_SERVICE);
 
         Notification notification = notificationBuilder.build();
-        notification.category = Notification.CATEGORY_SERVICE ;
+        notification.category = Notification.CATEGORY_SERVICE;
 
         notificationManager.notify(getNextNotificationId(context.getApplicationContext()), notification);
     }

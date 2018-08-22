@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.squareup.timessquare.CalendarPickerView;
+import com.savvi.rangedatepicker.CalendarPickerView;
 
 import org.honk.seller.R;
 
@@ -13,7 +13,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 public class SetVacationsActivity extends AppCompatActivity {
 
@@ -26,13 +28,26 @@ public class SetVacationsActivity extends AppCompatActivity {
 
         Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
+        Calendar lastYear = Calendar.getInstance();
+        lastYear.add(Calendar.YEAR, -1);
 
-        calendar = findViewById(R.id.calendar_view);
-        Date today = new Date();
-        calendar.init(today, nextYear.getTime())
-                .withSelectedDate(today)
-                .inMode(CalendarPickerView.SelectionMode.RANGE);
-        calendar.highlightDates(getHolidays());
+        calendar = (CalendarPickerView) findViewById(R.id.calendar_view);
+
+        Date first = new Date(118, 7, 22);
+        Date second = new Date(118, 7, 23);
+        Date third = new Date(118, 7, 5);
+        Collection<Date> dates = new ArrayList<Date>();
+        dates.add(first);
+        dates.add(second);
+        /*dates.add(third);*/
+        calendar.init(lastYear.getTime(), nextYear.getTime())
+                .inMode(CalendarPickerView.SelectionMode.MULTIPLE)
+                .withSelectedDates(dates);
+// deactivates given dates, non selectable
+                //.withDeactivateDates(list)
+// highlight dates in red color, mean they are aleady used.
+                //.withHighlightedDates(arrayList);
+
     }
 
     /*@Override

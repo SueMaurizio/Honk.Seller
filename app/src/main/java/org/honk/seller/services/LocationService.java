@@ -61,6 +61,8 @@ public class LocationService extends Service {
                 Calendar todayWorkStart = Calendar.getInstance();
                 todayWorkStart.set(Calendar.HOUR_OF_DAY, todaySchedule.workStartTime.hours);
                 todayWorkStart.set(Calendar.MINUTE, todaySchedule.workStartTime.minutes);
+                todayWorkStart.set(Calendar.SECOND, 0);
+                todayWorkStart.set(Calendar.MILLISECOND, 0);
                 exactNotificationTime = todayWorkStart.getTimeInMillis();
             }
 

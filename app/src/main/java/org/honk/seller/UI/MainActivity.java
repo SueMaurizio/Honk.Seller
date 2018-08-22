@@ -27,9 +27,11 @@ public class MainActivity extends AppCompatActivity {
                 txtStatus.setText(this.getString(R.string.ImNotWorking));
             }
         } else {
-            // The service is disabled: change the label of the "keep running" button to "start running".
+            // The service is disabled: change the label of the "keep running" button to "start running" and hide the "stop sending my location" button.
             TextView btnRun = this.findViewById(R.id.btnRun);
             btnRun.setText(this.getString(R.string.startRunning));
+            TextView btnStop = this.findViewById(R.id.btnStop);
+            btnStop.setVisibility(View.GONE);
         }
     }
 
