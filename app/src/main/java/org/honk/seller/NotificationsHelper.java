@@ -42,23 +42,14 @@ public class NotificationsHelper {
     }
 
     public static void showNotification(Context context, String title, String content, Intent intent, String intentLabel, Long when) {
-        showNotification(context, title, content, intent, intentLabel, when, false);
-    }
-
-    public static void showNotification(Context context, String title, String content, Intent intent, String intentLabel, Long when, Boolean highPriority) {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context.getApplicationContext(), CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(content))
                 .setContentTitle(title)
                 .setContentText(content)
                 .setLights(0xffffff00, 300, 100)
-                .setAutoCancel(false);
-
-        if (highPriority) {
-            notificationBuilder.setPriority(NotificationCompat.PRIORITY_HIGH);
-        } else {
-            notificationBuilder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        }
+                .setAutoCancel(false)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         if (when != null) {
             notificationBuilder.setShowWhen(true);

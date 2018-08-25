@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -30,6 +31,8 @@ public class SetScheduleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setschedule);
+
+        // TODO fill the form with the actual user schedule
     }
 
     public void toggleRadioButtons(View view) {
@@ -157,9 +160,9 @@ public class SetScheduleActivity extends AppCompatActivity {
         SchedulerJobService.cancelAllJobs(context);
         SchedulerJobService.scheduleJob(context);
 
-        // Show a message and keepRunning the activity.
-        NotificationsHelper.showNotification(this.getBaseContext(),this.getString(R.string.congratulations), this.getString(R.string.scheduleSet), null, null, null,true);
+        // Show a message and keep the activity running.
         this.finishAffinity();
+        Toast.makeText(this.getApplicationContext(), this.getString(R.string.scheduleSet), Toast.LENGTH_SHORT).show();
     }
 
     private TimeSpan getTimeSpanFromTextView(int radioButtonId) {

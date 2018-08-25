@@ -7,6 +7,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import org.honk.seller.NotificationsHelper;
 import org.honk.seller.R;
@@ -73,7 +74,8 @@ public class StopServiceActivity extends FragmentActivity implements DatePickerD
     // Called when the user presses "I don't know".
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        // TODO Display a message to the user saying that the service will be restarted in 3 days.
+        this.finishAffinity();
+        Toast.makeText(this.getApplicationContext(), this.getString(R.string.comeBackToResume), Toast.LENGTH_LONG).show();
     }
 
     public void restartServiceAndClose(View view) {

@@ -6,6 +6,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.honk.seller.NotificationsHelper;
 import org.honk.seller.R;
@@ -40,10 +41,9 @@ public class MainActivity extends AppCompatActivity {
         SchedulerJobService.cancelAllJobs(this.getBaseContext());
         SchedulerJobService.active = false;
 
-        // Show a message and close the app.
-        NotificationsHelper.showNotification(
-                this.getBaseContext(), this.getString(R.string.seeYouSoon), this.getString(R.string.comeBackToResume), null, null, null, true);
+        // Close the app and show a confirmation message.
         this.finishAffinity();
+        Toast.makeText(this.getApplicationContext(), this.getString(R.string.comeBackToResume), Toast.LENGTH_LONG).show();
     }
 
     public void setSchedule(View view) {
@@ -59,11 +59,12 @@ public class MainActivity extends AppCompatActivity {
             SchedulerJobService.pausedUntil = null;
             SchedulerJobService.scheduleJob(this.getBaseContext());
 
-            NotificationsHelper.showNotification(
-                    this.getBaseContext(), this.getString(R.string.congratulations), this.getString(R.string.schedulerStarted), null, null, null, true);
+            // Close the app and show a confirmation message.
+            this.finishAffinity();
+            Toast.makeText(this.getApplicationContext(), this.getString(R.string.schedulerStarted), Toast.LENGTH_LONG).show();
+        } else {
+            this.finishAffinity();
         }
-
-        this.finishAffinity();
     }
 
     public void setVacations(View view) {
