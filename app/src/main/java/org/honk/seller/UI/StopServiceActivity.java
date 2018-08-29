@@ -29,7 +29,7 @@ public class StopServiceActivity extends FragmentActivity implements DatePickerD
     }
 
     public void pickDate(View view) {
-        Calendar now = Calendar.getInstance();
+        /*Calendar now = Calendar.getInstance();
         DatePickerDialog datePickerDialog = new DatePickerDialog(this.getBaseContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -45,7 +45,7 @@ public class StopServiceActivity extends FragmentActivity implements DatePickerD
 
             }
         });
-        datePickerDialog.show();
+        datePickerDialog.show();*/
 
 
 

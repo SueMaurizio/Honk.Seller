@@ -13,8 +13,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import org.honk.seller.NotificationsHelper;
 import org.honk.seller.R;
 import org.honk.seller.model.DailySchedulePreferences;
 import org.honk.seller.model.TimeSpan;
@@ -32,9 +32,103 @@ public class SetScheduleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setschedule);
 
-        // TODO fill the form with the actual user schedule
+        // Fill the activity with the values set by the user, if any.
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
+        String settingsString = sharedPreferences.getString(SetScheduleActivity.PREFERENCE_SCHEDULE, "");
+        if (settingsString != "") {
+            Hashtable<Integer, DailySchedulePreferences> scheduleSettings =
+                    new Gson().fromJson(settingsString, TypeToken.getParameterized(Hashtable.class, Integer.class, DailySchedulePreferences.class).getType());
+            displayScheduleForDay(
+                    scheduleSettings,
+                    Calendar.MONDAY,
+                    R.id.mondayWorkRadio, R.id.mondayNoWorkRadio,
+                    R.id.mondayPauseRadio, R.id.mondayNoPauseRadio,
+                    R.id.startMondayTextView, R.id.endMondayTextView,
+                    R.id.startMondayPauseTextView, R.id.endMondayPauseTextView);
+            displayScheduleForDay(
+                    scheduleSettings,
+                    Calendar.TUESDAY,
+                    R.id.tuesdayWorkRadio, R.id.tuesdayNoWorkRadio,
+                    R.id.tuesdayPauseRadio, R.id.tuesdayNoPauseRadio,
+                    R.id.startTuesdayTextView, R.id.endTuesdayTextView,
+                    R.id.startTuesdayPauseTextView, R.id.endTuesdayPauseTextView);
+            displayScheduleForDay(
+                    scheduleSettings,
+                    Calendar.WEDNESDAY,
+                    R.id.wednesdayWorkRadio, R.id.wednesdayNoWorkRadio,
+                    R.id.wednesdayPauseRadio, R.id.wednesdayNoPauseRadio,
+                    R.id.startWednesdayTextView, R.id.endWednesdayTextView,
+                    R.id.startWednesdayPauseTextView, R.id.endWednesdayPauseTextView);
+            displayScheduleForDay(
+                    scheduleSettings,
+                    Calendar.THURSDAY,
+                    R.id.thursdayWorkRadio, R.id.thursdayNoWorkRadio,
+                    R.id.thursdayPauseRadio, R.id.thursdayNoPauseRadio,
+                    R.id.startThursdayTextView, R.id.endThursdayTextView,
+                    R.id.startThursdayPauseTextView, R.id.endThursdayPauseTextView);
+            displayScheduleForDay(
+                    scheduleSettings,
+                    Calendar.FRIDAY,
+                    R.id.fridayWorkRadio, R.id.fridayNoWorkRadio,
+                    R.id.fridayPauseRadio, R.id.fridayNoPauseRadio,
+                    R.id.startFridayTextView, R.id.endFridayTextView,
+                    R.id.startFridayPauseTextView, R.id.endFridayPauseTextView);
+            displayScheduleForDay(
+                    scheduleSettings,
+                    Calendar.SATURDAY,
+                    R.id.saturdayWorkRadio, R.id.saturdayNoWorkRadio,
+                    R.id.saturdayPauseRadio, R.id.saturdayNoPauseRadio,
+                    R.id.startSaturdayTextView, R.id.endSaturdayTextView,
+                    R.id.startSaturdayPauseTextView, R.id.endSaturdayPauseTextView);
+            displayScheduleForDay(
+                    scheduleSettings,
+                    Calendar.SUNDAY,
+                    R.id.sundayWorkRadio, R.id.sundayNoWorkRadio,
+                    R.id.sundayPauseRadio, R.id.sundayNoPauseRadio,
+                    R.id.startSundayTextView, R.id.endSundayTextView,
+                    R.id.startSundayPauseTextView, R.id.endSundayPauseTextView);
+        }
     }
 
+    private void displayScheduleForDay(
+            Hashtable<Integer, DailySchedulePreferences> scheduleSettings,
+            int day,
+            int workRadioId, int noWorkRadioId,
+            int pauseRadioId, int noPauseRadioId,
+            int startWorkTextViewId, int endWorkTextViewId,
+            int startPauseTextViewId, int endPauseTextViewId) {
+        DailySchedulePreferences dayPreferences = scheduleSettings.get(day);
+        RadioButton workRadio = this.findViewById(workRadioId);
+        RadioButton noWorkRadio = this.findViewById(noWorkRadioId);
+        RadioButton pauseRadio = this.findViewById(pauseRadioId);
+        RadioButton noPauseRadio = this.findViewById(noPauseRadioId);
+        if (dayPreferences.workStartTime != null) {
+            workRadio.setChecked(true);
+            noWorkRadio.setChecked(false);
+            TextView startWorkTextView = this.findViewById(startWorkTextViewId);
+            this.displayTime(startWorkTextView, dayPreferences.workStartTime.hours, dayPreferences.workStartTime.minutes);
+            TextView endWorkTextView = this.findViewById(endWorkTextViewId);
+            this.displayTime(endWorkTextView, dayPreferences.workEndTime.hours, dayPreferences.workEndTime.minutes);
+            if (dayPreferences.pauseStartTime != null) {
+                pauseRadio.setChecked(true);
+                noPauseRadio.setChecked(false);
+                TextView startPauseTextView = this.findViewById(startPauseTextViewId);
+                this.displayTime(startPauseTextView, dayPreferences.pauseStartTime.hours, dayPreferences.pauseStartTime.minutes);
+                TextView endPauseTextView = this.findViewById(endPauseTextViewId);
+                this.displayTime(endPauseTextView, dayPreferences.pauseEndTime.hours, dayPreferences.pauseEndTime.minutes);
+            } else {
+                pauseRadio.setChecked(false);
+                noPauseRadio.setChecked(true);
+            }
+        } else {
+            workRadio.setChecked(false);
+            noWorkRadio.setChecked(true);
+            pauseRadio.setChecked(false);
+            noPauseRadio.setChecked(true);
+        }
+    }
+
+    // Implements a radio button group without graphical limitations.
     public void toggleRadioButtons(View view) {
         RadioButton button = (RadioButton)view;
         RadioButton linkedButton = resolveLinkedButton(view.getId());
@@ -120,11 +214,15 @@ public class SetScheduleActivity extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(SetScheduleActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                textView.setText(String.format("%02d:%02d", selectedHour, selectedMinute));
+                displayTime(textView, selectedHour, selectedMinute);
             }
         }, hour, minute, true);
         timePickerDialog.setTitle(this.getString(R.string.selectTime));
         timePickerDialog.show();
+    }
+
+    private void displayTime(TextView textView, int hour, int minute) {
+        textView.setText(String.format("%02d:%02d", hour, minute));
     }
 
     public void proceed(View view) {
@@ -162,6 +260,8 @@ public class SetScheduleActivity extends AppCompatActivity {
 
         // Show a message and keep the activity running.
         this.finishAffinity();
+
+        // TODO set a different text if coming from the "first configuration" activity.
         Toast.makeText(this.getApplicationContext(), this.getString(R.string.scheduleSet), Toast.LENGTH_SHORT).show();
     }
 

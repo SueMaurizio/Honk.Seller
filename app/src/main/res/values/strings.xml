@@ -46,7 +46,9 @@
     <string name="doNotSendLocation">Don't send my location anymore</string>
     <string name="keepRunning">Nothing, keep running!</string>
     <string name="startRunning">Resume sending my location</string>
-    <string name="schedulerStarted">From now on, your customers will be able to access your location, according to your work schedule.</string>
+    <string name="schedulerStarted">From now on, your customers will be able to know your location, according to your work schedule.</string>
     <string name="comeBackToResume">The service was stopped. If you want it to start again, just open the app. See you soon!</string>
     <string name="vacationsSet">Well done: I will suspend the service during your vacation days.</string>
+    <string name="goToSetSchedule">Set my working schedule now</string>
+    <string name="comeBackSoon">I can\'t work without your permission. If you change your mind, just reopen the app. See you soon!</string>
 </resources>

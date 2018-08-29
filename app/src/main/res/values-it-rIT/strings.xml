@@ -47,7 +47,9 @@
     <string name="doNotSendLocation">Non trasmettere più la mia posizione</string>
     <string name="keepRunning">Niente, continua così!</string>
     <string name="startRunning">Ricomincia a trasmettere la mia posizione</string>
-    <string name="schedulerStarted">Da questo momento, durante il tuo orario di lavoro i tuoi clienti possono avere accesso alla tua posizione.</string>
+    <string name="schedulerStarted">Da questo momento, durante il tuo orario di lavoro i tuoi clienti possono conoscere la tua posizione.</string>
     <string name="comeBackToResume">Il servizio è stato arrestato. Se vuoi farlo ripartire, riapri l\'app. A presto!</string>
     <string name="vacationsSet">Ben fatto: sospenderò il servizio durante i tuoi giorni di assenza.</string>
+    <string name="goToSetSchedule">Imposta il mio orario di lavoro</string>
+    <string name="comeBackSoon">Non posso lavorare senza il tuo permesso. Se cambi idea, ti basterà riaprire l\'app. A presto!</string>
 </resources>

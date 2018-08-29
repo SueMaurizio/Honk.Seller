@@ -46,6 +46,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:backgroundTint="@color/colorPrimaryDark"
+        android:onClick="close"
         android:text="@string/noThanks"
         android:textColor="@color/colorPrimaryLight"
         app:layout_constraintBottom_toBottomOf="parent"

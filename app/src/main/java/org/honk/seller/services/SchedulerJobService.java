@@ -154,7 +154,9 @@ public class SchedulerJobService extends JobService {
         else
         {
             // The working schedule is not configured: show a message to the user.
-            NotificationsHelper.showNotification(context, context.getString(R.string.ready), context.getString(R.string.setSchedule));
+            Intent setScheduleIntent = new Intent(context, SetScheduleActivity.class);
+            NotificationsHelper.showNotification(
+                    context, context.getString(R.string.ready), context.getString(R.string.setSchedule), setScheduleIntent, context.getString(R.string.goToSetSchedule));
             return -1;
         }
     }
@@ -208,9 +210,10 @@ public class SchedulerJobService extends JobService {
             // Schedule location detection.
             return timeToMidnight + timeToNextWorkingDay + timeToWorkStart;
         } else {
-            // There are no working days configured: show a message to the user.
-            NotificationsHelper.showNotification(context, context.getString(R.string.ready), context.getString(R.string.setSchedule));
-            // TODO: add an action button
+            // There are no working days configured: show a message to the user and return -1 to avoid running the service.
+            Intent setScheduleIntent = new Intent(context, SetScheduleActivity.class);
+            NotificationsHelper.showNotification(
+                    context, context.getString(R.string.ready), context.getString(R.string.setSchedule), setScheduleIntent, context.getString(R.string.goToSetSchedule));
             return -1;
         }
     }

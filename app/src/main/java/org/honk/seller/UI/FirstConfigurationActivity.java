@@ -2,8 +2,10 @@ package org.honk.seller.UI;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -21,7 +23,7 @@ import org.honk.seller.LocationHelper;
 import org.honk.seller.R;
 import org.honk.sharedlibrary.UIHelper;
 
-public class FirstConfigurationActivity extends AppCompatActivity {
+public class FirstConfigurationActivity extends AppCompatActivity implements DialogInterface.OnClickListener {
 
     private static final int WAIT_TIME_MS = 5000;
     private static final int ACCESS_COARSE_LOCATION_CODE = 0;
@@ -38,11 +40,6 @@ public class FirstConfigurationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_firstconfiguration);
 
         //this.loadLocation();
-    }
-
-    public void openSetScheduleActivity(View view) {
-        Intent openScheduleIntent = new Intent(this, SetScheduleActivity.class);
-        this.startActivity(openScheduleIntent);
     }
 
     private void loadLocation() {
@@ -137,5 +134,23 @@ public class FirstConfigurationActivity extends AppCompatActivity {
             progressDialog.dismiss();
             UIHelper.showAlert(getString(R.string.featureUnavailableAlertMessage), this);
         }
+    }
+
+    public void openSetScheduleActivity(View view) {
+        Intent openScheduleIntent = new Intent(this, SetScheduleActivity.class);
+        this.startActivity(openScheduleIntent);
+    }
+
+    public void close(View view) {
+        new AlertDialog.Builder(this)
+                .setMessage(this.getString(R.string.comeBackSoon))
+                .setTitle(org.honk.sharedlibrary.R.string.alertTitle)
+                .setPositiveButton(org.honk.sharedlibrary.R.string.close, this)
+                .show();
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        this.finishAffinity();
     }
 }
