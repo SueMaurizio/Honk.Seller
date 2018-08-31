@@ -81,7 +81,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="08:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/mondayWorkRadio"
                 app:layout_constraintTop_toTopOf="@+id/mondayWorkRadio" />
@@ -103,7 +103,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="18:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/toMondayTextView"
                 app:layout_constraintTop_toTopOf="@+id/mondayWorkRadio" />
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="13:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toStartOf="@+id/startMondayTextView"
                 app:layout_constraintTop_toTopOf="@+id/mondayPauseRadio" />
@@ -164,7 +164,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="14:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/mondayPauseSeparatorTextView"
                 app:layout_constraintTop_toTopOf="@+id/mondayPauseRadio" />
@@ -214,7 +214,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="08:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/tuesdayWorkRadio"
                 app:layout_constraintTop_toTopOf="@+id/tuesdayWorkRadio" />
@@ -236,7 +236,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="18:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/toTuesdayTextView"
                 app:layout_constraintTop_toTopOf="@+id/tuesdayWorkRadio" />
@@ -275,7 +275,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="13:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toStartOf="@+id/startTuesdayTextView"
                 app:layout_constraintTop_toTopOf="@+id/tuesdayPauseRadio" />
@@ -297,7 +297,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="14:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/tuesdayPauseSeparatorTextView"
                 app:layout_constraintTop_toTopOf="@+id/tuesdayPauseRadio" />
@@ -347,7 +347,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="08:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/wednesdayWorkRadio"
                 app:layout_constraintTop_toTopOf="@+id/wednesdayWorkRadio" />
@@ -369,7 +369,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="18:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/toWednesdayTextView"
                 app:layout_constraintTop_toTopOf="@+id/wednesdayWorkRadio" />
@@ -408,7 +408,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="13:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toStartOf="@+id/startWednesdayTextView"
                 app:layout_constraintTop_toTopOf="@+id/wednesdayPauseRadio" />
@@ -430,7 +430,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="14:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/wednesdayPauseSeparatorTextView"
                 app:layout_constraintTop_toTopOf="@+id/wednesdayPauseRadio" />
@@ -480,7 +480,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="08:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/thursdayWorkRadio"
                 app:layout_constraintTop_toTopOf="@+id/thursdayWorkRadio" />
@@ -502,7 +502,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="18:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/toThursdayTextView"
                 app:layout_constraintTop_toTopOf="@+id/thursdayWorkRadio" />
@@ -541,7 +541,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="13:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toStartOf="@+id/startThursdayTextView"
                 app:layout_constraintTop_toTopOf="@+id/thursdayPauseRadio" />
@@ -563,7 +563,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="14:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/thursdayPauseSeparatorTextView"
                 app:layout_constraintTop_toTopOf="@+id/thursdayPauseRadio" />
@@ -613,7 +613,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="08:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/fridayWorkRadio"
                 app:layout_constraintTop_toTopOf="@+id/fridayWorkRadio" />
@@ -635,7 +635,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="18:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/toFridayTextView"
                 app:layout_constraintTop_toTopOf="@+id/fridayWorkRadio" />
@@ -674,7 +674,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="13:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toStartOf="@+id/startFridayTextView"
                 app:layout_constraintTop_toTopOf="@+id/fridayPauseRadio" />
@@ -696,7 +696,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="14:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/fridayPauseSeparatorTextView"
                 app:layout_constraintTop_toTopOf="@+id/fridayPauseRadio" />
@@ -746,7 +746,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="08:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/saturdayWorkRadio"
                 app:layout_constraintTop_toTopOf="@+id/saturdayWorkRadio" />
@@ -768,7 +768,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="18:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/toSaturdayTextView"
                 app:layout_constraintTop_toTopOf="@+id/saturdayWorkRadio" />
@@ -808,7 +808,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="13:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toStartOf="@+id/startSaturdayTextView"
                 app:layout_constraintTop_toTopOf="@+id/saturdayPauseRadio" />
@@ -830,7 +830,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="14:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/saturdayPauseSeparatorTextView"
                 app:layout_constraintTop_toTopOf="@+id/saturdayPauseRadio" />
@@ -881,7 +881,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="08:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/sundayWorkRadio"
                 app:layout_constraintTop_toTopOf="@+id/sundayWorkRadio" />
@@ -903,7 +903,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="18:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/toSundayTextView"
                 app:layout_constraintTop_toTopOf="@+id/sundayWorkRadio" />
@@ -943,7 +943,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="13:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toStartOf="@+id/startSundayTextView"
                 app:layout_constraintTop_toTopOf="@+id/sundayPauseRadio" />
@@ -965,7 +965,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="6dp"
                 android:onClick="pickTime"
-                android:text="14:00"
+                android:text="00:00"
                 android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintStart_toEndOf="@+id/sundayPauseSeparatorTextView"
                 app:layout_constraintTop_toTopOf="@+id/sundayPauseRadio" />

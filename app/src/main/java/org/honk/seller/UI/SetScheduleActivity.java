@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -20,7 +21,9 @@ import org.honk.seller.model.DailySchedulePreferences;
 import org.honk.seller.model.TimeSpan;
 import org.honk.seller.services.SchedulerJobService;
 
+import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Hashtable;
 
 public class SetScheduleActivity extends AppCompatActivity {
@@ -35,59 +38,75 @@ public class SetScheduleActivity extends AppCompatActivity {
         // Fill the activity with the values set by the user, if any.
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
         String settingsString = sharedPreferences.getString(SetScheduleActivity.PREFERENCE_SCHEDULE, "");
+
+        Hashtable<Integer, DailySchedulePreferences> scheduleSettings;
         if (settingsString != "") {
-            Hashtable<Integer, DailySchedulePreferences> scheduleSettings =
-                    new Gson().fromJson(settingsString, TypeToken.getParameterized(Hashtable.class, Integer.class, DailySchedulePreferences.class).getType());
-            displayScheduleForDay(
-                    scheduleSettings,
-                    Calendar.MONDAY,
-                    R.id.mondayWorkRadio, R.id.mondayNoWorkRadio,
-                    R.id.mondayPauseRadio, R.id.mondayNoPauseRadio,
-                    R.id.startMondayTextView, R.id.endMondayTextView,
-                    R.id.startMondayPauseTextView, R.id.endMondayPauseTextView);
-            displayScheduleForDay(
-                    scheduleSettings,
-                    Calendar.TUESDAY,
-                    R.id.tuesdayWorkRadio, R.id.tuesdayNoWorkRadio,
-                    R.id.tuesdayPauseRadio, R.id.tuesdayNoPauseRadio,
-                    R.id.startTuesdayTextView, R.id.endTuesdayTextView,
-                    R.id.startTuesdayPauseTextView, R.id.endTuesdayPauseTextView);
-            displayScheduleForDay(
-                    scheduleSettings,
-                    Calendar.WEDNESDAY,
-                    R.id.wednesdayWorkRadio, R.id.wednesdayNoWorkRadio,
-                    R.id.wednesdayPauseRadio, R.id.wednesdayNoPauseRadio,
-                    R.id.startWednesdayTextView, R.id.endWednesdayTextView,
-                    R.id.startWednesdayPauseTextView, R.id.endWednesdayPauseTextView);
-            displayScheduleForDay(
-                    scheduleSettings,
-                    Calendar.THURSDAY,
-                    R.id.thursdayWorkRadio, R.id.thursdayNoWorkRadio,
-                    R.id.thursdayPauseRadio, R.id.thursdayNoPauseRadio,
-                    R.id.startThursdayTextView, R.id.endThursdayTextView,
-                    R.id.startThursdayPauseTextView, R.id.endThursdayPauseTextView);
-            displayScheduleForDay(
-                    scheduleSettings,
-                    Calendar.FRIDAY,
-                    R.id.fridayWorkRadio, R.id.fridayNoWorkRadio,
-                    R.id.fridayPauseRadio, R.id.fridayNoPauseRadio,
-                    R.id.startFridayTextView, R.id.endFridayTextView,
-                    R.id.startFridayPauseTextView, R.id.endFridayPauseTextView);
-            displayScheduleForDay(
-                    scheduleSettings,
-                    Calendar.SATURDAY,
-                    R.id.saturdayWorkRadio, R.id.saturdayNoWorkRadio,
-                    R.id.saturdayPauseRadio, R.id.saturdayNoPauseRadio,
-                    R.id.startSaturdayTextView, R.id.endSaturdayTextView,
-                    R.id.startSaturdayPauseTextView, R.id.endSaturdayPauseTextView);
-            displayScheduleForDay(
-                    scheduleSettings,
-                    Calendar.SUNDAY,
-                    R.id.sundayWorkRadio, R.id.sundayNoWorkRadio,
-                    R.id.sundayPauseRadio, R.id.sundayNoPauseRadio,
-                    R.id.startSundayTextView, R.id.endSundayTextView,
-                    R.id.startSundayPauseTextView, R.id.endSundayPauseTextView);
+            scheduleSettings = new Gson().fromJson(settingsString, TypeToken.getParameterized(Hashtable.class, Integer.class, DailySchedulePreferences.class).getType());
+        } else {
+            // Set default values.
+            TimeSpan workStartTime = new TimeSpan(8, 0);
+            TimeSpan workEndTime = new TimeSpan(18, 0);
+            TimeSpan pauseStartTime = new TimeSpan(13, 0);
+            TimeSpan pauseEndTime = new TimeSpan(14, 0);
+            scheduleSettings = new Hashtable<Integer, DailySchedulePreferences>();
+            scheduleSettings.put(Calendar.MONDAY, new DailySchedulePreferences(workStartTime, workEndTime, pauseStartTime, pauseEndTime));
+            scheduleSettings.put(Calendar.TUESDAY, new DailySchedulePreferences(workStartTime, workEndTime, pauseStartTime, pauseEndTime));
+            scheduleSettings.put(Calendar.WEDNESDAY, new DailySchedulePreferences(workStartTime, workEndTime, pauseStartTime, pauseEndTime));
+            scheduleSettings.put(Calendar.THURSDAY, new DailySchedulePreferences(workStartTime, workEndTime, pauseStartTime, pauseEndTime));
+            scheduleSettings.put(Calendar.FRIDAY, new DailySchedulePreferences(workStartTime, workEndTime, pauseStartTime, pauseEndTime));
+            scheduleSettings.put(Calendar.SATURDAY, new DailySchedulePreferences());
+            scheduleSettings.put(Calendar.SUNDAY, new DailySchedulePreferences());
         }
+
+        displayScheduleForDay(
+                scheduleSettings,
+                Calendar.MONDAY,
+                R.id.mondayWorkRadio, R.id.mondayNoWorkRadio,
+                R.id.mondayPauseRadio, R.id.mondayNoPauseRadio,
+                R.id.startMondayTextView, R.id.endMondayTextView,
+                R.id.startMondayPauseTextView, R.id.endMondayPauseTextView);
+        displayScheduleForDay(
+                scheduleSettings,
+                Calendar.TUESDAY,
+                R.id.tuesdayWorkRadio, R.id.tuesdayNoWorkRadio,
+                R.id.tuesdayPauseRadio, R.id.tuesdayNoPauseRadio,
+                R.id.startTuesdayTextView, R.id.endTuesdayTextView,
+                R.id.startTuesdayPauseTextView, R.id.endTuesdayPauseTextView);
+        displayScheduleForDay(
+                scheduleSettings,
+                Calendar.WEDNESDAY,
+                R.id.wednesdayWorkRadio, R.id.wednesdayNoWorkRadio,
+                R.id.wednesdayPauseRadio, R.id.wednesdayNoPauseRadio,
+                R.id.startWednesdayTextView, R.id.endWednesdayTextView,
+                R.id.startWednesdayPauseTextView, R.id.endWednesdayPauseTextView);
+        displayScheduleForDay(
+                scheduleSettings,
+                Calendar.THURSDAY,
+                R.id.thursdayWorkRadio, R.id.thursdayNoWorkRadio,
+                R.id.thursdayPauseRadio, R.id.thursdayNoPauseRadio,
+                R.id.startThursdayTextView, R.id.endThursdayTextView,
+                R.id.startThursdayPauseTextView, R.id.endThursdayPauseTextView);
+        displayScheduleForDay(
+                scheduleSettings,
+                Calendar.FRIDAY,
+                R.id.fridayWorkRadio, R.id.fridayNoWorkRadio,
+                R.id.fridayPauseRadio, R.id.fridayNoPauseRadio,
+                R.id.startFridayTextView, R.id.endFridayTextView,
+                R.id.startFridayPauseTextView, R.id.endFridayPauseTextView);
+        displayScheduleForDay(
+                scheduleSettings,
+                Calendar.SATURDAY,
+                R.id.saturdayWorkRadio, R.id.saturdayNoWorkRadio,
+                R.id.saturdayPauseRadio, R.id.saturdayNoPauseRadio,
+                R.id.startSaturdayTextView, R.id.endSaturdayTextView,
+                R.id.startSaturdayPauseTextView, R.id.endSaturdayPauseTextView);
+        displayScheduleForDay(
+                scheduleSettings,
+                Calendar.SUNDAY,
+                R.id.sundayWorkRadio, R.id.sundayNoWorkRadio,
+                R.id.sundayPauseRadio, R.id.sundayNoPauseRadio,
+                R.id.startSundayTextView, R.id.endSundayTextView,
+                R.id.startSundayPauseTextView, R.id.endSundayPauseTextView);
     }
 
     private void displayScheduleForDay(
@@ -210,19 +229,23 @@ public class SetScheduleActivity extends AppCompatActivity {
         int hour = Integer.parseInt(text.substring(0, 2));
         int minute = Integer.parseInt(text.substring(3, 5));
 
-        // TODO: set parameter is24HourView based on the current locale.
         TimePickerDialog timePickerDialog = new TimePickerDialog(SetScheduleActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 displayTime(textView, selectedHour, selectedMinute);
             }
-        }, hour, minute, true);
+        }, hour, minute, DateFormat.is24HourFormat(this));
         timePickerDialog.setTitle(this.getString(R.string.selectTime));
         timePickerDialog.show();
     }
 
     private void displayTime(TextView textView, int hour, int minute) {
-        textView.setText(String.format("%02d:%02d", hour, minute));
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+        java.text.DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(this);
+        String formattedTime = timeFormat.format(calendar.getTime());
+        textView.setText(formattedTime);
     }
 
     public void proceed(View view) {
@@ -267,9 +290,15 @@ public class SetScheduleActivity extends AppCompatActivity {
 
     private TimeSpan getTimeSpanFromTextView(int radioButtonId) {
         TextView textView = this.findViewById(radioButtonId);
-        String hours = textView.getText().toString().substring(0, 2);
-        String minutes = textView.getText().toString().substring(3, 5);
-        return new TimeSpan(Integer.parseInt(hours), Integer.parseInt(minutes));
+        try {
+            java.text.DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(this);
+            Date parsedDate = timeFormat.parse(textView.getText().toString());
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(parsedDate);
+            return new TimeSpan(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
+        } catch (ParseException x) { }
+
+        return null;
     }
 
     private DailySchedulePreferences getPreferences(
