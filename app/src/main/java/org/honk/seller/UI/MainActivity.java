@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
         TextView txtStatus = this.findViewById(R.id.txtStatus);
         if (SchedulerJobService.active) {
             if (SchedulerJobService.isWorkTime(this.getBaseContext())) {
-                txtStatus.setText(this.getString(R.string.ImWorking));
+                txtStatus.setText(this.getString(R.string.imWorking));
             } else {
-                txtStatus.setText(this.getString(R.string.ImNotWorking));
+                txtStatus.setText(this.getString(R.string.imNotWorking));
             }
         } else {
             // The service is disabled: change the label of the "keep running" button to "start running" and hide the "stop sending my location" button.

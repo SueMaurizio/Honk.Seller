@@ -40,8 +40,8 @@
     <string name="whenWillYouBeBack">Quando tornerai?</string>
     <string name="dontKnowYet">Non lo so</string>
     <string name="whatCanIDo">Cosa posso fare per te?</string>
-    <string name="ImWorking">Sto lavorando con te: i tuoi potenziali clienti in questo momento possono vedere la tua posizione.</string>
-    <string name="ImNotWorking">La rilevazione della posizione in questo momento è disattivata: nessuno può conoscere la tua posizione.</string>
+    <string name="imWorking">Sto lavorando con te: i tuoi potenziali clienti in questo momento possono vedere la tua posizione.</string>
+    <string name="imNotWorking">La rilevazione della posizione in questo momento è disattivata: nessuno può conoscere la tua posizione.</string>
     <string name="scheduleSet">Congratulazioni! Hai impostato correttamente il tuo orario di lavoro.</string>
     <string name="setVacations">Voglio impostare le mie ferie/assenze</string>
     <string name="doNotSendLocation">Non trasmettere più la mia posizione</string>
@@ -52,4 +52,8 @@
     <string name="vacationsSet">Ben fatto: sospenderò il servizio durante i tuoi giorni di assenza.</string>
     <string name="goToSetSchedule">Imposta il mio orario di lavoro</string>
     <string name="comeBackSoon">Non posso lavorare senza il tuo permesso. Se cambi idea, ti basterà riaprire l\'app. A presto!</string>
+    <string name="configurationComplete">Sono pronto a cominciare! D\'ora in poi renderò disponibile la tua posizione negli orari che hai indicato.</string>
+    <string name="congratulations">Congratulazioni!</string>
+    <string name="ok">OK</string>
+    <string name="setWorkingSchedule">Voglio cambiare il mio orario di lavoro</string>
 </resources>

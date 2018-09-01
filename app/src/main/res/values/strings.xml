@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="permissionDeniedAlertMessage">This app can\'t work without knowing your location. If you change your mind, please grant the authorization through the Settings panel of your device.</string>
     <string name="close">Close</string>
@@ -43,7 +44,7 @@
     <string name="imNotWorking">Location detection is currently off: nobody can see your current location right now.</string>
     <string name="scheduleSet">Congratulations! You have successfully set your working schedule.</string>
     <string name="setVacations">I want to set my vacations</string>
-    <string name="doNotSendLocation">Don't send my location anymore</string>
+    <string name="doNotSendLocation">Don\'t send my location anymore</string>
     <string name="keepRunning">Nothing, keep running!</string>
     <string name="startRunning">Resume sending my location</string>
     <string name="schedulerStarted">From now on, your customers will be able to know your location, according to your work schedule.</string>
@@ -51,4 +52,8 @@
     <string name="vacationsSet">Well done: I will suspend the service during your vacation days.</string>
     <string name="goToSetSchedule">Set my working schedule now</string>
     <string name="comeBackSoon">I can\'t work without your permission. If you change your mind, just reopen the app. See you soon!</string>
+    <string name="configurationComplete">I\'m ready to start! From now on, I will make your location available during your working hours.</string>
+    <string name="congratulations">Congratulations!</string>
+    <string name="ok">OK</string>
+    <string name="setWorkingSchedule">I want to set my working schedule</string>
 </resources>

@@ -1,7 +1,9 @@
 package org.honk.seller.UI;
 
+import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -26,7 +28,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Hashtable;
 
-public class SetScheduleActivity extends AppCompatActivity {
+public class SetScheduleActivity extends AppCompatActivity implements DialogInterface.OnClickListener {
 
     public static final String PREFERENCE_SCHEDULE = "PREFERENCE_SCHEDULE";
 
@@ -225,16 +227,14 @@ public class SetScheduleActivity extends AppCompatActivity {
 
         // Parse value from TextView.
         TextView textView = (TextView)view;
-        String text = textView.getText().toString();
-        int hour = Integer.parseInt(text.substring(0, 2));
-        int minute = Integer.parseInt(text.substring(3, 5));
+        TimeSpan timeSpan = getTimeSpanFromTextView(view.getId());
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(SetScheduleActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 displayTime(textView, selectedHour, selectedMinute);
             }
-        }, hour, minute, DateFormat.is24HourFormat(this));
+        }, timeSpan.hours, timeSpan.minutes, DateFormat.is24HourFormat(this));
         timePickerDialog.setTitle(this.getString(R.string.selectTime));
         timePickerDialog.show();
     }
@@ -275,21 +275,35 @@ public class SetScheduleActivity extends AppCompatActivity {
         // Save the new schedule.
         Context context = this.getApplicationContext();
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean isFirstConfiguration = sharedPreferences.getString(SetScheduleActivity.PREFERENCE_SCHEDULE, "") == "";
         sharedPreferences.edit().putString(PREFERENCE_SCHEDULE, new Gson().toJson(allPreferences)).apply();
 
         // Cancel all pending jobs and restart with the new schedule.
         SchedulerJobService.cancelAllJobs(context);
         SchedulerJobService.scheduleJob(context);
 
-        // Show a message and keep the activity running.
-        this.finishAffinity();
-
-        // TODO set a different text if coming from the "first configuration" activity.
-        Toast.makeText(this.getApplicationContext(), this.getString(R.string.scheduleSet), Toast.LENGTH_SHORT).show();
+        // Show a message that depends on whether this is the first configuration or just an edit.
+        if (isFirstConfiguration) {
+            // Show a dialog: the user should acknowledge that the service is starting.
+            new AlertDialog.Builder(this)
+                    .setMessage(this.getString(R.string.configurationComplete))
+                    .setTitle(R.string.congratulations)
+                    .setPositiveButton(R.string.ok, this)
+                    .show();
+        } else {
+            // Show a toast message and keep the activity running.
+            this.finishAffinity();
+            Toast.makeText(this.getApplicationContext(), this.getString(R.string.scheduleSet), Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private TimeSpan getTimeSpanFromTextView(int radioButtonId) {
-        TextView textView = this.findViewById(radioButtonId);
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        this.finishAffinity();
+    }
+
+    private TimeSpan getTimeSpanFromTextView(int textViewId) {
+        TextView textView = this.findViewById(textViewId);
         try {
             java.text.DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(this);
             Date parsedDate = timeFormat.parse(textView.getText().toString());
