@@ -23,7 +23,7 @@
     <string name="locationDetectionStarts">From now on, your customers can view your location.</string>
     <string name="selectTime">Select time</string>
     <string name="done">Done</string>
-    <string name="workingFrom">working from</string>
+    <string name="workingFrom">work from</string>
     <string name="breakFrom">break from</string>
     <string name="notWorking">not working</string>
     <string name="noBreak">no break</string>
@@ -56,4 +56,5 @@
     <string name="congratulations">Congratulations!</string>
     <string name="ok">OK</string>
     <string name="setWorkingSchedule">I want to set my working schedule</string>
+    <string name="setTimeAfter">Please choose a time after </string>
 </resources>

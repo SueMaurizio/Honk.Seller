@@ -21,7 +21,7 @@
     <string name="to">alle</string>
     <string name="haveANiceDay">Buon lavoro!</string>
     <string name="locationDetectionStarts">Da questo momento, i tuoi clienti possono vedere dove ti trovi.</string>
-    <string name="selectTime">Scegli l'ora</string>
+    <string name="selectTime">Scegli l\'ora</string>
     <string name="done">Fatto</string>
     <string name="workingFrom">lavoro dalle</string>
     <string name="breakFrom">pausa dalle</string>
@@ -56,4 +56,5 @@
     <string name="congratulations">Congratulazioni!</string>
     <string name="ok">OK</string>
     <string name="setWorkingSchedule">Voglio cambiare il mio orario di lavoro</string>
+    <string name="setTimeAfter">Scegli un orario successivo alle </string>
 </resources>
