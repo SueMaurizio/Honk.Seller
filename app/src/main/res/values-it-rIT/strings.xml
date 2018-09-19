@@ -56,5 +56,6 @@
     <string name="congratulations">Congratulazioni!</string>
     <string name="ok">OK</string>
     <string name="setWorkingSchedule">Voglio cambiare il mio orario di lavoro</string>
-    <string name="setTimeAfter">Scegli un orario successivo alle </string>
+    <string name="setTimeAfter">Scegli un orario successivo alle %s.</string>
+    <string name="setTimeBefore">Scegli un orario precedente le %s.</string>
 </resources>

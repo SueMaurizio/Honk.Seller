@@ -56,5 +56,6 @@
     <string name="congratulations">Congratulations!</string>
     <string name="ok">OK</string>
     <string name="setWorkingSchedule">I want to set my working schedule</string>
-    <string name="setTimeAfter">Please choose a time after </string>
+    <string name="setTimeAfter">Please choose a time after %s.</string>
+    <string name="setTimeBefore">Please choose a time before %s.</string>
 </resources>

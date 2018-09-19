@@ -262,6 +262,45 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
         return null;
     }
 
+    private TextView resolveEndTimeTextView(int textViewId) {
+        Integer linkedTextViewId = null;
+        if (textViewId == R.id.startMondayTextView) {
+            linkedTextViewId = R.id.endMondayTextView;
+        } else if (textViewId == R.id.startMondayPauseTextView) {
+            linkedTextViewId = R.id.endMondayPauseTextView;
+        } else if (textViewId == R.id.startTuesdayTextView) {
+            linkedTextViewId = R.id.endTuesdayTextView;
+        } else if (textViewId == R.id.startTuesdayPauseTextView) {
+            linkedTextViewId = R.id.endTuesdayPauseTextView;
+        } else if (textViewId == R.id.startWednesdayTextView) {
+            linkedTextViewId = R.id.endWednesdayTextView;
+        } else if (textViewId == R.id.startWednesdayPauseTextView) {
+            linkedTextViewId = R.id.endWednesdayPauseTextView;
+        } else if (textViewId == R.id.startThursdayTextView) {
+            linkedTextViewId = R.id.endThursdayTextView;
+        } else if (textViewId == R.id.startThursdayPauseTextView) {
+            linkedTextViewId = R.id.endThursdayPauseTextView;
+        } else if (textViewId == R.id.startFridayTextView) {
+            linkedTextViewId = R.id.endFridayTextView;
+        } else if (textViewId == R.id.startFridayPauseTextView) {
+            linkedTextViewId = R.id.endFridayPauseTextView;
+        } else if (textViewId == R.id.startSaturdayTextView) {
+            linkedTextViewId = R.id.endSaturdayTextView;
+        } else if (textViewId == R.id.startSaturdayPauseTextView) {
+            linkedTextViewId = R.id.endSaturdayPauseTextView;
+        } else if (textViewId == R.id.startSundayTextView) {
+            linkedTextViewId = R.id.endSundayTextView;
+        } else if (textViewId == R.id.startSundayPauseTextView) {
+            linkedTextViewId = R.id.endSundayPauseTextView;
+        }
+
+        if (linkedTextViewId != null) {
+            return (TextView) findViewById(linkedTextViewId);
+        }
+
+        return null;
+    }
+
     public void pickTime(View view) {
 
         // Parse value from TextView.
@@ -272,29 +311,46 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
          * if the TextView the user tapped on is an "end time", I must get the matching starting time. */
         TextView startTimeTextView = this.resolveStartTimeTextView(view.getId());
         TimeSpan startingTimeSpan = null;
+        TimeSpan endTimeSpan = null;
         if (startTimeTextView != null) {
             startingTimeSpan = getTimeSpanFromTextView(startTimeTextView.getId());
+        } else {
+            /* When the user picks the start time of work or pause, it must be earlier than the ending time:
+             * if the TextView the user tapped on is a "start time", I must get the matching ending time. */
+            TextView endTimeTextView = this.resolveEndTimeTextView(view.getId());
+            if (endTimeTextView != null) {
+                endTimeSpan = getTimeSpanFromTextView(endTimeTextView.getId());
+            }
         }
 
-        // TODO When I pick time in en-US, I cannot change from AM to PM and vice versa.
         // TODO Picking dates for saturday and sunday fails.
-        showTimePicker(textView, timeSpan, startingTimeSpan, this);
-
-        // TODO When the user picks the start time of work or pause, it must be earlier than the ending time.
+        showTimePicker(textView, timeSpan, startingTimeSpan, endTimeSpan, this);
     }
 
-    private void showTimePicker(TextView textView, TimeSpan timeSpan, TimeSpan startingTimeSpan, Context context) {
+    private void showTimePicker(TextView textView, TimeSpan timeSpan, TimeSpan startingTimeSpan, TimeSpan endTimeSpan, Context context) {
         TimePickerDialog timePickerDialog = new TimePickerDialog(SetScheduleActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                if (startingTimeSpan == null ||
-                        selectedHour > startingTimeSpan.hours ||
-                        (selectedHour == startingTimeSpan.hours && selectedMinute > startingTimeSpan.minutes)) {
+                if (endTimeSpan != null) {
+                    // This is a "start time".
+                    if (selectedHour < endTimeSpan.hours) {
+                        // The user selected a valid time: write it to the schedule summary.
                         displayTime(textView, selectedHour, selectedMinute);
+                    } else {
+                        // The time selected is not valid: show a message and reset the time picker.
+                        Toast.makeText(context, String.format(context.getString(R.string.setTimeBefore), getFormattedTime(endTimeSpan.hours, endTimeSpan.minutes)), Toast.LENGTH_SHORT).show();
+                        showTimePicker(textView, timeSpan, startingTimeSpan, endTimeSpan, context);
+                    }
                 } else {
-                    // TODO Use a proper format string.
-                    Toast.makeText(context, context.getString(R.string.setTimeAfter) + getFormattedTime(startingTimeSpan.hours, startingTimeSpan.minutes), Toast.LENGTH_SHORT).show();
-                    showTimePicker(textView, timeSpan, startingTimeSpan, context);
+                    // This is an "end time".
+                    if (selectedHour > startingTimeSpan.hours || (selectedHour == startingTimeSpan.hours && selectedMinute > startingTimeSpan.minutes)) {
+                        // The user selected a valid time: write it to the schedule summary.
+                        displayTime(textView, selectedHour, selectedMinute);
+                    } else {
+                        // The time selected is not valid: show a message and reset the time picker.
+                        Toast.makeText(context, String.format(context.getString(R.string.setTimeAfter), getFormattedTime(startingTimeSpan.hours, startingTimeSpan.minutes)), Toast.LENGTH_SHORT).show();
+                        showTimePicker(textView, timeSpan, startingTimeSpan, endTimeSpan, context);
+                    }
                 }
             }
         }, timeSpan.hours, timeSpan.minutes, DateFormat.is24HourFormat(this));
