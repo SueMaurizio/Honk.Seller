@@ -31,6 +31,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/specifySchedule"
+        android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,125 +61,113 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <RadioButton
-                android:id="@+id/mondayWorkRadio"
+            <Switch
+                android:id="@+id/mondayWorkSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_weight="1"
                 android:checked="true"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/workingFrom"
-                android:textColor="@color/colorPrimary"
+                android:onClick="toggleSwitch"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mondayLabel" />
+
+            <TextView
+                android:id="@+id/fromMondayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/workingFrom"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/mondayWorkSwitch"
+                app:layout_constraintTop_toTopOf="@+id/mondayWorkSwitch" />
 
             <TextView
                 android:id="@+id/startMondayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/mondayWorkRadio"
-                app:layout_constraintTop_toTopOf="@+id/mondayWorkRadio" />
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/fromMondayTextView"
+                app:layout_constraintTop_toTopOf="@+id/fromMondayTextView" />
 
             <TextView
                 android:id="@+id/toMondayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintStart_toEndOf="@+id/startMondayTextView"
-                app:layout_constraintTop_toTopOf="@+id/mondayWorkRadio" />
+                app:layout_constraintTop_toTopOf="@+id/startMondayTextView" />
 
             <TextView
                 android:id="@+id/endMondayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/toMondayTextView"
-                app:layout_constraintTop_toTopOf="@+id/mondayWorkRadio" />
-
-            <RadioButton
-                android:id="@+id/mondayNoWorkRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/notWorking"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mondayLabel" />
+                app:layout_constraintStart_toEndOf="@+id/toMondayTextView"
+                app:layout_constraintTop_toTopOf="@+id/toMondayTextView" />
 
-            <RadioButton
-                android:id="@+id/mondayPauseRadio"
+            <Switch
+                android:id="@+id/mondayBreakSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
                 android:checked="true"
-                android:onClick="toggleRadioButtons"
+                android:onClick="toggleSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mondayWorkSwitch" />
+
+            <TextView
+                android:id="@+id/mondayBreakFromTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/breakFrom"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mondayWorkRadio" />
+                app:layout_constraintStart_toEndOf="@+id/mondayBreakSwitch"
+                app:layout_constraintTop_toTopOf="@+id/mondayBreakSwitch" />
 
             <TextView
-                android:id="@+id/startMondayPauseTextView"
+                android:id="@+id/startMondayBreakTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="8dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toStartOf="@+id/startMondayTextView"
-                app:layout_constraintTop_toTopOf="@+id/mondayPauseRadio" />
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/mondayBreakFromTextView"
+                app:layout_constraintTop_toTopOf="@+id/mondayBreakFromTextView" />
 
             <TextView
-                android:id="@+id/mondayPauseSeparatorTextView"
+                android:id="@+id/mondayBreakToTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startMondayPauseTextView"
-                app:layout_constraintTop_toTopOf="@+id/mondayPauseRadio" />
+                app:layout_constraintStart_toEndOf="@+id/startMondayBreakTextView"
+                app:layout_constraintTop_toTopOf="@+id/startMondayBreakTextView" />
 
             <TextView
-                android:id="@+id/endMondayPauseTextView"
+                android:id="@+id/endMondayBreakTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/mondayPauseSeparatorTextView"
-                app:layout_constraintTop_toTopOf="@+id/mondayPauseRadio" />
-
-            <RadioButton
-                android:id="@+id/mondayNoPauseRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/noBreak"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toStartOf="@+id/mondayNoWorkRadio"
-                app:layout_constraintTop_toBottomOf="@+id/mondayNoWorkRadio" />
+                app:layout_constraintStart_toEndOf="@+id/mondayBreakToTextView"
+                app:layout_constraintTop_toTopOf="@+id/mondayBreakToTextView" />
 
             <!-- Tuesday -->
 
@@ -191,127 +180,115 @@
                 android:text="@string/tuesday"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mondayPauseRadio" />
+                app:layout_constraintTop_toBottomOf="@+id/mondayBreakSwitch" />
 
-            <RadioButton
-                android:id="@+id/tuesdayWorkRadio"
+            <Switch
+                android:id="@+id/tuesdayWorkSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_weight="1"
                 android:checked="true"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/workingFrom"
-                android:textColor="@color/colorPrimary"
+                android:onClick="toggleSwitch"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tuesdayLabel" />
+
+            <TextView
+                android:id="@+id/fromTuesdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/workingFrom"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/tuesdayWorkSwitch"
+                app:layout_constraintTop_toTopOf="@+id/tuesdayWorkSwitch" />
 
             <TextView
                 android:id="@+id/startTuesdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/tuesdayWorkRadio"
-                app:layout_constraintTop_toTopOf="@+id/tuesdayWorkRadio" />
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/fromTuesdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/fromTuesdayTextView" />
 
             <TextView
                 android:id="@+id/toTuesdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintStart_toEndOf="@+id/startTuesdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/tuesdayWorkRadio" />
+                app:layout_constraintTop_toTopOf="@+id/startTuesdayTextView" />
 
             <TextView
                 android:id="@+id/endTuesdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/toTuesdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/tuesdayWorkRadio" />
-
-            <RadioButton
-                android:id="@+id/tuesdayNoWorkRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/notWorking"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tuesdayLabel" />
+                app:layout_constraintStart_toEndOf="@+id/toTuesdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/toTuesdayTextView" />
 
-            <RadioButton
-                android:id="@+id/tuesdayPauseRadio"
+            <Switch
+                android:id="@+id/tuesdayBreakSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
                 android:checked="true"
-                android:onClick="toggleRadioButtons"
+                android:onClick="toggleSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tuesdayWorkSwitch" />
+
+            <TextView
+                android:id="@+id/tuesdayBreakFromTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/breakFrom"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tuesdayWorkRadio" />
+                app:layout_constraintStart_toEndOf="@+id/tuesdayBreakSwitch"
+                app:layout_constraintTop_toTopOf="@+id/tuesdayBreakSwitch" />
 
             <TextView
-                android:id="@+id/startTuesdayPauseTextView"
+                android:id="@+id/startTuesdayBreakTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="8dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toStartOf="@+id/startTuesdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/tuesdayPauseRadio" />
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/tuesdayBreakFromTextView"
+                app:layout_constraintTop_toTopOf="@+id/tuesdayBreakFromTextView" />
 
             <TextView
-                android:id="@+id/tuesdayPauseSeparatorTextView"
+                android:id="@+id/tuesdayBreakToTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startTuesdayPauseTextView"
-                app:layout_constraintTop_toTopOf="@+id/tuesdayPauseRadio" />
+                app:layout_constraintStart_toEndOf="@+id/startTuesdayBreakTextView"
+                app:layout_constraintTop_toTopOf="@+id/startTuesdayBreakTextView" />
 
             <TextView
-                android:id="@+id/endTuesdayPauseTextView"
+                android:id="@+id/endTuesdayBreakTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/tuesdayPauseSeparatorTextView"
-                app:layout_constraintTop_toTopOf="@+id/tuesdayPauseRadio" />
-
-            <RadioButton
-                android:id="@+id/tuesdayNoPauseRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/noBreak"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toStartOf="@+id/tuesdayNoWorkRadio"
-                app:layout_constraintTop_toBottomOf="@+id/tuesdayNoWorkRadio" />
+                app:layout_constraintStart_toEndOf="@+id/tuesdayBreakToTextView"
+                app:layout_constraintTop_toTopOf="@+id/tuesdayBreakToTextView" />
 
             <!-- Wednesday -->
 
@@ -324,127 +301,115 @@
                 android:text="@string/wednesday"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tuesdayPauseRadio" />
+                app:layout_constraintTop_toBottomOf="@+id/tuesdayBreakSwitch" />
 
-            <RadioButton
-                android:id="@+id/wednesdayWorkRadio"
+            <Switch
+                android:id="@+id/wednesdayWorkSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_weight="1"
                 android:checked="true"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/workingFrom"
-                android:textColor="@color/colorPrimary"
+                android:onClick="toggleSwitch"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/wednesdayLabel" />
+
+            <TextView
+                android:id="@+id/fromWednesdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/workingFrom"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/wednesdayWorkSwitch"
+                app:layout_constraintTop_toTopOf="@+id/wednesdayWorkSwitch" />
 
             <TextView
                 android:id="@+id/startWednesdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/wednesdayWorkRadio"
-                app:layout_constraintTop_toTopOf="@+id/wednesdayWorkRadio" />
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/fromWednesdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/fromWednesdayTextView" />
 
             <TextView
                 android:id="@+id/toWednesdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintStart_toEndOf="@+id/startWednesdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/wednesdayWorkRadio" />
+                app:layout_constraintTop_toTopOf="@+id/startWednesdayTextView" />
 
             <TextView
                 android:id="@+id/endWednesdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/toWednesdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/wednesdayWorkRadio" />
-
-            <RadioButton
-                android:id="@+id/wednesdayNoWorkRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/notWorking"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/wednesdayLabel" />
+                app:layout_constraintStart_toEndOf="@+id/toWednesdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/toWednesdayTextView" />
 
-            <RadioButton
-                android:id="@+id/wednesdayPauseRadio"
+            <Switch
+                android:id="@+id/wednesdayBreakSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
                 android:checked="true"
-                android:onClick="toggleRadioButtons"
+                android:onClick="toggleSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wednesdayWorkSwitch" />
+
+            <TextView
+                android:id="@+id/wednesdayBreakFromTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/breakFrom"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/wednesdayWorkRadio" />
+                app:layout_constraintStart_toEndOf="@+id/wednesdayBreakSwitch"
+                app:layout_constraintTop_toTopOf="@+id/wednesdayBreakSwitch" />
 
             <TextView
-                android:id="@+id/startWednesdayPauseTextView"
+                android:id="@+id/startWednesdayBreakTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="8dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toStartOf="@+id/startWednesdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/wednesdayPauseRadio" />
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/wednesdayBreakFromTextView"
+                app:layout_constraintTop_toTopOf="@+id/wednesdayBreakFromTextView" />
 
             <TextView
-                android:id="@+id/wednesdayPauseSeparatorTextView"
+                android:id="@+id/wednesdayBreakToTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startWednesdayPauseTextView"
-                app:layout_constraintTop_toTopOf="@+id/wednesdayPauseRadio" />
+                app:layout_constraintStart_toEndOf="@+id/startWednesdayBreakTextView"
+                app:layout_constraintTop_toTopOf="@+id/startWednesdayBreakTextView" />
 
             <TextView
-                android:id="@+id/endWednesdayPauseTextView"
+                android:id="@+id/endWednesdayBreakTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/wednesdayPauseSeparatorTextView"
-                app:layout_constraintTop_toTopOf="@+id/wednesdayPauseRadio" />
-
-            <RadioButton
-                android:id="@+id/wednesdayNoPauseRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/noBreak"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toStartOf="@+id/wednesdayNoWorkRadio"
-                app:layout_constraintTop_toBottomOf="@+id/wednesdayNoWorkRadio" />
+                app:layout_constraintStart_toEndOf="@+id/wednesdayBreakToTextView"
+                app:layout_constraintTop_toTopOf="@+id/wednesdayBreakToTextView" />
 
             <!-- Thursday -->
 
@@ -457,127 +422,115 @@
                 android:text="@string/thursday"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/wednesdayPauseRadio" />
+                app:layout_constraintTop_toBottomOf="@+id/wednesdayBreakSwitch" />
 
-            <RadioButton
-                android:id="@+id/thursdayWorkRadio"
+            <Switch
+                android:id="@+id/thursdayWorkSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_weight="1"
                 android:checked="true"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/workingFrom"
-                android:textColor="@color/colorPrimary"
+                android:onClick="toggleSwitch"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/thursdayLabel" />
+
+            <TextView
+                android:id="@+id/fromThursdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/workingFrom"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/thursdayWorkSwitch"
+                app:layout_constraintTop_toTopOf="@+id/thursdayWorkSwitch" />
 
             <TextView
                 android:id="@+id/startThursdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/thursdayWorkRadio"
-                app:layout_constraintTop_toTopOf="@+id/thursdayWorkRadio" />
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/fromThursdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/fromThursdayTextView" />
 
             <TextView
                 android:id="@+id/toThursdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintStart_toEndOf="@+id/startThursdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/thursdayWorkRadio" />
+                app:layout_constraintTop_toTopOf="@+id/startThursdayTextView" />
 
             <TextView
                 android:id="@+id/endThursdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/toThursdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/thursdayWorkRadio" />
-
-            <RadioButton
-                android:id="@+id/thursdayNoWorkRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/notWorking"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/thursdayLabel" />
+                app:layout_constraintStart_toEndOf="@+id/toThursdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/toThursdayTextView" />
 
-            <RadioButton
-                android:id="@+id/thursdayPauseRadio"
+            <Switch
+                android:id="@+id/thursdayBreakSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
                 android:checked="true"
-                android:onClick="toggleRadioButtons"
+                android:onClick="toggleSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/thursdayWorkSwitch" />
+
+            <TextView
+                android:id="@+id/thursdayBreakFromTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/breakFrom"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/thursdayWorkRadio" />
+                app:layout_constraintStart_toEndOf="@+id/thursdayBreakSwitch"
+                app:layout_constraintTop_toTopOf="@+id/thursdayBreakSwitch" />
 
             <TextView
-                android:id="@+id/startThursdayPauseTextView"
+                android:id="@+id/startThursdayBreakTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="8dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toStartOf="@+id/startThursdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/thursdayPauseRadio" />
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/thursdayBreakFromTextView"
+                app:layout_constraintTop_toTopOf="@+id/thursdayBreakFromTextView" />
 
             <TextView
-                android:id="@+id/thursdayPauseSeparatorTextView"
+                android:id="@+id/thursdayBreakToTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startThursdayPauseTextView"
-                app:layout_constraintTop_toTopOf="@+id/thursdayPauseRadio" />
+                app:layout_constraintStart_toEndOf="@+id/startThursdayBreakTextView"
+                app:layout_constraintTop_toTopOf="@+id/startThursdayBreakTextView" />
 
             <TextView
-                android:id="@+id/endThursdayPauseTextView"
+                android:id="@+id/endThursdayBreakTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/thursdayPauseSeparatorTextView"
-                app:layout_constraintTop_toTopOf="@+id/thursdayPauseRadio" />
-
-            <RadioButton
-                android:id="@+id/thursdayNoPauseRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/noBreak"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toStartOf="@+id/thursdayNoWorkRadio"
-                app:layout_constraintTop_toBottomOf="@+id/thursdayNoWorkRadio" />
+                app:layout_constraintStart_toEndOf="@+id/thursdayBreakToTextView"
+                app:layout_constraintTop_toTopOf="@+id/thursdayBreakToTextView" />
 
             <!-- Friday -->
 
@@ -590,127 +543,115 @@
                 android:text="@string/friday"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/thursdayPauseRadio" />
+                app:layout_constraintTop_toBottomOf="@+id/thursdayBreakSwitch" />
 
-            <RadioButton
-                android:id="@+id/fridayWorkRadio"
+            <Switch
+                android:id="@+id/fridayWorkSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_weight="1"
                 android:checked="true"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/workingFrom"
-                android:textColor="@color/colorPrimary"
+                android:onClick="toggleSwitch"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fridayLabel" />
+
+            <TextView
+                android:id="@+id/fromFridayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/workingFrom"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/fridayWorkSwitch"
+                app:layout_constraintTop_toTopOf="@+id/fridayWorkSwitch" />
 
             <TextView
                 android:id="@+id/startFridayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/fridayWorkRadio"
-                app:layout_constraintTop_toTopOf="@+id/fridayWorkRadio" />
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/fromFridayTextView"
+                app:layout_constraintTop_toTopOf="@+id/fromFridayTextView" />
 
             <TextView
                 android:id="@+id/toFridayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintStart_toEndOf="@+id/startFridayTextView"
-                app:layout_constraintTop_toTopOf="@+id/fridayWorkRadio" />
+                app:layout_constraintTop_toTopOf="@+id/startFridayTextView" />
 
             <TextView
                 android:id="@+id/endFridayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/toFridayTextView"
-                app:layout_constraintTop_toTopOf="@+id/fridayWorkRadio" />
-
-            <RadioButton
-                android:id="@+id/fridayNoWorkRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/notWorking"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fridayLabel" />
+                app:layout_constraintStart_toEndOf="@+id/toFridayTextView"
+                app:layout_constraintTop_toTopOf="@+id/toFridayTextView" />
 
-            <RadioButton
-                android:id="@+id/fridayPauseRadio"
+            <Switch
+                android:id="@+id/fridayBreakSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
                 android:checked="true"
-                android:onClick="toggleRadioButtons"
+                android:onClick="toggleSwitch"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fridayWorkSwitch" />
+
+            <TextView
+                android:id="@+id/fridayBreakFromTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/breakFrom"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fridayWorkRadio" />
+                app:layout_constraintStart_toEndOf="@+id/fridayBreakSwitch"
+                app:layout_constraintTop_toTopOf="@+id/fridayBreakSwitch" />
 
             <TextView
-                android:id="@+id/startFridayPauseTextView"
+                android:id="@+id/startFridayBreakTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="8dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toStartOf="@+id/startFridayTextView"
-                app:layout_constraintTop_toTopOf="@+id/fridayPauseRadio" />
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/fridayBreakFromTextView"
+                app:layout_constraintTop_toTopOf="@+id/fridayBreakFromTextView" />
 
             <TextView
-                android:id="@+id/fridayPauseSeparatorTextView"
+                android:id="@+id/fridayBreakToTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startFridayPauseTextView"
-                app:layout_constraintTop_toTopOf="@+id/fridayPauseRadio" />
+                app:layout_constraintStart_toEndOf="@+id/startFridayBreakTextView"
+                app:layout_constraintTop_toTopOf="@+id/startFridayBreakTextView" />
 
             <TextView
-                android:id="@+id/endFridayPauseTextView"
+                android:id="@+id/endFridayBreakTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/fridayPauseSeparatorTextView"
-                app:layout_constraintTop_toTopOf="@+id/fridayPauseRadio" />
-
-            <RadioButton
-                android:id="@+id/fridayNoPauseRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/noBreak"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toStartOf="@+id/fridayNoWorkRadio"
-                app:layout_constraintTop_toBottomOf="@+id/fridayNoWorkRadio" />
+                app:layout_constraintStart_toEndOf="@+id/fridayBreakToTextView"
+                app:layout_constraintTop_toTopOf="@+id/fridayBreakToTextView" />
 
             <!-- Saturday -->
 
@@ -723,129 +664,121 @@
                 android:text="@string/saturday"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fridayPauseRadio" />
+                app:layout_constraintTop_toBottomOf="@+id/fridayBreakSwitch" />
 
-            <RadioButton
-                android:id="@+id/saturdayWorkRadio"
+            <Switch
+                android:id="@+id/saturdayWorkSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_weight="1"
                 android:checked="false"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/workingFrom"
-                android:textColor="@color/colorPrimary"
+                android:onClick="toggleSwitch"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/saturdayLabel" />
+
+            <TextView
+                android:id="@+id/fromSaturdayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/notWorking"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/saturdayWorkSwitch"
+                app:layout_constraintTop_toTopOf="@+id/saturdayWorkSwitch" />
 
             <TextView
                 android:id="@+id/startSaturdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/saturdayWorkRadio"
-                app:layout_constraintTop_toTopOf="@+id/saturdayWorkRadio" />
+                android:textColor="@color/colorPrimary"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/fromSaturdayTextView"
+                app:layout_constraintTop_toTopOf="@+id/fromSaturdayTextView" />
 
             <TextView
                 android:id="@+id/toSaturdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
+                android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/startSaturdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/saturdayWorkRadio" />
+                app:layout_constraintTop_toTopOf="@+id/startSaturdayTextView" />
 
             <TextView
                 android:id="@+id/endSaturdayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorPrimary"
+                android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/toSaturdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/saturdayWorkRadio" />
+                app:layout_constraintTop_toTopOf="@+id/toSaturdayTextView" />
 
-            <RadioButton
-                android:id="@+id/saturdayNoWorkRadio"
+            <Switch
+                android:id="@+id/saturdayBreakSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:checked="true"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/notWorking"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/saturdayLabel" />
-
-            <RadioButton
-                android:id="@+id/saturdayPauseRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
                 android:checked="false"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/breakFrom"
-                android:textColor="@color/colorPrimary"
+                android:onClick="toggleSwitch"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/saturdayWorkRadio" />
+                app:layout_constraintTop_toBottomOf="@+id/saturdayWorkSwitch" />
 
             <TextView
-                android:id="@+id/startSaturdayPauseTextView"
+                android:id="@+id/saturdayBreakFromTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:onClick="pickTime"
-                android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toStartOf="@+id/startSaturdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/saturdayPauseRadio" />
-
-            <TextView
-                android:id="@+id/saturdayPauseSeparatorTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
-                android:text="@string/to"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startSaturdayPauseTextView"
-                app:layout_constraintTop_toTopOf="@+id/saturdayPauseRadio" />
-
-            <TextView
-                android:id="@+id/endSaturdayPauseTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
-                android:onClick="pickTime"
-                android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/saturdayPauseSeparatorTextView"
-                app:layout_constraintTop_toTopOf="@+id/saturdayPauseRadio" />
-
-            <RadioButton
-                android:id="@+id/saturdayNoPauseRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:checked="true"
-                android:onClick="toggleRadioButtons"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/noBreak"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toStartOf="@+id/saturdayNoWorkRadio"
-                app:layout_constraintTop_toBottomOf="@+id/saturdayNoWorkRadio" />
+                app:layout_constraintStart_toEndOf="@+id/saturdayBreakSwitch"
+                app:layout_constraintTop_toTopOf="@+id/saturdayBreakSwitch" />
+
+            <TextView
+                android:id="@+id/startSaturdayBreakTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:onClick="pickTime"
+                android:text="00:00"
+                android:textColor="@color/colorPrimary"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/saturdayBreakFromTextView"
+                app:layout_constraintTop_toTopOf="@+id/saturdayBreakFromTextView" />
+
+            <TextView
+                android:id="@+id/saturdayBreakToTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:text="@string/to"
+                android:textColor="@color/colorPrimary"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/startSaturdayBreakTextView"
+                app:layout_constraintTop_toTopOf="@+id/startSaturdayBreakTextView" />
+
+            <TextView
+                android:id="@+id/endSaturdayBreakTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:onClick="pickTime"
+                android:text="00:00"
+                android:textColor="@color/colorPrimary"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/saturdayBreakToTextView"
+                app:layout_constraintTop_toTopOf="@+id/saturdayBreakToTextView" />
 
             <!-- Sunday -->
 
@@ -858,128 +791,121 @@
                 android:text="@string/sunday"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/saturdayPauseRadio" />
+                app:layout_constraintTop_toBottomOf="@+id/saturdayBreakSwitch" />
 
-            <RadioButton
-                android:id="@+id/sundayWorkRadio"
+            <Switch
+                android:id="@+id/sundayWorkSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_weight="1"
                 android:checked="false"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/workingFrom"
-                android:textColor="@color/colorPrimary"
+                android:onClick="toggleSwitch"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sundayLabel" />
+
+            <TextView
+                android:id="@+id/fromSundayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/notWorking"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/sundayWorkSwitch"
+                app:layout_constraintTop_toTopOf="@+id/sundayWorkSwitch" />
 
             <TextView
                 android:id="@+id/startSundayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/sundayWorkRadio"
-                app:layout_constraintTop_toTopOf="@+id/sundayWorkRadio" />
+                android:textColor="@color/colorPrimary"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/fromSundayTextView"
+                app:layout_constraintTop_toTopOf="@+id/fromSundayTextView" />
 
             <TextView
                 android:id="@+id/toSundayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
+                android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/startSundayTextView"
-                app:layout_constraintTop_toTopOf="@+id/sundayWorkRadio" />
+                app:layout_constraintTop_toTopOf="@+id/startSundayTextView" />
 
             <TextView
                 android:id="@+id/endSundayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorPrimary"
+                android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/toSundayTextView"
-                app:layout_constraintTop_toTopOf="@+id/sundayWorkRadio" />
+                app:layout_constraintTop_toTopOf="@+id/toSundayTextView" />
 
-            <RadioButton
-                android:id="@+id/sundayNoWorkRadio"
+            <Switch
+                android:id="@+id/sundayBreakSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:checked="true"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/notWorking"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sundayLabel" />
-
-            <RadioButton
-                android:id="@+id/sundayPauseRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
                 android:checked="false"
-                android:onClick="toggleRadioButtons"
-                android:text="@string/breakFrom"
-                android:textColor="@color/colorPrimary"
+                android:onClick="toggleSwitch"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sundayWorkRadio" />
+                app:layout_constraintTop_toBottomOf="@+id/sundayWorkSwitch" />
 
             <TextView
-                android:id="@+id/startSundayPauseTextView"
+                android:id="@+id/sundayBreakFromTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:onClick="pickTime"
-                android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toStartOf="@+id/startSundayTextView"
-                app:layout_constraintTop_toTopOf="@+id/sundayPauseRadio" />
-
-            <TextView
-                android:id="@+id/sundayPauseSeparatorTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
-                android:text="@string/to"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startSundayPauseTextView"
-                app:layout_constraintTop_toTopOf="@+id/sundayPauseRadio" />
-
-            <TextView
-                android:id="@+id/endSundayPauseTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="6dp"
-                android:onClick="pickTime"
-                android:text="00:00"
-                android:textColor="@color/colorPrimaryDark"
-                app:layout_constraintStart_toEndOf="@+id/sundayPauseSeparatorTextView"
-                app:layout_constraintTop_toTopOf="@+id/sundayPauseRadio" />
-
-            <RadioButton
-                android:id="@+id/sundayNoPauseRadio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:checked="true"
-                android:onClick="toggleRadioButtons"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
                 android:text="@string/noBreak"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toStartOf="@+id/sundayNoWorkRadio"
-                app:layout_constraintTop_toBottomOf="@+id/sundayNoWorkRadio" />
+                app:layout_constraintStart_toEndOf="@+id/sundayBreakSwitch"
+                app:layout_constraintTop_toTopOf="@+id/sundayBreakSwitch" />
+
+            <TextView
+                android:id="@+id/startSundayBreakTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:onClick="pickTime"
+                android:text="00:00"
+                android:textColor="@color/colorPrimary"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/sundayBreakFromTextView"
+                app:layout_constraintTop_toTopOf="@+id/sundayBreakFromTextView" />
+
+            <TextView
+                android:id="@+id/sundayBreakToTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:text="@string/to"
+                android:textColor="@color/colorPrimary"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/startSundayBreakTextView"
+                app:layout_constraintTop_toTopOf="@+id/startSundayBreakTextView" />
+
+            <TextView
+                android:id="@+id/endSundayBreakTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:onClick="pickTime"
+                android:text="00:00"
+                android:textColor="@color/colorPrimary"
+                android:visibility="invisible"
+                app:layout_constraintStart_toEndOf="@+id/sundayBreakToTextView"
+                app:layout_constraintTop_toTopOf="@+id/sundayBreakToTextView" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
@@ -996,7 +922,7 @@
         android:backgroundTint="@color/colorAccent"
         android:onClick="proceed"
         android:text="@string/done"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -109,12 +109,12 @@ public class SchedulerJobService extends JobService {
                     return workStartMillis - nowMillis;
                 } else {
                     // The working day has already begun: let's verify whether the pause has begun.
-                    if (todayPreferences.pauseStartTime != null) {
+                    if (todayPreferences.breakStartTime != null) {
                         // The user has a pause today.
-                        Calendar pauseStart = getCalendarFromToday(todayPreferences.pauseStartTime);
+                        Calendar pauseStart = getCalendarFromToday(todayPreferences.breakStartTime);
                         if (now.after(pauseStart)) {
                             // The pause has already begun, let's verify whether it has also ended.
-                            Calendar pauseEnd = getCalendarFromToday(todayPreferences.pauseEndTime);
+                            Calendar pauseEnd = getCalendarFromToday(todayPreferences.breakEndTime);
                             if (now.after(pauseEnd)) {
                                 // The pause has ended, let's verify whether the working day has ended as well.
                                 Calendar workEnd = getCalendarFromToday(todayPreferences.workEndTime);
@@ -246,12 +246,12 @@ public class SchedulerJobService extends JobService {
                 Calendar workStart = getCalendarFromToday(todayPreferences.workStartTime);
                 if (now.after(workStart)) {
                     // The working day has already begun: let's verify whether the pause has begun.
-                    if (todayPreferences.pauseStartTime != null) {
+                    if (todayPreferences.breakStartTime != null) {
                         // The user has a pause today.
-                        Calendar pauseStart = getCalendarFromToday(todayPreferences.pauseStartTime);
+                        Calendar pauseStart = getCalendarFromToday(todayPreferences.breakStartTime);
                         if (now.after(pauseStart)) {
                             // The pause has already begun, let's verify whether it has also ended.
-                            Calendar pauseEnd = getCalendarFromToday(todayPreferences.pauseEndTime);
+                            Calendar pauseEnd = getCalendarFromToday(todayPreferences.breakEndTime);
                             if (now.after(pauseEnd)) {
                                 // The pause has ended, let's verify whether the working day has ended as well.
                                 Calendar workEnd = getCalendarFromToday(todayPreferences.workEndTime);

@@ -4,15 +4,15 @@ public class DailySchedulePreferences {
 
     public TimeSpan workStartTime = null;
     public TimeSpan workEndTime = null;
-    public TimeSpan pauseStartTime = null;
-    public TimeSpan pauseEndTime = null;
+    public TimeSpan breakStartTime = null;
+    public TimeSpan breakEndTime = null;
 
     public  DailySchedulePreferences() {}
 
-    public DailySchedulePreferences(TimeSpan workStartTime, TimeSpan workEndTime, TimeSpan pauseStartTime, TimeSpan pauseEndTime){
+    public DailySchedulePreferences(TimeSpan workStartTime, TimeSpan workEndTime, TimeSpan breakStartTime, TimeSpan breakEndTime){
         this.workStartTime = workStartTime;
         this.workEndTime = workEndTime;
-        this.pauseStartTime = pauseStartTime;
-        this.pauseEndTime = pauseEndTime;
+        this.breakStartTime = breakStartTime;
+        this.breakEndTime = breakEndTime;
     }
 }

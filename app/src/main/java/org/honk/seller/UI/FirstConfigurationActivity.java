@@ -136,9 +136,9 @@ public class FirstConfigurationActivity extends AppCompatActivity implements Dia
         }
     }
 
-    public void openSetScheduleActivity(View view) {
-        Intent openScheduleIntent = new Intent(this, SetScheduleActivity.class);
-        this.startActivity(openScheduleIntent);
+    public void openCompanyDetailsActivity(View view) {
+        Intent openCompanyDetailsIntent = new Intent(this, CompanyDetailsActivity.class);
+        this.startActivity(openCompanyDetailsIntent);
     }
 
     public void close(View view) {

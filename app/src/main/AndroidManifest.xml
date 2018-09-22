@@ -32,6 +32,8 @@
 
         <activity android:name=".UI.MainActivity"/>
 
+        <activity android:name=".UI.CompanyDetailsActivity"/>
+
         <activity android:name=".UI.SetScheduleActivity"/>
 
         <activity android:name=".UI.StopServiceActivity"/>

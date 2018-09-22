@@ -31,7 +31,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:backgroundTint="@color/colorAccent"
-        android:onClick="openSetScheduleActivity"
+        android:onClick="openCompanyDetailsActivity"
         android:text="@string/iAgree"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
