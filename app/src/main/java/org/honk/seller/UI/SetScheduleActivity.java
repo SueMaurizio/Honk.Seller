@@ -32,6 +32,15 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
 
     public static final String PREFERENCE_SCHEDULE = "PREFERENCE_SCHEDULE";
 
+    private static final int DEFAULT_WORK_START_HOUR = 8;
+    private static final int DEFAULT_WORK_START_MINUTE = 0;
+    private static final int DEFAULT_WORK_END_HOUR = 18;
+    private static final int DEFAULT_WORK_END_MINUTE = 0;
+    private static final int DEFAULT_BREAK_START_HOUR = 13;
+    private static final int DEFAULT_BREAK_START_MINUTE = 0;
+    private static final int DEFAULT_BREAK_END_HOUR = 14;
+    private static final int DEFAULT_BREAK_END_MINUTE = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,16 +55,16 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
             scheduleSettings = new Gson().fromJson(settingsString, TypeToken.getParameterized(Hashtable.class, Integer.class, DailySchedulePreferences.class).getType());
         } else {
             // Set default values.
-            TimeSpan workStartTime = new TimeSpan(8, 0);
-            TimeSpan workEndTime = new TimeSpan(18, 0);
-            TimeSpan pauseStartTime = new TimeSpan(13, 0);
-            TimeSpan pauseEndTime = new TimeSpan(14, 0);
+            TimeSpan workStartTime = new TimeSpan(DEFAULT_WORK_START_HOUR, DEFAULT_WORK_START_MINUTE);
+            TimeSpan workEndTime = new TimeSpan(DEFAULT_WORK_END_HOUR, DEFAULT_WORK_END_MINUTE);
+            TimeSpan breakStartTime = new TimeSpan(DEFAULT_BREAK_START_HOUR, DEFAULT_BREAK_START_MINUTE);
+            TimeSpan breakEndTime = new TimeSpan(DEFAULT_BREAK_END_HOUR, DEFAULT_BREAK_END_MINUTE);
             scheduleSettings = new Hashtable<Integer, DailySchedulePreferences>();
-            scheduleSettings.put(Calendar.MONDAY, new DailySchedulePreferences(workStartTime, workEndTime, pauseStartTime, pauseEndTime));
-            scheduleSettings.put(Calendar.TUESDAY, new DailySchedulePreferences(workStartTime, workEndTime, pauseStartTime, pauseEndTime));
-            scheduleSettings.put(Calendar.WEDNESDAY, new DailySchedulePreferences(workStartTime, workEndTime, pauseStartTime, pauseEndTime));
-            scheduleSettings.put(Calendar.THURSDAY, new DailySchedulePreferences(workStartTime, workEndTime, pauseStartTime, pauseEndTime));
-            scheduleSettings.put(Calendar.FRIDAY, new DailySchedulePreferences(workStartTime, workEndTime, pauseStartTime, pauseEndTime));
+            scheduleSettings.put(Calendar.MONDAY, new DailySchedulePreferences(workStartTime, workEndTime, breakStartTime, breakEndTime));
+            scheduleSettings.put(Calendar.TUESDAY, new DailySchedulePreferences(workStartTime, workEndTime, breakStartTime, breakEndTime));
+            scheduleSettings.put(Calendar.WEDNESDAY, new DailySchedulePreferences(workStartTime, workEndTime, breakStartTime, breakEndTime));
+            scheduleSettings.put(Calendar.THURSDAY, new DailySchedulePreferences(workStartTime, workEndTime, breakStartTime, breakEndTime));
+            scheduleSettings.put(Calendar.FRIDAY, new DailySchedulePreferences(workStartTime, workEndTime, breakStartTime, breakEndTime));
             scheduleSettings.put(Calendar.SATURDAY, new DailySchedulePreferences());
             scheduleSettings.put(Calendar.SUNDAY, new DailySchedulePreferences());
         }
@@ -64,44 +73,57 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
                 scheduleSettings,
                 Calendar.MONDAY,
                 R.id.mondayWorkSwitch, R.id.mondayBreakSwitch,
-                R.id.startMondayTextView, R.id.endMondayTextView,
-                R.id.startMondayBreakTextView, R.id.endMondayBreakTextView);
+                R.id.mondayWorkStartTextView, R.id.mondayWorkEndTextView,
+                R.id.mondayBreakStartTextView, R.id.mondayBreakEndTextView);
         displayScheduleForDay(
                 scheduleSettings,
                 Calendar.TUESDAY,
                 R.id.tuesdayWorkSwitch, R.id.tuesdayBreakSwitch,
-                R.id.startTuesdayTextView, R.id.endTuesdayTextView,
-                R.id.startTuesdayBreakTextView, R.id.endTuesdayBreakTextView);
+                R.id.tuesdayWorkStartTextView, R.id.tuesdayWorkEndTextView,
+                R.id.tuesdayBreakStartTextView, R.id.tuesdayBreakEndTextView);
         displayScheduleForDay(
                 scheduleSettings,
                 Calendar.WEDNESDAY,
                 R.id.wednesdayWorkSwitch, R.id.wednesdayBreakSwitch,
-                R.id.startWednesdayTextView, R.id.endWednesdayTextView,
-                R.id.startWednesdayBreakTextView, R.id.endWednesdayBreakTextView);
+                R.id.wednesdayWorkStartTextView, R.id.wednesdayWorkEndTextView,
+                R.id.wednesdayBreakStartTextView, R.id.wednesdayBreakEndTextView);
         displayScheduleForDay(
                 scheduleSettings,
                 Calendar.THURSDAY,
                 R.id.thursdayWorkSwitch, R.id.thursdayBreakSwitch,
-                R.id.startThursdayTextView, R.id.endThursdayTextView,
-                R.id.startThursdayBreakTextView, R.id.endThursdayBreakTextView);
+                R.id.thursdayWorkStartTextView, R.id.thursdayWorkEndTextView,
+                R.id.thursdayBreakStartTextView, R.id.thursdayBreakEndTextView);
         displayScheduleForDay(
                 scheduleSettings,
                 Calendar.FRIDAY,
                 R.id.fridayWorkSwitch, R.id.fridayBreakSwitch,
-                R.id.startFridayTextView, R.id.endFridayTextView,
-                R.id.startFridayBreakTextView, R.id.endFridayBreakTextView);
+                R.id.fridayWorkStartTextView, R.id.fridayWorkEndTextView,
+                R.id.fridayBreakStartTextView, R.id.fridayBreakEndTextView);
         displayScheduleForDay(
                 scheduleSettings,
                 Calendar.SATURDAY,
                 R.id.saturdayWorkSwitch, R.id.saturdayBreakSwitch,
-                R.id.startSaturdayTextView, R.id.endSaturdayTextView,
-                R.id.startSaturdayBreakTextView, R.id.endSaturdayBreakTextView);
+                R.id.saturdayWorkStartTextView, R.id.saturdayWorkEndTextView,
+                R.id.saturdayBreakStartTextView, R.id.saturdayBreakEndTextView);
         displayScheduleForDay(
                 scheduleSettings,
                 Calendar.SUNDAY,
                 R.id.sundayWorkSwitch, R.id.sundayBreakSwitch,
-                R.id.startSundayTextView, R.id.endSundayTextView,
-                R.id.startSundayBreakTextView, R.id.endSundayBreakTextView);
+                R.id.sundayWorkStartTextView, R.id.sundayWorkEndTextView,
+                R.id.sundayBreakStartTextView, R.id.sundayBreakEndTextView);
+
+        /* Just for saturday and sunday, I need to set a default time for work and break. Otherwise, if the user
+         * enables work for these days, the default value 00:00 will appear for all text views. */
+
+        setTextViewTextAsTime(this.findViewById(R.id.saturdayWorkStartTextView), DEFAULT_WORK_START_HOUR, DEFAULT_WORK_START_MINUTE);
+        setTextViewTextAsTime(this.findViewById(R.id.saturdayWorkEndTextView), DEFAULT_WORK_END_HOUR, DEFAULT_WORK_END_MINUTE);
+        setTextViewTextAsTime(this.findViewById(R.id.saturdayBreakStartTextView), DEFAULT_BREAK_START_HOUR, DEFAULT_BREAK_START_MINUTE);
+        setTextViewTextAsTime(this.findViewById(R.id.saturdayBreakEndTextView), DEFAULT_BREAK_END_HOUR, DEFAULT_BREAK_END_MINUTE);
+
+        setTextViewTextAsTime(this.findViewById(R.id.sundayWorkStartTextView), DEFAULT_WORK_START_HOUR, DEFAULT_WORK_START_MINUTE);
+        setTextViewTextAsTime(this.findViewById(R.id.sundayWorkEndTextView), DEFAULT_WORK_END_HOUR, DEFAULT_WORK_END_MINUTE);
+        setTextViewTextAsTime(this.findViewById(R.id.sundayBreakStartTextView), DEFAULT_BREAK_START_HOUR, DEFAULT_BREAK_START_MINUTE);
+        setTextViewTextAsTime(this.findViewById(R.id.sundayBreakEndTextView), DEFAULT_BREAK_END_HOUR, DEFAULT_BREAK_END_MINUTE);
     }
 
     private void displayScheduleForDay(
@@ -117,15 +139,15 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
         if (dayPreferences.workStartTime != null) {
             workSwitch.setChecked(true);
             TextView startWorkTextView = this.findViewById(startWorkTextViewId);
-            this.displayTime(startWorkTextView, dayPreferences.workStartTime.hours, dayPreferences.workStartTime.minutes);
+            this.setTextViewTextAsTime(startWorkTextView, dayPreferences.workStartTime.hours, dayPreferences.workStartTime.minutes);
             TextView endWorkTextView = this.findViewById(endWorkTextViewId);
-            this.displayTime(endWorkTextView, dayPreferences.workEndTime.hours, dayPreferences.workEndTime.minutes);
+            this.setTextViewTextAsTime(endWorkTextView, dayPreferences.workEndTime.hours, dayPreferences.workEndTime.minutes);
             if (dayPreferences.breakStartTime != null) {
                 breakSwitch.setChecked(true);
                 TextView startBreakTextView = this.findViewById(startBreakTextViewId);
-                this.displayTime(startBreakTextView, dayPreferences.breakStartTime.hours, dayPreferences.breakStartTime.minutes);
+                this.setTextViewTextAsTime(startBreakTextView, dayPreferences.breakStartTime.hours, dayPreferences.breakStartTime.minutes);
                 TextView endPauseTextView = this.findViewById(endBreakTextViewId);
-                this.displayTime(endPauseTextView, dayPreferences.breakEndTime.hours, dayPreferences.breakEndTime.minutes);
+                this.setTextViewTextAsTime(endPauseTextView, dayPreferences.breakEndTime.hours, dayPreferences.breakEndTime.minutes);
             } else {
                 breakSwitch.setChecked(false);
             }
@@ -137,106 +159,121 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
 
     public void toggleSwitch(View view) {
         Switch selectedSwitch = (Switch)view;
-        String workText, breakText;
-        if (selectedSwitch.isChecked()) {
-            workText = this.getString(R.string.workingFrom);
-            breakText = this.getString(R.string.breakFrom);
+        if (view.getId() == R.id.mondayWorkSwitch) {
+            toggleWorkSwitch(
+                    selectedSwitch.isChecked(), R.id.mondayWorkStartTextView, R.id.mondayWorkFromTextView, R.id.mondayWorkToTextView, R.id.mondayWorkEndTextView,
+                    R.id.mondayBreakSwitch, R.id.mondayBreakStartTextView, R.id.mondayBreakFromTextView, R.id.mondayBreakToTextView, R.id.mondayBreakEndTextView);
+        } else if (view.getId() == R.id.mondayBreakSwitch) {
+            toggleBreakSwitch(selectedSwitch.isChecked(), R.id.mondayBreakStartTextView, R.id.mondayBreakFromTextView, R.id.mondayBreakToTextView, R.id.mondayBreakEndTextView);
+        } else if (view.getId() == R.id.tuesdayWorkSwitch) {
+            toggleWorkSwitch(
+                    selectedSwitch.isChecked(), R.id.tuesdayWorkStartTextView, R.id.tuesdayWorkFromTextView, R.id.tuesdayWorkToTextView, R.id.tuesdayWorkEndTextView,
+                    R.id.tuesdayBreakSwitch, R.id.tuesdayBreakStartTextView, R.id.tuesdayBreakFromTextView, R.id.tuesdayBreakToTextView, R.id.tuesdayBreakEndTextView);
+        } else if (view.getId() == R.id.tuesdayBreakSwitch) {
+            toggleBreakSwitch(selectedSwitch.isChecked(), R.id.tuesdayBreakStartTextView, R.id.tuesdayBreakFromTextView, R.id.tuesdayBreakToTextView, R.id.tuesdayBreakEndTextView);
+        } else if (view.getId() == R.id.wednesdayWorkSwitch) {
+            toggleWorkSwitch(
+                    selectedSwitch.isChecked(), R.id.wednesdayWorkStartTextView, R.id.wednesdayWorkFromTextView, R.id.wednesdayWorkToTextView, R.id.wednesdayWorkEndTextView,
+                    R.id.wednesdayBreakSwitch, R.id.wednesdayBreakStartTextView, R.id.wednesdayBreakFromTextView, R.id.wednesdayBreakToTextView, R.id.wednesdayBreakEndTextView);
+        } else if (view.getId() == R.id.wednesdayBreakSwitch) {
+            toggleBreakSwitch(selectedSwitch.isChecked(), R.id.wednesdayBreakStartTextView, R.id.wednesdayBreakFromTextView, R.id.wednesdayBreakToTextView, R.id.wednesdayBreakEndTextView);
+        } else if (view.getId() == R.id.thursdayWorkSwitch) {
+            toggleWorkSwitch(
+                    selectedSwitch.isChecked(), R.id.thursdayWorkStartTextView, R.id.thursdayWorkFromTextView, R.id.thursdayWorkToTextView, R.id.thursdayWorkEndTextView,
+                    R.id.thursdayBreakSwitch, R.id.thursdayBreakStartTextView, R.id.thursdayBreakFromTextView, R.id.thursdayBreakToTextView, R.id.thursdayBreakEndTextView);
+        } else if (view.getId() == R.id.thursdayBreakSwitch) {
+            toggleBreakSwitch(selectedSwitch.isChecked(), R.id.thursdayBreakStartTextView, R.id.thursdayBreakFromTextView, R.id.thursdayBreakToTextView, R.id.thursdayBreakEndTextView);
+        } else if (view.getId() == R.id.fridayWorkSwitch) {
+            toggleWorkSwitch(
+                    selectedSwitch.isChecked(), R.id.fridayWorkStartTextView, R.id.fridayWorkFromTextView, R.id.fridayWorkToTextView, R.id.fridayWorkEndTextView,
+                    R.id.fridayBreakSwitch, R.id.fridayBreakStartTextView, R.id.fridayBreakFromTextView, R.id.fridayBreakToTextView, R.id.fridayBreakEndTextView);
+        } else if (view.getId() == R.id.fridayBreakSwitch) {
+            toggleBreakSwitch(selectedSwitch.isChecked(), R.id.fridayBreakStartTextView, R.id.fridayBreakFromTextView, R.id.fridayBreakToTextView, R.id.fridayBreakEndTextView);
+        } else if (view.getId() == R.id.saturdayWorkSwitch) {
+            toggleWorkSwitch(
+                    selectedSwitch.isChecked(), R.id.saturdayWorkStartTextView, R.id.saturdayWorkFromTextView, R.id.saturdayWorkToTextView, R.id.saturdayWorkEndTextView,
+                    R.id.saturdayBreakSwitch, R.id.saturdayBreakStartTextView, R.id.saturdayBreakFromTextView, R.id.saturdayBreakToTextView, R.id.saturdayBreakEndTextView);
+        } else if (view.getId() == R.id.saturdayBreakSwitch) {
+            toggleBreakSwitch(selectedSwitch.isChecked(), R.id.saturdayBreakStartTextView, R.id.saturdayBreakFromTextView, R.id.saturdayBreakToTextView, R.id.saturdayBreakEndTextView);
+        } else if (view.getId() == R.id.sundayWorkSwitch) {
+            toggleWorkSwitch(
+                    selectedSwitch.isChecked(), R.id.sundayWorkStartTextView, R.id.sundayWorkFromTextView, R.id.sundayWorkToTextView, R.id.sundayWorkEndTextView,
+                    R.id.sundayBreakSwitch, R.id.sundayBreakStartTextView, R.id.sundayBreakFromTextView, R.id.sundayBreakToTextView, R.id.sundayBreakEndTextView);
+        } else if (view.getId() == R.id.sundayBreakSwitch) {
+            toggleBreakSwitch(selectedSwitch.isChecked(), R.id.sundayBreakStartTextView, R.id.sundayBreakFromTextView, R.id.sundayBreakToTextView, R.id.sundayBreakEndTextView);
+        }
+    }
+
+    private void toggleWorkSwitch(
+            Boolean selectedSwitchIsChecked, int workStartTextViewId, int workFromTextViewId, int workToTextViewId, int workEndTextViewId,
+            int breakSwitchId, int breakStartTextViewId, int breakFromTextViewId, int breakToTextViewId, int breakEndTextViewId) {
+        int workVisibility;
+        if (selectedSwitchIsChecked) {
+            ((TextView)this.findViewById(workFromTextViewId)).setText(this.getString(R.string.workingFrom));
+            workVisibility = View.VISIBLE;
+            this.findViewById(breakSwitchId).setEnabled(true);
         } else {
-            workText = this.getString(R.string.notWorking);
-            breakText = this.getString(R.string.noBreak);
+            ((TextView)this.findViewById(workFromTextViewId)).setText(R.string.notWorking);
+            workVisibility = View.INVISIBLE;
+            Switch mondayBreakSwitch = this.findViewById(breakSwitchId);
+            mondayBreakSwitch.setChecked(false);
+            mondayBreakSwitch.setEnabled(false);
+            ((TextView)this.findViewById(breakFromTextViewId)).setText(this.getString(R.string.noBreak));
+            this.findViewById(breakStartTextViewId).setVisibility(View.INVISIBLE);
+            this.findViewById(breakToTextViewId).setVisibility(View.INVISIBLE);
+            this.findViewById(breakEndTextViewId).setVisibility(View.INVISIBLE);
         }
 
-        if (view.getId() == R.id.mondayWorkSwitch) {
-            if (selectedSwitch.isChecked()) {
-                ((TextView)this.findViewById(R.id.fromMondayTextView)).setText(this.getString(R.string.workingFrom));
-                this.findViewById(R.id.startMondayTextView).setVisibility(View.VISIBLE);
-                this.findViewById(R.id.toMondayTextView).setVisibility(View.VISIBLE);
-                this.findViewById(R.id.endMondayTextView).setVisibility(View.VISIBLE);
-                ((Switch)this.findViewById(R.id.mondayBreakSwitch)).setEnabled(true);
-            } else {
-                ((TextView)this.findViewById(R.id.fromMondayTextView)).setText(R.string.notWorking);
-                this.findViewById(R.id.startMondayTextView).setVisibility(View.INVISIBLE);
-                this.findViewById(R.id.toMondayTextView).setVisibility(View.INVISIBLE);
-                this.findViewById(R.id.endMondayTextView).setVisibility(View.INVISIBLE);
-                ((Switch)this.findViewById(R.id.mondayBreakSwitch)).setChecked(false);
-                ((Switch)this.findViewById(R.id.mondayBreakSwitch)).setEnabled(false);
-                ((TextView)this.findViewById(R.id.mondayBreakFromTextView)).setText(this.getString(R.string.noBreak));
-                this.findViewById(R.id.startMondayBreakTextView).setVisibility(View.INVISIBLE);
-                this.findViewById(R.id.mondayBreakToTextView).setVisibility(View.INVISIBLE);
-                this.findViewById(R.id.endMondayBreakTextView).setVisibility(View.INVISIBLE);
-            }
-        } else if (view.getId() == R.id.mondayBreakSwitch) {
-            TextView textView = this.findViewById(R.id.mondayBreakToTextView);
-            textView.setText(breakText);
-        } else if (view.getId() == R.id.tuesdayWorkSwitch) {
-            TextView textView = this.findViewById(R.id.fromTuesdayTextView);
-            textView.setText(workText);
-        } else if (view.getId() == R.id.tuesdayBreakSwitch) {
-            TextView textView = this.findViewById(R.id.tuesdayBreakToTextView);
-            textView.setText(breakText);
-        } else if (view.getId() == R.id.wednesdayWorkSwitch) {
-            TextView textView = this.findViewById(R.id.fromWednesdayTextView);
-            textView.setText(workText);
-        } else if (view.getId() == R.id.wednesdayBreakSwitch) {
-            TextView textView = this.findViewById(R.id.wednesdayBreakToTextView);
-            textView.setText(breakText);
-        } else if (view.getId() == R.id.thursdayWorkSwitch) {
-            TextView textView = this.findViewById(R.id.fromThursdayTextView);
-            textView.setText(workText);
-        } else if (view.getId() == R.id.thursdayBreakSwitch) {
-            TextView textView = this.findViewById(R.id.thursdayBreakToTextView);
-            textView.setText(breakText);
-        } else if (view.getId() == R.id.fridayWorkSwitch) {
-            TextView textView = this.findViewById(R.id.fromFridayTextView);
-            textView.setText(workText);
-        } else if (view.getId() == R.id.fridayBreakSwitch) {
-            TextView textView = this.findViewById(R.id.fridayBreakToTextView);
-            textView.setText(breakText);
-        } else if (view.getId() == R.id.saturdayWorkSwitch) {
-            TextView textView = this.findViewById(R.id.fromSaturdayTextView);
-            textView.setText(workText);
-        } else if (view.getId() == R.id.saturdayBreakSwitch) {
-            TextView textView = this.findViewById(R.id.saturdayBreakToTextView);
-            textView.setText(breakText);
-        } else if (view.getId() == R.id.sundayWorkSwitch) {
-            TextView textView = this.findViewById(R.id.fromSundayTextView);
-            textView.setText(workText);
-        } else if (view.getId() == R.id.sundayBreakSwitch) {
-            TextView textView = this.findViewById(R.id.sundayBreakToTextView);
-            textView.setText(breakText);
+        this.findViewById(workStartTextViewId).setVisibility(workVisibility);
+        this.findViewById(workToTextViewId).setVisibility(workVisibility);
+        this.findViewById(workEndTextViewId).setVisibility(workVisibility);
+    }
+
+    private void toggleBreakSwitch(Boolean selectedSwitchIsChecked, int breakStartTextViewId, int breakFromTextViewId, int breakToTextViewId, int breakEndTextViewId) {
+        int visibility;
+        if (selectedSwitchIsChecked) {
+            ((TextView)this.findViewById(breakFromTextViewId)).setText(this.getString(R.string.breakFrom));
+            visibility = View.VISIBLE;
+        } else {
+            ((TextView)this.findViewById(breakFromTextViewId)).setText(R.string.noBreak);
+            visibility = View.INVISIBLE;
         }
+
+        this.findViewById(breakStartTextViewId).setVisibility(visibility);
+        this.findViewById(breakToTextViewId).setVisibility(visibility);
+        this.findViewById(breakEndTextViewId).setVisibility(visibility);
     }
 
     private TextView resolveStartTimeTextView(int textViewId) {
         Integer linkedTextViewId = null;
-        if (textViewId == R.id.endMondayTextView) {
-            linkedTextViewId = R.id.startMondayTextView;
-        } else if (textViewId == R.id.endMondayBreakTextView) {
-            linkedTextViewId = R.id.startMondayBreakTextView;
-        } else if (textViewId == R.id.endTuesdayTextView) {
-            linkedTextViewId = R.id.startTuesdayTextView;
-        } else if (textViewId == R.id.endTuesdayBreakTextView) {
-            linkedTextViewId = R.id.startTuesdayBreakTextView;
-        } else if (textViewId == R.id.endWednesdayTextView) {
-            linkedTextViewId = R.id.startWednesdayTextView;
-        } else if (textViewId == R.id.endWednesdayBreakTextView) {
-            linkedTextViewId = R.id.startWednesdayBreakTextView;
-        } else if (textViewId == R.id.endThursdayTextView) {
-            linkedTextViewId = R.id.startThursdayTextView;
-        } else if (textViewId == R.id.endThursdayBreakTextView) {
-            linkedTextViewId = R.id.startThursdayBreakTextView;
-        } else if (textViewId == R.id.endFridayTextView) {
-            linkedTextViewId = R.id.startFridayTextView;
-        } else if (textViewId == R.id.endFridayBreakTextView) {
-            linkedTextViewId = R.id.startFridayBreakTextView;
-        } else if (textViewId == R.id.endSaturdayTextView) {
-            linkedTextViewId = R.id.startSaturdayTextView;
-        } else if (textViewId == R.id.endSaturdayBreakTextView) {
-            linkedTextViewId = R.id.startSaturdayBreakTextView;
-        } else if (textViewId == R.id.endSundayTextView) {
-            linkedTextViewId = R.id.startSundayTextView;
-        } else if (textViewId == R.id.endSundayBreakTextView) {
-            linkedTextViewId = R.id.startSundayBreakTextView;
+        if (textViewId == R.id.mondayWorkEndTextView) {
+            linkedTextViewId = R.id.mondayWorkStartTextView;
+        } else if (textViewId == R.id.mondayBreakEndTextView) {
+            linkedTextViewId = R.id.mondayBreakStartTextView;
+        } else if (textViewId == R.id.tuesdayWorkEndTextView) {
+            linkedTextViewId = R.id.tuesdayWorkStartTextView;
+        } else if (textViewId == R.id.tuesdayBreakEndTextView) {
+            linkedTextViewId = R.id.tuesdayBreakStartTextView;
+        } else if (textViewId == R.id.wednesdayWorkEndTextView) {
+            linkedTextViewId = R.id.wednesdayWorkStartTextView;
+        } else if (textViewId == R.id.wednesdayBreakEndTextView) {
+            linkedTextViewId = R.id.wednesdayBreakStartTextView;
+        } else if (textViewId == R.id.thursdayWorkEndTextView) {
+            linkedTextViewId = R.id.thursdayWorkStartTextView;
+        } else if (textViewId == R.id.thursdayBreakEndTextView) {
+            linkedTextViewId = R.id.thursdayBreakStartTextView;
+        } else if (textViewId == R.id.fridayWorkEndTextView) {
+            linkedTextViewId = R.id.fridayWorkStartTextView;
+        } else if (textViewId == R.id.fridayBreakEndTextView) {
+            linkedTextViewId = R.id.fridayBreakStartTextView;
+        } else if (textViewId == R.id.saturdayWorkEndTextView) {
+            linkedTextViewId = R.id.saturdayWorkStartTextView;
+        } else if (textViewId == R.id.saturdayBreakEndTextView) {
+            linkedTextViewId = R.id.saturdayBreakStartTextView;
+        } else if (textViewId == R.id.sundayWorkEndTextView) {
+            linkedTextViewId = R.id.sundayWorkStartTextView;
+        } else if (textViewId == R.id.sundayBreakEndTextView) {
+            linkedTextViewId = R.id.sundayBreakStartTextView;
         }
 
         if (linkedTextViewId != null) {
@@ -248,34 +285,34 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
 
     private TextView resolveEndTimeTextView(int textViewId) {
         Integer linkedTextViewId = null;
-        if (textViewId == R.id.startMondayTextView) {
-            linkedTextViewId = R.id.endMondayTextView;
-        } else if (textViewId == R.id.startMondayBreakTextView) {
-            linkedTextViewId = R.id.endMondayBreakTextView;
-        } else if (textViewId == R.id.startTuesdayTextView) {
-            linkedTextViewId = R.id.endTuesdayTextView;
-        } else if (textViewId == R.id.startTuesdayBreakTextView) {
-            linkedTextViewId = R.id.endTuesdayBreakTextView;
-        } else if (textViewId == R.id.startWednesdayTextView) {
-            linkedTextViewId = R.id.endWednesdayTextView;
-        } else if (textViewId == R.id.startWednesdayBreakTextView) {
-            linkedTextViewId = R.id.endWednesdayBreakTextView;
-        } else if (textViewId == R.id.startThursdayTextView) {
-            linkedTextViewId = R.id.endThursdayTextView;
-        } else if (textViewId == R.id.startThursdayBreakTextView) {
-            linkedTextViewId = R.id.endThursdayBreakTextView;
-        } else if (textViewId == R.id.startFridayTextView) {
-            linkedTextViewId = R.id.endFridayTextView;
-        } else if (textViewId == R.id.startFridayBreakTextView) {
-            linkedTextViewId = R.id.endFridayBreakTextView;
-        } else if (textViewId == R.id.startSaturdayTextView) {
-            linkedTextViewId = R.id.endSaturdayTextView;
-        } else if (textViewId == R.id.startSaturdayBreakTextView) {
-            linkedTextViewId = R.id.endSaturdayBreakTextView;
-        } else if (textViewId == R.id.startSundayTextView) {
-            linkedTextViewId = R.id.endSundayTextView;
-        } else if (textViewId == R.id.startSundayBreakTextView) {
-            linkedTextViewId = R.id.endSundayBreakTextView;
+        if (textViewId == R.id.mondayWorkStartTextView) {
+            linkedTextViewId = R.id.mondayWorkEndTextView;
+        } else if (textViewId == R.id.mondayBreakStartTextView) {
+            linkedTextViewId = R.id.mondayBreakEndTextView;
+        } else if (textViewId == R.id.tuesdayWorkStartTextView) {
+            linkedTextViewId = R.id.tuesdayWorkEndTextView;
+        } else if (textViewId == R.id.tuesdayBreakStartTextView) {
+            linkedTextViewId = R.id.tuesdayBreakEndTextView;
+        } else if (textViewId == R.id.wednesdayWorkStartTextView) {
+            linkedTextViewId = R.id.wednesdayWorkEndTextView;
+        } else if (textViewId == R.id.wednesdayBreakStartTextView) {
+            linkedTextViewId = R.id.wednesdayBreakEndTextView;
+        } else if (textViewId == R.id.thursdayWorkStartTextView) {
+            linkedTextViewId = R.id.thursdayWorkEndTextView;
+        } else if (textViewId == R.id.thursdayBreakStartTextView) {
+            linkedTextViewId = R.id.thursdayBreakEndTextView;
+        } else if (textViewId == R.id.fridayWorkStartTextView) {
+            linkedTextViewId = R.id.fridayWorkEndTextView;
+        } else if (textViewId == R.id.fridayBreakStartTextView) {
+            linkedTextViewId = R.id.fridayBreakEndTextView;
+        } else if (textViewId == R.id.saturdayWorkStartTextView) {
+            linkedTextViewId = R.id.saturdayWorkEndTextView;
+        } else if (textViewId == R.id.saturdayBreakStartTextView) {
+            linkedTextViewId = R.id.saturdayBreakEndTextView;
+        } else if (textViewId == R.id.sundayWorkStartTextView) {
+            linkedTextViewId = R.id.sundayWorkEndTextView;
+        } else if (textViewId == R.id.sundayBreakStartTextView) {
+            linkedTextViewId = R.id.sundayBreakEndTextView;
         }
 
         if (linkedTextViewId != null) {
@@ -307,7 +344,6 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
             }
         }
 
-        // TODO Picking dates for saturday and sunday fails.
         showTimePicker(textView, timeSpan, startingTimeSpan, endTimeSpan, this);
     }
 
@@ -319,7 +355,7 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
                     // This is a "start time".
                     if (selectedHour < endTimeSpan.hours) {
                         // The user selected a valid time: write it to the schedule summary.
-                        displayTime(textView, selectedHour, selectedMinute);
+                        setTextViewTextAsTime(textView, selectedHour, selectedMinute);
                     } else {
                         // The time selected is not valid: show a message and reset the time picker.
                         Toast.makeText(context, String.format(context.getString(R.string.setTimeBefore), getFormattedTime(endTimeSpan.hours, endTimeSpan.minutes)), Toast.LENGTH_SHORT).show();
@@ -329,7 +365,7 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
                     // This is an "end time".
                     if (selectedHour > startingTimeSpan.hours || (selectedHour == startingTimeSpan.hours && selectedMinute > startingTimeSpan.minutes)) {
                         // The user selected a valid time: write it to the schedule summary.
-                        displayTime(textView, selectedHour, selectedMinute);
+                        setTextViewTextAsTime(textView, selectedHour, selectedMinute);
                     } else {
                         // The time selected is not valid: show a message and reset the time picker.
                         Toast.makeText(context, String.format(context.getString(R.string.setTimeAfter), getFormattedTime(startingTimeSpan.hours, startingTimeSpan.minutes)), Toast.LENGTH_SHORT).show();
@@ -342,7 +378,7 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
         timePickerDialog.show();
     }
 
-    private void displayTime(TextView textView, int hour, int minute) {
+    private void setTextViewTextAsTime(TextView textView, int hour, int minute) {
         textView.setText(getFormattedTime(hour, minute));
     }
 
@@ -364,19 +400,19 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
 
         // Get all the user preferences
         allPreferences.put(Calendar.MONDAY, this.getPreferences(
-                R.id.mondayWorkSwitch, R.id.startMondayTextView, R.id.endMondayTextView, R.id.mondayBreakSwitch, R.id.startMondayBreakTextView, R.id.endMondayBreakTextView));
+                R.id.mondayWorkSwitch, R.id.mondayWorkStartTextView, R.id.mondayWorkEndTextView, R.id.mondayBreakSwitch, R.id.mondayBreakStartTextView, R.id.mondayBreakEndTextView));
         allPreferences.put(Calendar.TUESDAY, this.getPreferences(
-                R.id.tuesdayWorkSwitch, R.id.startTuesdayTextView, R.id.endTuesdayTextView, R.id.tuesdayBreakSwitch, R.id.startTuesdayBreakTextView, R.id.endTuesdayBreakTextView));
+                R.id.tuesdayWorkSwitch, R.id.tuesdayWorkStartTextView, R.id.tuesdayWorkEndTextView, R.id.tuesdayBreakSwitch, R.id.tuesdayBreakStartTextView, R.id.tuesdayBreakEndTextView));
         allPreferences.put(Calendar.WEDNESDAY, this.getPreferences(
-                R.id.wednesdayWorkSwitch, R.id.startWednesdayTextView, R.id.endWednesdayTextView, R.id.wednesdayBreakSwitch, R.id.startWednesdayBreakTextView, R.id.endWednesdayBreakTextView));
+                R.id.wednesdayWorkSwitch, R.id.wednesdayWorkStartTextView, R.id.wednesdayWorkEndTextView, R.id.wednesdayBreakSwitch, R.id.wednesdayBreakStartTextView, R.id.wednesdayBreakEndTextView));
         allPreferences.put(Calendar.THURSDAY, this.getPreferences(
-                R.id.thursdayWorkSwitch, R.id.startThursdayTextView, R.id.endThursdayTextView, R.id.thursdayBreakSwitch, R.id.startThursdayBreakTextView, R.id.endThursdayBreakTextView));
+                R.id.thursdayWorkSwitch, R.id.thursdayWorkStartTextView, R.id.thursdayWorkEndTextView, R.id.thursdayBreakSwitch, R.id.thursdayBreakStartTextView, R.id.thursdayBreakEndTextView));
         allPreferences.put(Calendar.FRIDAY, this.getPreferences(
-                R.id.fridayWorkSwitch, R.id.startFridayTextView, R.id.endFridayTextView, R.id.fridayBreakSwitch, R.id.startFridayBreakTextView, R.id.endFridayBreakTextView));
+                R.id.fridayWorkSwitch, R.id.fridayWorkStartTextView, R.id.fridayWorkEndTextView, R.id.fridayBreakSwitch, R.id.fridayBreakStartTextView, R.id.fridayBreakEndTextView));
         allPreferences.put(Calendar.SATURDAY, this.getPreferences(
-                R.id.saturdayWorkSwitch, R.id.startSaturdayTextView, R.id.endSaturdayTextView, R.id.saturdayBreakSwitch, R.id.startSaturdayBreakTextView, R.id.endSaturdayBreakTextView));
+                R.id.saturdayWorkSwitch, R.id.saturdayWorkStartTextView, R.id.saturdayWorkEndTextView, R.id.saturdayBreakSwitch, R.id.saturdayBreakStartTextView, R.id.saturdayBreakEndTextView));
         allPreferences.put(Calendar.SUNDAY, this.getPreferences(
-                R.id.sundayWorkSwitch, R.id.startSundayTextView, R.id.endSundayTextView, R.id.sundayBreakSwitch, R.id.startSundayBreakTextView, R.id.endSundayBreakTextView));
+                R.id.sundayWorkSwitch, R.id.sundayWorkStartTextView, R.id.sundayWorkEndTextView, R.id.sundayBreakSwitch, R.id.sundayBreakStartTextView, R.id.sundayBreakEndTextView));
 
         // Save the new schedule.
         Context context = this.getApplicationContext();

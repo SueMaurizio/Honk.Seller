@@ -73,7 +73,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/mondayLabel" />
 
             <TextView
-                android:id="@+id/fromMondayTextView"
+                android:id="@+id/mondayWorkFromTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -84,36 +84,36 @@
                 app:layout_constraintTop_toTopOf="@+id/mondayWorkSwitch" />
 
             <TextView
-                android:id="@+id/startMondayTextView"
+                android:id="@+id/mondayWorkStartTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/fromMondayTextView"
-                app:layout_constraintTop_toTopOf="@+id/fromMondayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/mondayWorkFromTextView"
+                app:layout_constraintTop_toTopOf="@+id/mondayWorkFromTextView" />
 
             <TextView
-                android:id="@+id/toMondayTextView"
+                android:id="@+id/mondayWorkToTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startMondayTextView"
-                app:layout_constraintTop_toTopOf="@+id/startMondayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/mondayWorkStartTextView"
+                app:layout_constraintTop_toTopOf="@+id/mondayWorkStartTextView" />
 
             <TextView
-                android:id="@+id/endMondayTextView"
+                android:id="@+id/mondayWorkEndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/toMondayTextView"
-                app:layout_constraintTop_toTopOf="@+id/toMondayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/mondayWorkToTextView"
+                app:layout_constraintTop_toTopOf="@+id/mondayWorkToTextView" />
 
             <Switch
                 android:id="@+id/mondayBreakSwitch"
@@ -138,7 +138,7 @@
                 app:layout_constraintTop_toTopOf="@+id/mondayBreakSwitch" />
 
             <TextView
-                android:id="@+id/startMondayBreakTextView"
+                android:id="@+id/mondayBreakStartTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -155,11 +155,11 @@
                 android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startMondayBreakTextView"
-                app:layout_constraintTop_toTopOf="@+id/startMondayBreakTextView" />
+                app:layout_constraintStart_toEndOf="@+id/mondayBreakStartTextView"
+                app:layout_constraintTop_toTopOf="@+id/mondayBreakStartTextView" />
 
             <TextView
-                android:id="@+id/endMondayBreakTextView"
+                android:id="@+id/mondayBreakEndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
@@ -194,7 +194,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tuesdayLabel" />
 
             <TextView
-                android:id="@+id/fromTuesdayTextView"
+                android:id="@+id/tuesdayWorkFromTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -205,36 +205,36 @@
                 app:layout_constraintTop_toTopOf="@+id/tuesdayWorkSwitch" />
 
             <TextView
-                android:id="@+id/startTuesdayTextView"
+                android:id="@+id/tuesdayWorkStartTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/fromTuesdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/fromTuesdayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/tuesdayWorkFromTextView"
+                app:layout_constraintTop_toTopOf="@+id/tuesdayWorkFromTextView" />
 
             <TextView
-                android:id="@+id/toTuesdayTextView"
+                android:id="@+id/tuesdayWorkToTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startTuesdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/startTuesdayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/tuesdayWorkStartTextView"
+                app:layout_constraintTop_toTopOf="@+id/tuesdayWorkStartTextView" />
 
             <TextView
-                android:id="@+id/endTuesdayTextView"
+                android:id="@+id/tuesdayWorkEndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/toTuesdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/toTuesdayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/tuesdayWorkToTextView"
+                app:layout_constraintTop_toTopOf="@+id/tuesdayWorkToTextView" />
 
             <Switch
                 android:id="@+id/tuesdayBreakSwitch"
@@ -259,7 +259,7 @@
                 app:layout_constraintTop_toTopOf="@+id/tuesdayBreakSwitch" />
 
             <TextView
-                android:id="@+id/startTuesdayBreakTextView"
+                android:id="@+id/tuesdayBreakStartTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -276,11 +276,11 @@
                 android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startTuesdayBreakTextView"
-                app:layout_constraintTop_toTopOf="@+id/startTuesdayBreakTextView" />
+                app:layout_constraintStart_toEndOf="@+id/tuesdayBreakStartTextView"
+                app:layout_constraintTop_toTopOf="@+id/tuesdayBreakStartTextView" />
 
             <TextView
-                android:id="@+id/endTuesdayBreakTextView"
+                android:id="@+id/tuesdayBreakEndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
@@ -315,7 +315,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/wednesdayLabel" />
 
             <TextView
-                android:id="@+id/fromWednesdayTextView"
+                android:id="@+id/wednesdayWorkFromTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -326,36 +326,36 @@
                 app:layout_constraintTop_toTopOf="@+id/wednesdayWorkSwitch" />
 
             <TextView
-                android:id="@+id/startWednesdayTextView"
+                android:id="@+id/wednesdayWorkStartTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/fromWednesdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/fromWednesdayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/wednesdayWorkFromTextView"
+                app:layout_constraintTop_toTopOf="@+id/wednesdayWorkFromTextView" />
 
             <TextView
-                android:id="@+id/toWednesdayTextView"
+                android:id="@+id/wednesdayWorkToTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startWednesdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/startWednesdayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/wednesdayWorkStartTextView"
+                app:layout_constraintTop_toTopOf="@+id/wednesdayWorkStartTextView" />
 
             <TextView
-                android:id="@+id/endWednesdayTextView"
+                android:id="@+id/wednesdayWorkEndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/toWednesdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/toWednesdayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/wednesdayWorkToTextView"
+                app:layout_constraintTop_toTopOf="@+id/wednesdayWorkToTextView" />
 
             <Switch
                 android:id="@+id/wednesdayBreakSwitch"
@@ -380,7 +380,7 @@
                 app:layout_constraintTop_toTopOf="@+id/wednesdayBreakSwitch" />
 
             <TextView
-                android:id="@+id/startWednesdayBreakTextView"
+                android:id="@+id/wednesdayBreakStartTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -397,11 +397,11 @@
                 android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startWednesdayBreakTextView"
-                app:layout_constraintTop_toTopOf="@+id/startWednesdayBreakTextView" />
+                app:layout_constraintStart_toEndOf="@+id/wednesdayBreakStartTextView"
+                app:layout_constraintTop_toTopOf="@+id/wednesdayBreakStartTextView" />
 
             <TextView
-                android:id="@+id/endWednesdayBreakTextView"
+                android:id="@+id/wednesdayBreakEndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
@@ -436,7 +436,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/thursdayLabel" />
 
             <TextView
-                android:id="@+id/fromThursdayTextView"
+                android:id="@+id/thursdayWorkFromTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -447,36 +447,36 @@
                 app:layout_constraintTop_toTopOf="@+id/thursdayWorkSwitch" />
 
             <TextView
-                android:id="@+id/startThursdayTextView"
+                android:id="@+id/thursdayWorkStartTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/fromThursdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/fromThursdayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/thursdayWorkFromTextView"
+                app:layout_constraintTop_toTopOf="@+id/thursdayWorkFromTextView" />
 
             <TextView
-                android:id="@+id/toThursdayTextView"
+                android:id="@+id/thursdayWorkToTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startThursdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/startThursdayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/thursdayWorkStartTextView"
+                app:layout_constraintTop_toTopOf="@+id/thursdayWorkStartTextView" />
 
             <TextView
-                android:id="@+id/endThursdayTextView"
+                android:id="@+id/thursdayWorkEndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/toThursdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/toThursdayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/thursdayWorkToTextView"
+                app:layout_constraintTop_toTopOf="@+id/thursdayWorkToTextView" />
 
             <Switch
                 android:id="@+id/thursdayBreakSwitch"
@@ -501,7 +501,7 @@
                 app:layout_constraintTop_toTopOf="@+id/thursdayBreakSwitch" />
 
             <TextView
-                android:id="@+id/startThursdayBreakTextView"
+                android:id="@+id/thursdayBreakStartTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -518,11 +518,11 @@
                 android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startThursdayBreakTextView"
-                app:layout_constraintTop_toTopOf="@+id/startThursdayBreakTextView" />
+                app:layout_constraintStart_toEndOf="@+id/thursdayBreakStartTextView"
+                app:layout_constraintTop_toTopOf="@+id/thursdayBreakStartTextView" />
 
             <TextView
-                android:id="@+id/endThursdayBreakTextView"
+                android:id="@+id/thursdayBreakEndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
@@ -557,7 +557,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/fridayLabel" />
 
             <TextView
-                android:id="@+id/fromFridayTextView"
+                android:id="@+id/fridayWorkFromTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -568,36 +568,36 @@
                 app:layout_constraintTop_toTopOf="@+id/fridayWorkSwitch" />
 
             <TextView
-                android:id="@+id/startFridayTextView"
+                android:id="@+id/fridayWorkStartTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/fromFridayTextView"
-                app:layout_constraintTop_toTopOf="@+id/fromFridayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/fridayWorkFromTextView"
+                app:layout_constraintTop_toTopOf="@+id/fridayWorkFromTextView" />
 
             <TextView
-                android:id="@+id/toFridayTextView"
+                android:id="@+id/fridayWorkToTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startFridayTextView"
-                app:layout_constraintTop_toTopOf="@+id/startFridayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/fridayWorkStartTextView"
+                app:layout_constraintTop_toTopOf="@+id/fridayWorkStartTextView" />
 
             <TextView
-                android:id="@+id/endFridayTextView"
+                android:id="@+id/fridayWorkEndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:onClick="pickTime"
                 android:text="00:00"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/toFridayTextView"
-                app:layout_constraintTop_toTopOf="@+id/toFridayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/fridayWorkToTextView"
+                app:layout_constraintTop_toTopOf="@+id/fridayWorkToTextView" />
 
             <Switch
                 android:id="@+id/fridayBreakSwitch"
@@ -622,7 +622,7 @@
                 app:layout_constraintTop_toTopOf="@+id/fridayBreakSwitch" />
 
             <TextView
-                android:id="@+id/startFridayBreakTextView"
+                android:id="@+id/fridayBreakStartTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -639,11 +639,11 @@
                 android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/startFridayBreakTextView"
-                app:layout_constraintTop_toTopOf="@+id/startFridayBreakTextView" />
+                app:layout_constraintStart_toEndOf="@+id/fridayBreakStartTextView"
+                app:layout_constraintTop_toTopOf="@+id/fridayBreakStartTextView" />
 
             <TextView
-                android:id="@+id/endFridayBreakTextView"
+                android:id="@+id/fridayBreakEndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
@@ -678,7 +678,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/saturdayLabel" />
 
             <TextView
-                android:id="@+id/fromSaturdayTextView"
+                android:id="@+id/saturdayWorkFromTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -689,7 +689,7 @@
                 app:layout_constraintTop_toTopOf="@+id/saturdayWorkSwitch" />
 
             <TextView
-                android:id="@+id/startSaturdayTextView"
+                android:id="@+id/saturdayWorkStartTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
@@ -697,22 +697,22 @@
                 android:text="00:00"
                 android:textColor="@color/colorPrimary"
                 android:visibility="invisible"
-                app:layout_constraintStart_toEndOf="@+id/fromSaturdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/fromSaturdayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/saturdayWorkFromTextView"
+                app:layout_constraintTop_toTopOf="@+id/saturdayWorkFromTextView" />
 
             <TextView
-                android:id="@+id/toSaturdayTextView"
+                android:id="@+id/saturdayWorkToTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
                 android:visibility="invisible"
-                app:layout_constraintStart_toEndOf="@+id/startSaturdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/startSaturdayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/saturdayWorkStartTextView"
+                app:layout_constraintTop_toTopOf="@+id/saturdayWorkStartTextView" />
 
             <TextView
-                android:id="@+id/endSaturdayTextView"
+                android:id="@+id/saturdayWorkEndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
@@ -720,8 +720,8 @@
                 android:text="00:00"
                 android:textColor="@color/colorPrimary"
                 android:visibility="invisible"
-                app:layout_constraintStart_toEndOf="@+id/toSaturdayTextView"
-                app:layout_constraintTop_toTopOf="@+id/toSaturdayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/saturdayWorkToTextView"
+                app:layout_constraintTop_toTopOf="@+id/saturdayWorkToTextView" />
 
             <Switch
                 android:id="@+id/saturdayBreakSwitch"
@@ -746,7 +746,7 @@
                 app:layout_constraintTop_toTopOf="@+id/saturdayBreakSwitch" />
 
             <TextView
-                android:id="@+id/startSaturdayBreakTextView"
+                android:id="@+id/saturdayBreakStartTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -765,11 +765,11 @@
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
                 android:visibility="invisible"
-                app:layout_constraintStart_toEndOf="@+id/startSaturdayBreakTextView"
-                app:layout_constraintTop_toTopOf="@+id/startSaturdayBreakTextView" />
+                app:layout_constraintStart_toEndOf="@+id/saturdayBreakStartTextView"
+                app:layout_constraintTop_toTopOf="@+id/saturdayBreakStartTextView" />
 
             <TextView
-                android:id="@+id/endSaturdayBreakTextView"
+                android:id="@+id/saturdayBreakEndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
@@ -805,7 +805,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/sundayLabel" />
 
             <TextView
-                android:id="@+id/fromSundayTextView"
+                android:id="@+id/sundayWorkFromTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -816,7 +816,7 @@
                 app:layout_constraintTop_toTopOf="@+id/sundayWorkSwitch" />
 
             <TextView
-                android:id="@+id/startSundayTextView"
+                android:id="@+id/sundayWorkStartTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
@@ -824,22 +824,22 @@
                 android:text="00:00"
                 android:textColor="@color/colorPrimary"
                 android:visibility="invisible"
-                app:layout_constraintStart_toEndOf="@+id/fromSundayTextView"
-                app:layout_constraintTop_toTopOf="@+id/fromSundayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/sundayWorkFromTextView"
+                app:layout_constraintTop_toTopOf="@+id/sundayWorkFromTextView" />
 
             <TextView
-                android:id="@+id/toSundayTextView"
+                android:id="@+id/sundayWorkToTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
                 android:visibility="invisible"
-                app:layout_constraintStart_toEndOf="@+id/startSundayTextView"
-                app:layout_constraintTop_toTopOf="@+id/startSundayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/sundayWorkStartTextView"
+                app:layout_constraintTop_toTopOf="@+id/sundayWorkStartTextView" />
 
             <TextView
-                android:id="@+id/endSundayTextView"
+                android:id="@+id/sundayWorkEndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
@@ -847,8 +847,8 @@
                 android:text="00:00"
                 android:textColor="@color/colorPrimary"
                 android:visibility="invisible"
-                app:layout_constraintStart_toEndOf="@+id/toSundayTextView"
-                app:layout_constraintTop_toTopOf="@+id/toSundayTextView" />
+                app:layout_constraintStart_toEndOf="@+id/sundayWorkToTextView"
+                app:layout_constraintTop_toTopOf="@+id/sundayWorkToTextView" />
 
             <Switch
                 android:id="@+id/sundayBreakSwitch"
@@ -873,7 +873,7 @@
                 app:layout_constraintTop_toTopOf="@+id/sundayBreakSwitch" />
 
             <TextView
-                android:id="@+id/startSundayBreakTextView"
+                android:id="@+id/sundayBreakStartTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -892,11 +892,11 @@
                 android:text="@string/to"
                 android:textColor="@color/colorPrimary"
                 android:visibility="invisible"
-                app:layout_constraintStart_toEndOf="@+id/startSundayBreakTextView"
-                app:layout_constraintTop_toTopOf="@+id/startSundayBreakTextView" />
+                app:layout_constraintStart_toEndOf="@+id/sundayBreakStartTextView"
+                app:layout_constraintTop_toTopOf="@+id/sundayBreakStartTextView" />
 
             <TextView
-                android:id="@+id/endSundayBreakTextView"
+                android:id="@+id/sundayBreakEndTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
