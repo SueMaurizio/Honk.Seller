@@ -84,8 +84,6 @@ public class FirstConfigurationActivity extends AppCompatActivity implements Dia
                     progressDialog.dismiss();
                     UIHelper.showAlert(getString(R.string.permissionDeniedAlertMessage), this);
                 }
-
-                return;
             }
         }
     }

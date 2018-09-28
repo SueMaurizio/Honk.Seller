@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.honk.seller.NotificationsHelper;
+import org.honk.seller.PreferencesHelper;
 import org.honk.seller.R;
 import org.honk.seller.UI.SetScheduleActivity;
 import org.honk.seller.model.DailySchedulePreferences;
@@ -82,14 +83,10 @@ public class SchedulerJobService extends JobService {
         scheduleJob(context, 0, 0);
     }
 
-    public static int getMillisToNextAction(Context context) {
+    private static int getMillisToNextAction(Context context) {
         // Get schedule preferences.
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String settingsString = sharedPreferences.getString(SetScheduleActivity.PREFERENCE_SCHEDULE, "");
-
-        if (settingsString != "") {
-            Hashtable<Integer, DailySchedulePreferences> scheduleSettings =
-                    new Gson().fromJson(settingsString, TypeToken.getParameterized(Hashtable.class, Integer.class, DailySchedulePreferences.class).getType());
+        if (PreferencesHelper.AreScheduleSettingsSet(context)) {
+            Hashtable<Integer, DailySchedulePreferences> scheduleSettings = PreferencesHelper.getScheduleSettings(context);
 
             Calendar now = Calendar.getInstance();
             int currentDayOfWeek = now.get(Calendar.DAY_OF_WEEK);
@@ -155,6 +152,7 @@ public class SchedulerJobService extends JobService {
         {
             // The working schedule is not configured: show a message to the user.
             Intent setScheduleIntent = new Intent(context, SetScheduleActivity.class);
+
             NotificationsHelper.showNotification(
                     context, context.getString(R.string.ready), context.getString(R.string.setSchedule), setScheduleIntent, context.getString(R.string.goToSetSchedule));
             return -1;
@@ -212,6 +210,7 @@ public class SchedulerJobService extends JobService {
         } else {
             // There are no working days configured: show a message to the user and return -1 to avoid running the service.
             Intent setScheduleIntent = new Intent(context, SetScheduleActivity.class);
+
             NotificationsHelper.showNotification(
                     context, context.getString(R.string.ready), context.getString(R.string.setSchedule), setScheduleIntent, context.getString(R.string.goToSetSchedule));
             return -1;
@@ -231,12 +230,8 @@ public class SchedulerJobService extends JobService {
 
     public static Boolean isWorkTime(Context context) {
         // Get schedule preferences.
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String settingsString = sharedPreferences.getString(SetScheduleActivity.PREFERENCE_SCHEDULE, "");
-
-        if (settingsString != "") {
-            Hashtable<Integer, DailySchedulePreferences> scheduleSettings =
-                    new Gson().fromJson(settingsString, TypeToken.getParameterized(Hashtable.class, Integer.class, DailySchedulePreferences.class).getType());
+        if (PreferencesHelper.AreScheduleSettingsSet(context)) {
+            Hashtable<Integer, DailySchedulePreferences> scheduleSettings = PreferencesHelper.getScheduleSettings(context);
 
             Calendar now = Calendar.getInstance();
             int currentDayOfWeek = now.get(Calendar.DAY_OF_WEEK);

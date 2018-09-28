@@ -58,4 +58,6 @@
     <string name="setWorkingSchedule">I want to set my working schedule</string>
     <string name="setTimeAfter">Please choose a time after %s.</string>
     <string name="setTimeBefore">Please choose a time before %s.</string>
+    <string name="companyNameRequired">Please set a name for your company</string>
+    <string name="companyDetailsSet">The data about your company has been saved</string>
 </resources>

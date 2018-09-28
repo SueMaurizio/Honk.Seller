@@ -2,13 +2,11 @@ package org.honk.seller.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.honk.seller.NotificationsHelper;
 import org.honk.seller.R;
 import org.honk.seller.services.SchedulerJobService;
 
@@ -46,12 +44,14 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this.getApplicationContext(), this.getString(R.string.comeBackToResume), Toast.LENGTH_LONG).show();
     }
 
+    // Starts the "set schedule" activity.
     public void setSchedule(View view) {
         Intent intent = new Intent(this, SetScheduleActivity.class);
-        startActivity(intent);
+        this.startActivity(intent);
         finish();
     }
 
+    // If the service is running, simply closes the app; otherwise it starts the service first.
     public void keepRunning(View view) {
         // If the job scheduler was disabled, I resume it, then I close this activity.
         if (!SchedulerJobService.active || SchedulerJobService.pausedUntil != null) {
@@ -67,9 +67,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Opens the "set vacations" activity.
     public void setVacations(View view) {
         Intent intent = new Intent(this, SetVacationsActivity.class);
-        startActivity(intent);
+        this.startActivity(intent);
+        finish();
+    }
+
+    // Opens the "set company details" activity.
+    public void setCompanyDetails(View view) {
+        Intent intent = new Intent(this, CompanyDetailsActivity.class);
+        this.startActivity(intent);
         finish();
     }
 }

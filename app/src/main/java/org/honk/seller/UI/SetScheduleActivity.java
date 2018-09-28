@@ -16,8 +16,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
+import org.honk.seller.PreferencesHelper;
 import org.honk.seller.R;
 import org.honk.seller.model.DailySchedulePreferences;
 import org.honk.seller.model.TimeSpan;
@@ -30,44 +30,13 @@ import java.util.Hashtable;
 
 public class SetScheduleActivity extends AppCompatActivity implements DialogInterface.OnClickListener {
 
-    public static final String PREFERENCE_SCHEDULE = "PREFERENCE_SCHEDULE";
-
-    private static final int DEFAULT_WORK_START_HOUR = 8;
-    private static final int DEFAULT_WORK_START_MINUTE = 0;
-    private static final int DEFAULT_WORK_END_HOUR = 18;
-    private static final int DEFAULT_WORK_END_MINUTE = 0;
-    private static final int DEFAULT_BREAK_START_HOUR = 13;
-    private static final int DEFAULT_BREAK_START_MINUTE = 0;
-    private static final int DEFAULT_BREAK_END_HOUR = 14;
-    private static final int DEFAULT_BREAK_END_MINUTE = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setschedule);
 
         // Fill the activity with the values set by the user, if any.
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.getBaseContext());
-        String settingsString = sharedPreferences.getString(SetScheduleActivity.PREFERENCE_SCHEDULE, "");
-
-        Hashtable<Integer, DailySchedulePreferences> scheduleSettings;
-        if (settingsString != "") {
-            scheduleSettings = new Gson().fromJson(settingsString, TypeToken.getParameterized(Hashtable.class, Integer.class, DailySchedulePreferences.class).getType());
-        } else {
-            // Set default values.
-            TimeSpan workStartTime = new TimeSpan(DEFAULT_WORK_START_HOUR, DEFAULT_WORK_START_MINUTE);
-            TimeSpan workEndTime = new TimeSpan(DEFAULT_WORK_END_HOUR, DEFAULT_WORK_END_MINUTE);
-            TimeSpan breakStartTime = new TimeSpan(DEFAULT_BREAK_START_HOUR, DEFAULT_BREAK_START_MINUTE);
-            TimeSpan breakEndTime = new TimeSpan(DEFAULT_BREAK_END_HOUR, DEFAULT_BREAK_END_MINUTE);
-            scheduleSettings = new Hashtable<Integer, DailySchedulePreferences>();
-            scheduleSettings.put(Calendar.MONDAY, new DailySchedulePreferences(workStartTime, workEndTime, breakStartTime, breakEndTime));
-            scheduleSettings.put(Calendar.TUESDAY, new DailySchedulePreferences(workStartTime, workEndTime, breakStartTime, breakEndTime));
-            scheduleSettings.put(Calendar.WEDNESDAY, new DailySchedulePreferences(workStartTime, workEndTime, breakStartTime, breakEndTime));
-            scheduleSettings.put(Calendar.THURSDAY, new DailySchedulePreferences(workStartTime, workEndTime, breakStartTime, breakEndTime));
-            scheduleSettings.put(Calendar.FRIDAY, new DailySchedulePreferences(workStartTime, workEndTime, breakStartTime, breakEndTime));
-            scheduleSettings.put(Calendar.SATURDAY, new DailySchedulePreferences());
-            scheduleSettings.put(Calendar.SUNDAY, new DailySchedulePreferences());
-        }
+        Hashtable<Integer, DailySchedulePreferences> scheduleSettings = PreferencesHelper.getScheduleSettings(this.getApplicationContext());
 
         displayScheduleForDay(
                 scheduleSettings,
@@ -115,15 +84,15 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
         /* Just for saturday and sunday, I need to set a default time for work and break. Otherwise, if the user
          * enables work for these days, the default value 00:00 will appear for all text views. */
 
-        setTextViewTextAsTime(this.findViewById(R.id.saturdayWorkStartTextView), DEFAULT_WORK_START_HOUR, DEFAULT_WORK_START_MINUTE);
-        setTextViewTextAsTime(this.findViewById(R.id.saturdayWorkEndTextView), DEFAULT_WORK_END_HOUR, DEFAULT_WORK_END_MINUTE);
-        setTextViewTextAsTime(this.findViewById(R.id.saturdayBreakStartTextView), DEFAULT_BREAK_START_HOUR, DEFAULT_BREAK_START_MINUTE);
-        setTextViewTextAsTime(this.findViewById(R.id.saturdayBreakEndTextView), DEFAULT_BREAK_END_HOUR, DEFAULT_BREAK_END_MINUTE);
+        setTextViewTextAsTime(this.findViewById(R.id.saturdayWorkStartTextView), PreferencesHelper.DEFAULT_WORK_START_HOUR, PreferencesHelper.DEFAULT_WORK_START_MINUTE);
+        setTextViewTextAsTime(this.findViewById(R.id.saturdayWorkEndTextView), PreferencesHelper.DEFAULT_WORK_END_HOUR, PreferencesHelper.DEFAULT_WORK_END_MINUTE);
+        setTextViewTextAsTime(this.findViewById(R.id.saturdayBreakStartTextView), PreferencesHelper.DEFAULT_BREAK_START_HOUR, PreferencesHelper.DEFAULT_BREAK_START_MINUTE);
+        setTextViewTextAsTime(this.findViewById(R.id.saturdayBreakEndTextView), PreferencesHelper.DEFAULT_BREAK_END_HOUR, PreferencesHelper.DEFAULT_BREAK_END_MINUTE);
 
-        setTextViewTextAsTime(this.findViewById(R.id.sundayWorkStartTextView), DEFAULT_WORK_START_HOUR, DEFAULT_WORK_START_MINUTE);
-        setTextViewTextAsTime(this.findViewById(R.id.sundayWorkEndTextView), DEFAULT_WORK_END_HOUR, DEFAULT_WORK_END_MINUTE);
-        setTextViewTextAsTime(this.findViewById(R.id.sundayBreakStartTextView), DEFAULT_BREAK_START_HOUR, DEFAULT_BREAK_START_MINUTE);
-        setTextViewTextAsTime(this.findViewById(R.id.sundayBreakEndTextView), DEFAULT_BREAK_END_HOUR, DEFAULT_BREAK_END_MINUTE);
+        setTextViewTextAsTime(this.findViewById(R.id.sundayWorkStartTextView), PreferencesHelper.DEFAULT_WORK_START_HOUR, PreferencesHelper.DEFAULT_WORK_START_MINUTE);
+        setTextViewTextAsTime(this.findViewById(R.id.sundayWorkEndTextView), PreferencesHelper.DEFAULT_WORK_END_HOUR, PreferencesHelper.DEFAULT_WORK_END_MINUTE);
+        setTextViewTextAsTime(this.findViewById(R.id.sundayBreakStartTextView), PreferencesHelper.DEFAULT_BREAK_START_HOUR, PreferencesHelper.DEFAULT_BREAK_START_MINUTE);
+        setTextViewTextAsTime(this.findViewById(R.id.sundayBreakEndTextView), PreferencesHelper.DEFAULT_BREAK_END_HOUR, PreferencesHelper.DEFAULT_BREAK_END_MINUTE);
     }
 
     private void displayScheduleForDay(
@@ -359,7 +328,7 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
                     } else {
                         // The time selected is not valid: show a message and reset the time picker.
                         Toast.makeText(context, String.format(context.getString(R.string.setTimeBefore), getFormattedTime(endTimeSpan.hours, endTimeSpan.minutes)), Toast.LENGTH_SHORT).show();
-                        showTimePicker(textView, timeSpan, startingTimeSpan, endTimeSpan, context);
+                        showTimePicker(textView, timeSpan, null, endTimeSpan, context);
                     }
                 } else {
                     // This is an "end time".
@@ -369,7 +338,7 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
                     } else {
                         // The time selected is not valid: show a message and reset the time picker.
                         Toast.makeText(context, String.format(context.getString(R.string.setTimeAfter), getFormattedTime(startingTimeSpan.hours, startingTimeSpan.minutes)), Toast.LENGTH_SHORT).show();
-                        showTimePicker(textView, timeSpan, startingTimeSpan, endTimeSpan, context);
+                        showTimePicker(textView, timeSpan, startingTimeSpan, null, context);
                     }
                 }
             }
@@ -392,6 +361,8 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
 
     public void proceed(View view) {
         save();
+
+        // TODO After saving the schedule settings for the first time, the user gets a "I'm ready to begin! Set your schedule..." notification.
     }
 
     private void save() {
@@ -416,9 +387,8 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
 
         // Save the new schedule.
         Context context = this.getApplicationContext();
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean isFirstConfiguration = sharedPreferences.getString(SetScheduleActivity.PREFERENCE_SCHEDULE, "") == "";
-        sharedPreferences.edit().putString(PREFERENCE_SCHEDULE, new Gson().toJson(allPreferences)).apply();
+        boolean isFirstConfiguration = PreferencesHelper.AreScheduleSettingsSet(context);
+        PreferencesHelper.setScheduleSettings(allPreferences, context);
 
         // Cancel all pending jobs and restart with the new schedule.
         SchedulerJobService.cancelAllJobs(context);
@@ -433,7 +403,7 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
                     .setPositiveButton(R.string.ok, this)
                     .show();
         } else {
-            // Show a toast message and keep the activity running.
+            // Show a toast message and close this activity.
             this.finishAffinity();
             Toast.makeText(this.getApplicationContext(), this.getString(R.string.scheduleSet), Toast.LENGTH_SHORT).show();
         }

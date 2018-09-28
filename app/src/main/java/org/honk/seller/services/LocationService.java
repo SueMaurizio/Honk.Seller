@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.honk.seller.NotificationsHelper;
+import org.honk.seller.PreferencesHelper;
 import org.honk.seller.R;
 import org.honk.seller.UI.SetScheduleActivity;
 import org.honk.seller.UI.StopServiceActivity;
@@ -52,11 +53,9 @@ public class LocationService extends Service {
             Intent stopServiceIntent = new Intent(context, StopServiceActivity.class);
 
             // Here I want to display the time stored in settings, not the actual time of the notification, so I try to load it from the app settings.
-            String settingsString = sharedPreferences.getString(SetScheduleActivity.PREFERENCE_SCHEDULE, "");
             Long exactNotificationTime = null;
-            if (settingsString != "") {
-                Hashtable<Integer, DailySchedulePreferences> scheduleSettings =
-                        new Gson().fromJson(settingsString, TypeToken.getParameterized(Hashtable.class, Integer.class, DailySchedulePreferences.class).getType());
+            if (PreferencesHelper.AreScheduleSettingsSet(context)) {
+                Hashtable<Integer, DailySchedulePreferences> scheduleSettings = PreferencesHelper.getScheduleSettings(context);
                 DailySchedulePreferences todaySchedule = scheduleSettings.get(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
                 Calendar todayWorkStart = Calendar.getInstance();
                 todayWorkStart.set(Calendar.HOUR_OF_DAY, todaySchedule.workStartTime.hours);

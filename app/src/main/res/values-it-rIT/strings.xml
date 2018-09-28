@@ -58,4 +58,6 @@
     <string name="setWorkingSchedule">Voglio cambiare il mio orario di lavoro</string>
     <string name="setTimeAfter">Scegli un orario successivo alle %s.</string>
     <string name="setTimeBefore">Scegli un orario precedente le %s.</string>
+    <string name="companyNameRequired">Specifica un nome per la tua attività</string>
+    <string name="companyDetailsSet">I dati della tua attività sono stati salvati</string>
 </resources>
