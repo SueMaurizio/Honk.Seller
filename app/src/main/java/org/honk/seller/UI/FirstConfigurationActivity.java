@@ -134,9 +134,9 @@ public class FirstConfigurationActivity extends AppCompatActivity implements Dia
         }
     }
 
-    public void openCompanyDetailsActivity(View view) {
-        Intent openCompanyDetailsIntent = new Intent(this, CompanyDetailsActivity.class);
-        this.startActivity(openCompanyDetailsIntent);
+    public void openLoginActivity(View view) {
+        Intent openLoginActivityIntent = new Intent(this, LoginActivity.class);
+        this.startActivity(openLoginActivityIntent);
     }
 
     public void close(View view) {
