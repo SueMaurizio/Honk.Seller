@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import org.honk.seller.model.CompanyDetails;
 import org.honk.seller.model.DailySchedulePreferences;
 import org.honk.seller.model.TimeSpan;
+import org.honk.seller.model.User;
 
 import java.util.Calendar;
 import java.util.Hashtable;
@@ -28,6 +29,8 @@ public class PreferencesHelper {
     public static final int DEFAULT_BREAK_END_MINUTE = 0;
 
     private static final String PREFERENCE_COMPANY_DETAILS = "PREFERENCE_COMPANY_DETAILS";
+
+    private static final String PREFERENCE_USER = "PREFERENCE_USER";
 
     public static Hashtable<Integer, DailySchedulePreferences> getScheduleSettings(Context context) {
 
@@ -87,5 +90,20 @@ public class PreferencesHelper {
     public static void setCompanyDetails(CompanyDetails companyDetails, Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPreferences.edit().putString(PREFERENCE_COMPANY_DETAILS, new Gson().toJson(companyDetails)).apply();
+    }
+
+    public static User getUser(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String settingsString = sharedPreferences.getString(PREFERENCE_USER, "");
+        if (!settingsString.equals("")) {
+            return new Gson().fromJson(settingsString, User.class);
+        } else {
+            return null;
+        }
+    }
+
+    public static void setUser(User user, Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPreferences.edit().putString(PREFERENCE_USER, new Gson().toJson(user)).apply();
     }
 }

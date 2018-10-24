@@ -60,4 +60,6 @@
     <string name="setTimeBefore">Scegli un orario precedente le %s.</string>
     <string name="companyNameRequired">Specifica un nome per la tua attività</string>
     <string name="companyDetailsSet">I dati della tua attività sono stati salvati</string>
+    <string name="login">Accedi</string>
+    <string name="useSocialAccount">Seleziona un account social</string>
 </resources>

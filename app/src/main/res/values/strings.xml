@@ -62,4 +62,6 @@
     <string name="setTimeBefore">Please choose a time before %s.</string>
     <string name="companyNameRequired">Please set a name for your company</string>
     <string name="companyDetailsSet">The data about your company has been saved</string>
+    <string name="login">Log in</string>
+    <string name="useSocialAccount">Select a social account</string>
 </resources>

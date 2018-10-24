@@ -35,4 +35,5 @@ dependencies {
     implementation project(':sharedLibrary')
     implementation 'com.savvi.datepicker:rangepicker:1.2.0'
     implementation 'com.facebook.android:facebook-android-sdk:4.37.0'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 }
