@@ -23,10 +23,9 @@ import com.google.android.gms.tasks.Task;
 
 import org.honk.seller.PreferencesHelper;
 import org.honk.seller.R;
+import org.honk.seller.model.AuthenticationType;
 import org.honk.seller.model.User;
 import org.json.JSONException;
-
-import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -67,7 +66,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         if (accessToken != null && !accessToken.isExpired()) {
             Profile profile = Profile.getCurrentProfile();
-            this.setCurrentUser(new User(profile.getId(), profile.getFirstName()));
+            this.setCurrentUser(new User(profile.getId(), AuthenticationType.facebook, profile.getFirstName()));
             return true;
         }
 
@@ -79,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         facebookCallbackManager = CallbackManager.Factory.create();
 
         LoginButton facebookLoginButton = findViewById(R.id.facebookLoginButton);
-        facebookLoginButton.setReadPermissions(Arrays.asList("public_profile"));
+        facebookLoginButton.setReadPermissions("public_profile");
 
         facebookLoginButton.registerCallback(facebookCallbackManager,
                 new FacebookCallback<LoginResult>() {
@@ -106,7 +105,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 accessToken,
                 (object, response) -> {
                         try {
-                            setCurrentUser(new User(object.getString("id"), object.getString("name")));
+                            setCurrentUser(new User(object.getString("id"), AuthenticationType.facebook, object.getString("name")));
                             this.goToCompanyDetails();
                         } catch (JSONException x) {
                             Log.d(LoginActivity.class.getCanonicalName(), x.getMessage());
@@ -129,7 +128,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if (account != null) {
-            setCurrentUser(new User(account.getId(), account.getDisplayName()));
+            setCurrentUser(new User(account.getId(), AuthenticationType.google, account.getDisplayName()));
             return true;
         } else {
             return false;
@@ -152,7 +151,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            setCurrentUser(new User(account.getId(), account.getDisplayName()));
+            setCurrentUser(new User(account.getId(), AuthenticationType.google, account.getDisplayName()));
 
             // Signed in successfully, move to the next step.
             this.goToCompanyDetails();
