@@ -8,13 +8,10 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
+import org.honk.seller.LocationHelper;
 import org.honk.seller.NotificationsHelper;
 import org.honk.seller.PreferencesHelper;
 import org.honk.seller.R;
-import org.honk.seller.UI.SetScheduleActivity;
 import org.honk.seller.UI.StopServiceActivity;
 import org.honk.seller.model.DailySchedulePreferences;
 
@@ -29,7 +26,7 @@ public class LocationService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        getLocation(this.getBaseContext());
+        setCurrentLocation(this.getBaseContext());
         return Service.START_NOT_STICKY;
     }
 
@@ -44,7 +41,7 @@ public class LocationService extends Service {
         }
     }
 
-    private static void getLocation(Context context) {
+    private static void setCurrentLocation(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         int currentDay = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
         int lastDay = sharedPreferences.getInt(PREFERENCE_LAST_DAY, 0);
@@ -52,7 +49,7 @@ public class LocationService extends Service {
             // This is the first location detection today: display a message to the user.
             Intent stopServiceIntent = new Intent(context, StopServiceActivity.class);
 
-            // Here I want to display the time stored in settings, not the actual time of the notification, so I try to load it from the app settings.
+            // I want to display a notification showing the time stored in settings, not the actual time of the notification, so I try to load it from the app settings.
             Long exactNotificationTime = null;
             if (PreferencesHelper.AreScheduleSettingsSet(context)) {
                 Hashtable<Integer, DailySchedulePreferences> scheduleSettings = PreferencesHelper.getScheduleSettings(context);
@@ -69,5 +66,7 @@ public class LocationService extends Service {
                     context, context.getString(R.string.haveANiceDay), context.getString(R.string.locationDetectionStarts), stopServiceIntent, context.getString(R.string.stop), exactNotificationTime);
             sharedPreferences.edit().putInt(PREFERENCE_LAST_DAY, currentDay).apply();
         }
+
+        LocationHelper.setCurrentLocation(context);
     }
 }

@@ -1,16 +1,29 @@
 package org.honk.seller.UI;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.IntentSender;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.tasks.Task;
+
+import org.honk.seller.LocationHelper;
+import org.honk.seller.NotificationsHelper;
 import org.honk.seller.R;
 import org.honk.seller.services.SchedulerJobService;
+import org.honk.sharedlibrary.UIHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends RequirementsCheckerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
             TextView btnStop = this.findViewById(R.id.btnStop);
             btnStop.setVisibility(View.GONE);
         }
+
+        this.checkRequirementsAndPermissions();
     }
 
     // Called when the user asks to stop the service indefinitely.

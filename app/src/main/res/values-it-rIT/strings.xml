@@ -2,7 +2,7 @@
 <resources>
     <string name="permissionDeniedAlertMessage">Questa app non può funzionare senza conoscere la tua posizione. Se ci ripensi, concedi l\'autorizzazione tramite il pannello Impostazioni del tuo dispositivo.</string>
     <string name="close">Chiudi</string>
-    <string name="featureUnavailableAlertMessage">Per poter funzionare, questa app deve accedere alla tua posizione. Sembra che il tuo dispositivo non sia in grad di fornire questa informazione, quindi l\'app non può funzionare.</string>
+    <string name="featureUnavailableAlertMessage">Per poter funzionare, questa app deve accedere alla tua posizione. Sembra che il tuo dispositivo non sia in grado di fornire questa informazione, quindi l\'app non può funzionare.</string>
     <string name="alertTitle">Attenzione</string>
     <string name="offlineAlertMessage">Sembra che tu sia offline. Per favore, controlla che il tuo dispositivo sia collegato alla rete telefonica.</string>
     <string name="intro">"Se svolgi un lavoro itinerante,\nquesta app è fatta apposta per te.\nPer cominciare, ti chiederò di indicare il tuo orario di lavoro; solo all'interno di questo orario, renderò nota la tua posizione ai tuoi potenziali clienti, che potranno vederla su una mappa.\n\nSei d'accordo?"</string>
@@ -61,5 +61,9 @@
     <string name="companyNameRequired">Specifica un nome per la tua attività</string>
     <string name="companyDetailsSet">I dati della tua attività sono stati salvati</string>
     <string name="login">Accedi</string>
-    <string name="useSocialAccount">Seleziona un account social</string>
+    <string name="useSocialAccount">Autenticati tramite un account social: in questo modo potrai utilizzare questa app anche su dispositivi diversi, senza condividere alcun dato personale.</string>
+    <string name="iNeedHelp">Ho bisogno del tuo intervento</string>
+    <string name="touchToOpenApp">tocca qui per aprire l\'app</string>
+    <string name="somethingWentWrong">Qualcosa non va</string>
+    <string name="cannotDetectLocation">Spiacente, sembra che io non possa rilevare la tua posizione da questo dispositivo</string>
 </resources>

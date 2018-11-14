@@ -1,140 +1,28 @@
 package org.honk.seller.UI;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
-import org.honk.seller.LocationHelper;
 import org.honk.seller.R;
-import org.honk.sharedlibrary.UIHelper;
 
-public class FirstConfigurationActivity extends AppCompatActivity implements DialogInterface.OnClickListener {
+public class FirstConfigurationActivity extends RequirementsCheckerActivity {
 
-    private static final int WAIT_TIME_MS = 5000;
-    private static final int ACCESS_COARSE_LOCATION_CODE = 0;
-
-    private LocationManager locationManager;
-    private LocationListener locationListener;
-    private LocationHelper locationHelper;
-
-    protected ProgressDialog progressDialog;
+    private static final int REQUEST_LOCATION_SETTINGS_CHECK = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firstconfiguration);
-
-        //this.loadLocation();
-    }
-
-    private void loadLocation() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.setIndeterminate(false);
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-
-        // Check whether the device supports accessing coarse location.
-        if (this.getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION_NETWORK)) {
-            // Register the listener with the Location Manager to receive location updates.
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                this.getLocation();
-            } else {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                    // The user has denied permission, show an explanation and try again.
-                    //TODO Show an explanation to the user *asynchronously* -- don't block
-                    // this thread waiting for the user's response! After the user
-                    // sees the explanation, try again to request the permission.
-                } else {
-                    // Request the permission.
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, ACCESS_COARSE_LOCATION_CODE);
-                }
-            }
-        } else {
-            // The device is not compatible with this app.
-            progressDialog.dismiss();
-            UIHelper.showAlert(getString(R.string.featureUnavailableAlertMessage), this);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case ACCESS_COARSE_LOCATION_CODE: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    this.getLocation();
-                } else {
-                    // User denied permission to access location info.
-                    progressDialog.dismiss();
-                    UIHelper.showAlert(getString(R.string.permissionDeniedAlertMessage), this);
-                }
-            }
-        }
-    }
-
-    @SuppressLint("MissingPermission")
-    private void getLocation() {
-        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        TextView txtLocation = (TextView) findViewById(R.id.txtIntro);
-        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-            // Don't want to use last known location here: if the device is not connected, a message must be shown.
-            this.locationHelper = new LocationHelper();
-            locationListener = new LocationListener() {
-
-                public void onLocationChanged(Location location) {
-                    // Called when a new location is found.
-                    locationHelper.SetNewBestLocation(location);
-                }
-
-                public void onStatusChanged(String provider, int status, Bundle extras) {
-                }
-
-                public void onProviderEnabled(String provider) {
-                }
-
-                public void onProviderDisabled(String provider) {
-                }
-            };
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-
-            Handler handler = new Handler();
-            Runnable runnable = new Runnable() {
-                public void run() {
-                    // Stop listening to location events, to save power.
-                    locationManager.removeUpdates(locationListener);
-                    progressDialog.dismiss();
-                    Location currentBestLocation = locationHelper.getCurrentBestLocation();
-                    if (currentBestLocation != null) {
-                        txtLocation.setText(currentBestLocation.getLatitude() + " " + currentBestLocation.getLongitude());
-                    } else {
-                        UIHelper.showAlert(getString(R.string.offlineAlertMessage), FirstConfigurationActivity.this);
-                    }
-                }
-            };
-            handler.postDelayed(runnable, WAIT_TIME_MS);
-        } else {
-            progressDialog.dismiss();
-            UIHelper.showAlert(getString(R.string.featureUnavailableAlertMessage), this);
-        }
     }
 
     public void openLoginActivity(View view) {
+        // Before entering the login activity, check the requirements for location detection.
+        this.checkRequirementsAndPermissions();
+
+        /* Failure to check requirements or permissions causes the activity to close, so if we reach this line,
+         * we can proceed to the next activity. */
         Intent openLoginActivityIntent = new Intent(this, LoginActivity.class);
         this.startActivity(openLoginActivityIntent);
     }
@@ -143,12 +31,18 @@ public class FirstConfigurationActivity extends AppCompatActivity implements Dia
         new AlertDialog.Builder(this)
                 .setMessage(this.getString(R.string.comeBackSoon))
                 .setTitle(org.honk.sharedlibrary.R.string.alertTitle)
-                .setPositiveButton(org.honk.sharedlibrary.R.string.close, this)
+                .setPositiveButton(org.honk.sharedlibrary.R.string.close, (dialog, which) -> {
+                    this.finishAffinity();
+                })
                 .show();
     }
 
     @Override
-    public void onClick(DialogInterface dialog, int which) {
-        this.finishAffinity();
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_LOCATION_SETTINGS_CHECK) {
+            // TODO Handle location settings check result.
+        }
     }
 }

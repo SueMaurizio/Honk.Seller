@@ -68,6 +68,8 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
                 R.id.fridayWorkSwitch, R.id.fridayBreakSwitch,
                 R.id.fridayWorkStartTextView, R.id.fridayWorkEndTextView,
                 R.id.fridayBreakStartTextView, R.id.fridayBreakEndTextView);
+
+        // TODO CRITICAL Looks like working hours for saturday and sunday are not displayed: a "not working" message is always shown.
         displayScheduleForDay(
                 scheduleSettings,
                 Calendar.SATURDAY,
@@ -361,8 +363,6 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
 
     public void proceed(View view) {
         save();
-
-        // TODO After saving the schedule settings for the first time, the user gets a "I'm ready to begin! Set your schedule..." notification.
     }
 
     private void save() {

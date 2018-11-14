@@ -36,13 +36,13 @@
     <string name="serviceStopped">I have stopped the service.</string>
     <string name="stopSendingLocation">Should I stop sending your location?</string>
     <string name="resumeSendingLocation">No, resume sending my location</string>
-    <string name="wontWorkToday">Yes, I won't work today</string>
-    <string name="awayForAWhile">Yes, I'll be away for a while</string>
-    <string name="yesDoNotSendLocation">Yes, don't send my location anymore</string>
+    <string name="wontWorkToday">Yes, I won\'t work today</string>
+    <string name="awayForAWhile">Yes, I\'ll be away for a while</string>
+    <string name="yesDoNotSendLocation">Yes, don\'t send my location anymore</string>
     <string name="whenWillYouBeBack">When will you be back?</string>
-    <string name="dontKnowYet">I don't know</string>
+    <string name="dontKnowYet">I don\'t know</string>
     <string name="whatCanIDo">What can I do for you?</string>
-    <string name="imWorking">I'm working with you right now: your potential customers can currently see your location.</string>
+    <string name="imWorking">I\'m working with you right now: your potential customers can currently see your location.</string>
     <string name="imNotWorking">Location detection is currently off: nobody can see your current location right now.</string>
     <string name="scheduleSet">Congratulations! You have successfully set your working schedule.</string>
     <string name="setVacations">I want to set my vacations</string>
@@ -63,5 +63,9 @@
     <string name="companyNameRequired">Please set a name for your company</string>
     <string name="companyDetailsSet">The data about your company has been saved</string>
     <string name="login">Log in</string>
-    <string name="useSocialAccount">Select a social account</string>
+    <string name="useSocialAccount">Authenticate through a social account: in this way, you will be able to use this app on different devices, without sharing your personal data.</string>
+    <string name="iNeedHelp">I need your help</string>
+    <string name="touchToOpenApp">Tap here to open the app</string>
+    <string name="somethingWentWrong">Something went wrong</string>
+    <string name="cannotDetectLocation">Sorry, looks like I cannot detect your location on this device</string>
 </resources>

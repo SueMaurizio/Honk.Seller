@@ -1,65 +1,68 @@
 package org.honk.seller;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Location;
+import android.support.v4.content.ContextCompat;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
 public class LocationHelper {
 
-    private static final int TWO_MINUTES = 1000 * 60 * 2;
+    private static Location currentBestLocation = null;
 
-    protected Location currentBestLocation = null;
+    private FusedLocationProviderClient fusedLocationClient;
 
-    /** Determines whether one Location reading is better than the current Location fix
-     * @param location  The new Location that you want to evaluate
-     */
-    public void SetNewBestLocation(Location location) {
-        if (currentBestLocation == null) {
-            // A new location is always better than no location
-            this.currentBestLocation = location;
-            return;
-        }
+    public static void checkRequirements(
+            Context context, OnSuccessListener<LocationSettingsResponse> successListener, OnFailureListener failureListener) {
 
-        // Check whether the new location fix is newer or older
-        long timeDelta = location.getTime() - currentBestLocation.getTime();
-        boolean isSignificantlyNewer = timeDelta > TWO_MINUTES;
-        boolean isSignificantlyOlder = timeDelta < -TWO_MINUTES;
-        boolean isNewer = timeDelta > 0;
+        LocationRequest mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(60000);
+        mLocationRequest.setFastestInterval(60000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
-        // If it's been more than two minutes since the current location, use the new location
-        // because the user has likely moved
-        if (isSignificantlyNewer) {
-            this.currentBestLocation = location;
-            return;
-            // If the new location is more than two minutes older, it must be worse
-        } else if (isSignificantlyOlder) {
-            return;
-        }
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(mLocationRequest);
+        SettingsClient client = LocationServices.getSettingsClient(context);
+        Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build())
+                .addOnFailureListener(failureListener);
 
-        // Check whether the new location fix is more or less accurate
-        int accuracyDelta = (int) (location.getAccuracy() - currentBestLocation.getAccuracy());
-        boolean isLessAccurate = accuracyDelta > 0;
-        boolean isMoreAccurate = accuracyDelta < 0;
-        boolean isSignificantlyLessAccurate = accuracyDelta > 200;
-
-        // Check if the old and new location are from the same provider
-        boolean isFromSameProvider = isSameProvider(location.getProvider(), currentBestLocation.getProvider());
-
-        // Determine location quality using a combination of timeliness and accuracy
-        if (isMoreAccurate ||
-            (isNewer && !isLessAccurate) ||
-            (isNewer && !isSignificantlyLessAccurate && isFromSameProvider)) {
-            this.currentBestLocation = location;
+        if (successListener != null) {
+            task.addOnSuccessListener(successListener);
         }
     }
 
-    /** Checks whether two providers are the same */
-    private boolean isSameProvider(String provider1, String provider2) {
-        if (provider1 == null) {
-            return provider2 == null;
-        }
-        return provider1.equals(provider2);
+    public static Boolean checkLocationSystemFeature(Context context) {
+        // Check whether the device supports accessing coarse location.
+        return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION_NETWORK);
     }
 
-    public Location getCurrentBestLocation() {
-        return this.currentBestLocation;
+    public static Boolean checkLocationPermission(Context context) {
+        return ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    @SuppressLint("MissingPermission")
+    public void setCurrentLocation(Context context) {
+        if (this.fusedLocationClient == null) {
+            this.fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
+        }
+
+        this.fusedLocationClient.getLastLocation().addOnSuccessListener((location) -> {
+            // Got last known location. In some rare situations this can be null.
+            if (location != null) {
+                // TODO Send the location to the server.
+                this.currentBestLocation = location;
+            }
+        });
     }
 }

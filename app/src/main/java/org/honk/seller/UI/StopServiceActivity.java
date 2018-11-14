@@ -29,26 +29,6 @@ public class StopServiceActivity extends FragmentActivity implements DatePickerD
     }
 
     public void pickDate(View view) {
-        /*Calendar now = Calendar.getInstance();
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this.getBaseContext(), new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                Calendar pausedUntil = Calendar.getInstance();
-                pausedUntil.set(year, month, dayOfMonth);
-                SchedulerJobService.pausedUntil = pausedUntil;
-            }
-        }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
-        datePickerDialog.setTitle(this.getString(R.string.whenWillYouBeBack));
-        datePickerDialog.setButton(DialogInterface.BUTTON_NEUTRAL, this.getString(R.string.dontKnowYet), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        datePickerDialog.show();*/
-
-
-
         DialogFragment datePickerFragment = new DatePickerFragment();
         Bundle args = new Bundle();
         args.putString(DatePickerFragment.ARGUMENT_TITLE, this.getString(R.string.whenWillYouBeBack));

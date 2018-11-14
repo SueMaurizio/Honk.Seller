@@ -16,11 +16,11 @@ public class StartupActivity extends AppCompatActivity {
 
         Intent intent;
         if (PreferencesHelper.AreScheduleSettingsSet(this.getApplicationContext())) {
-            // The schedule settings were not set: launch the first configuration activity.
-            intent = new Intent(this, FirstConfigurationActivity.class);
-        } else {
             // The schedule settings are set: launch the main activity.
             intent = new Intent(this, MainActivity.class);
+        } else {
+            // The schedule settings were not set: launch the first configuration activity.
+            intent = new Intent(this, FirstConfigurationActivity.class);
         }
 
         startActivity(intent);
