@@ -7,11 +7,6 @@ import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import org.honk.seller.NotificationsHelper;
 import org.honk.seller.PreferencesHelper;
@@ -85,7 +80,7 @@ public class SchedulerJobService extends JobService {
 
     private static int getMillisToNextAction(Context context) {
         // Get schedule preferences.
-        if (PreferencesHelper.AreScheduleSettingsSet(context)) {
+        if (PreferencesHelper.areScheduleSettingsSet(context)) {
             Hashtable<Integer, DailySchedulePreferences> scheduleSettings = PreferencesHelper.getScheduleSettings(context);
 
             Calendar now = Calendar.getInstance();
@@ -230,7 +225,7 @@ public class SchedulerJobService extends JobService {
 
     public static Boolean isWorkTime(Context context) {
         // Get schedule preferences.
-        if (PreferencesHelper.AreScheduleSettingsSet(context)) {
+        if (PreferencesHelper.areScheduleSettingsSet(context)) {
             Hashtable<Integer, DailySchedulePreferences> scheduleSettings = PreferencesHelper.getScheduleSettings(context);
 
             Calendar now = Calendar.getInstance();

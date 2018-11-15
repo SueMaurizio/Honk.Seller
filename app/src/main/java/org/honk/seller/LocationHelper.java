@@ -19,8 +19,9 @@ import com.google.android.gms.tasks.Task;
 
 public class LocationHelper {
 
-    private static Location currentBestLocation = null;
+    private Location currentBestLocation = null;
 
+    // This field cannot be static in order to avoid a memory leak.
     private FusedLocationProviderClient fusedLocationClient;
 
     public static void checkRequirements(

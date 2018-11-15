@@ -4,9 +4,7 @@ import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -15,13 +13,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
 import org.honk.seller.PreferencesHelper;
 import org.honk.seller.R;
 import org.honk.seller.model.DailySchedulePreferences;
 import org.honk.seller.model.TimeSpan;
 import org.honk.seller.services.SchedulerJobService;
+import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.util.Calendar;
@@ -42,90 +39,156 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
                 scheduleSettings,
                 Calendar.MONDAY,
                 R.id.mondayWorkSwitch, R.id.mondayBreakSwitch,
+                R.id.mondayWorkFromTextView, R.id.mondayWorkToTextView,
+                R.id.mondayBreakFromTextView, R.id.mondayBreakToTextView,
                 R.id.mondayWorkStartTextView, R.id.mondayWorkEndTextView,
                 R.id.mondayBreakStartTextView, R.id.mondayBreakEndTextView);
         displayScheduleForDay(
                 scheduleSettings,
                 Calendar.TUESDAY,
                 R.id.tuesdayWorkSwitch, R.id.tuesdayBreakSwitch,
+                R.id.tuesdayWorkFromTextView, R.id.tuesdayWorkToTextView,
+                R.id.tuesdayBreakFromTextView, R.id.tuesdayBreakToTextView,
                 R.id.tuesdayWorkStartTextView, R.id.tuesdayWorkEndTextView,
                 R.id.tuesdayBreakStartTextView, R.id.tuesdayBreakEndTextView);
         displayScheduleForDay(
                 scheduleSettings,
                 Calendar.WEDNESDAY,
                 R.id.wednesdayWorkSwitch, R.id.wednesdayBreakSwitch,
+                R.id.wednesdayWorkFromTextView, R.id.wednesdayWorkToTextView,
+                R.id.wednesdayBreakFromTextView, R.id.wednesdayBreakToTextView,
                 R.id.wednesdayWorkStartTextView, R.id.wednesdayWorkEndTextView,
                 R.id.wednesdayBreakStartTextView, R.id.wednesdayBreakEndTextView);
         displayScheduleForDay(
                 scheduleSettings,
                 Calendar.THURSDAY,
                 R.id.thursdayWorkSwitch, R.id.thursdayBreakSwitch,
+                R.id.thursdayWorkFromTextView, R.id.thursdayWorkToTextView,
+                R.id.thursdayBreakFromTextView, R.id.thursdayBreakToTextView,
                 R.id.thursdayWorkStartTextView, R.id.thursdayWorkEndTextView,
                 R.id.thursdayBreakStartTextView, R.id.thursdayBreakEndTextView);
         displayScheduleForDay(
                 scheduleSettings,
                 Calendar.FRIDAY,
                 R.id.fridayWorkSwitch, R.id.fridayBreakSwitch,
+                R.id.fridayWorkFromTextView, R.id.fridayWorkToTextView,
+                R.id.fridayBreakFromTextView, R.id.fridayBreakToTextView,
                 R.id.fridayWorkStartTextView, R.id.fridayWorkEndTextView,
                 R.id.fridayBreakStartTextView, R.id.fridayBreakEndTextView);
 
-        // TODO CRITICAL Looks like working hours for saturday and sunday are not displayed: a "not working" message is always shown.
         displayScheduleForDay(
                 scheduleSettings,
                 Calendar.SATURDAY,
                 R.id.saturdayWorkSwitch, R.id.saturdayBreakSwitch,
+                R.id.saturdayWorkFromTextView, R.id.saturdayWorkToTextView,
+                R.id.saturdayBreakFromTextView, R.id.saturdayBreakToTextView,
                 R.id.saturdayWorkStartTextView, R.id.saturdayWorkEndTextView,
                 R.id.saturdayBreakStartTextView, R.id.saturdayBreakEndTextView);
         displayScheduleForDay(
                 scheduleSettings,
                 Calendar.SUNDAY,
                 R.id.sundayWorkSwitch, R.id.sundayBreakSwitch,
+                R.id.sundayWorkFromTextView, R.id.sundayWorkToTextView,
+                R.id.sundayBreakFromTextView, R.id.sundayBreakToTextView,
                 R.id.sundayWorkStartTextView, R.id.sundayWorkEndTextView,
                 R.id.sundayBreakStartTextView, R.id.sundayBreakEndTextView);
-
-        /* Just for saturday and sunday, I need to set a default time for work and break. Otherwise, if the user
-         * enables work for these days, the default value 00:00 will appear for all text views. */
-
-        setTextViewTextAsTime(this.findViewById(R.id.saturdayWorkStartTextView), PreferencesHelper.DEFAULT_WORK_START_HOUR, PreferencesHelper.DEFAULT_WORK_START_MINUTE);
-        setTextViewTextAsTime(this.findViewById(R.id.saturdayWorkEndTextView), PreferencesHelper.DEFAULT_WORK_END_HOUR, PreferencesHelper.DEFAULT_WORK_END_MINUTE);
-        setTextViewTextAsTime(this.findViewById(R.id.saturdayBreakStartTextView), PreferencesHelper.DEFAULT_BREAK_START_HOUR, PreferencesHelper.DEFAULT_BREAK_START_MINUTE);
-        setTextViewTextAsTime(this.findViewById(R.id.saturdayBreakEndTextView), PreferencesHelper.DEFAULT_BREAK_END_HOUR, PreferencesHelper.DEFAULT_BREAK_END_MINUTE);
-
-        setTextViewTextAsTime(this.findViewById(R.id.sundayWorkStartTextView), PreferencesHelper.DEFAULT_WORK_START_HOUR, PreferencesHelper.DEFAULT_WORK_START_MINUTE);
-        setTextViewTextAsTime(this.findViewById(R.id.sundayWorkEndTextView), PreferencesHelper.DEFAULT_WORK_END_HOUR, PreferencesHelper.DEFAULT_WORK_END_MINUTE);
-        setTextViewTextAsTime(this.findViewById(R.id.sundayBreakStartTextView), PreferencesHelper.DEFAULT_BREAK_START_HOUR, PreferencesHelper.DEFAULT_BREAK_START_MINUTE);
-        setTextViewTextAsTime(this.findViewById(R.id.sundayBreakEndTextView), PreferencesHelper.DEFAULT_BREAK_END_HOUR, PreferencesHelper.DEFAULT_BREAK_END_MINUTE);
     }
 
     private void displayScheduleForDay(
             Hashtable<Integer, DailySchedulePreferences> scheduleSettings,
             int day,
-            int workSwitchId,
-            int breakSwitchId,
+            int workSwitchId, int breakSwitchId,
+            int workFromTextViewId, int workToTextViewId,
+            int breakFromTextViewId, int breakToTextViewId,
             int startWorkTextViewId, int endWorkTextViewId,
             int startBreakTextViewId, int endBreakTextViewId) {
         DailySchedulePreferences dayPreferences = scheduleSettings.get(day);
+
         Switch workSwitch = this.findViewById(workSwitchId);
         Switch breakSwitch = this.findViewById(breakSwitchId);
+
+        TextView workFromTextView = this.findViewById(workFromTextViewId);
+        TextView workToTextView = this.findViewById(workToTextViewId);
+
+        TextView breakFromTextView = this.findViewById(breakFromTextViewId);
+        TextView breakToTextView = this.findViewById(breakToTextViewId);
+
+        TextView startWorkTextView = this.findViewById(startWorkTextViewId);
+        TextView endWorkTextView = this.findViewById(endWorkTextViewId);
+
+        TextView startBreakTextView = this.findViewById(startBreakTextViewId);
+        TextView endBreakTextView = this.findViewById(endBreakTextViewId);
+
         if (dayPreferences.workStartTime != null) {
-            workSwitch.setChecked(true);
-            TextView startWorkTextView = this.findViewById(startWorkTextViewId);
-            this.setTextViewTextAsTime(startWorkTextView, dayPreferences.workStartTime.hours, dayPreferences.workStartTime.minutes);
-            TextView endWorkTextView = this.findViewById(endWorkTextViewId);
-            this.setTextViewTextAsTime(endWorkTextView, dayPreferences.workEndTime.hours, dayPreferences.workEndTime.minutes);
-            if (dayPreferences.breakStartTime != null) {
-                breakSwitch.setChecked(true);
-                TextView startBreakTextView = this.findViewById(startBreakTextViewId);
-                this.setTextViewTextAsTime(startBreakTextView, dayPreferences.breakStartTime.hours, dayPreferences.breakStartTime.minutes);
-                TextView endPauseTextView = this.findViewById(endBreakTextViewId);
-                this.setTextViewTextAsTime(endPauseTextView, dayPreferences.breakEndTime.hours, dayPreferences.breakEndTime.minutes);
-            } else {
-                breakSwitch.setChecked(false);
+            // This is a working day: show the working schedule.
+            {
+                workSwitch.setChecked(true);
+                workFromTextView.setText(this.getString(R.string.workingFrom));
+
+                startWorkTextView.setVisibility(View.VISIBLE);
+                this.setTextViewTextAsTime(startWorkTextView, dayPreferences.workStartTime.hours, dayPreferences.workStartTime.minutes);
+
+                workToTextView.setVisibility(View.VISIBLE);
+
+                endWorkTextView.setVisibility(View.VISIBLE);
+                this.setTextViewTextAsTime(endWorkTextView, dayPreferences.workEndTime.hours, dayPreferences.workEndTime.minutes);
+
+                if (dayPreferences.breakStartTime != null) {
+                    // There is a break set for this day: show the break schedule.
+                    {
+                        breakSwitch.setChecked(true);
+                        breakFromTextView.setText(this.getString(R.string.breakFrom));
+
+                        startBreakTextView.setVisibility(View.VISIBLE);
+                        this.setTextViewTextAsTime(startBreakTextView, dayPreferences.breakStartTime.hours, dayPreferences.breakStartTime.minutes);
+
+                        breakToTextView.setVisibility(View.VISIBLE);
+
+                        endBreakTextView.setVisibility(View.VISIBLE);
+                        this.setTextViewTextAsTime(endBreakTextView, dayPreferences.breakEndTime.hours, dayPreferences.breakEndTime.minutes);
+                    }
+                } else {
+                    // There is no break set for this day: hide the break schedule.
+                    hideBreakSchedule(breakSwitch, breakFromTextView, startBreakTextView, breakToTextView, endBreakTextView);
+                }
+
+                breakSwitch.setEnabled(true);
             }
         } else {
-            workSwitch.setChecked(false);
-            breakSwitch.setChecked(false);
+            /* This is not a working day: hide both the working schedule and the break schedule.
+             * Also, set default values for the hidden text views representing time. Otherwise, if the user
+             * enables work, the default value 00:00 will appear for all text views. */
+            {
+                workSwitch.setChecked(false);
+
+                workFromTextView.setText(this.getString(R.string.notWorking));
+
+                setTextViewTextAsTime(startWorkTextView, PreferencesHelper.DEFAULT_WORK_START_HOUR, PreferencesHelper.DEFAULT_WORK_START_MINUTE);
+                startWorkTextView.setVisibility(View.INVISIBLE);
+
+                workToTextView.setVisibility(View.INVISIBLE);
+
+                endWorkTextView.setVisibility(View.INVISIBLE);
+                setTextViewTextAsTime(endWorkTextView, PreferencesHelper.DEFAULT_WORK_END_HOUR, PreferencesHelper.DEFAULT_WORK_END_MINUTE);
+
+                hideBreakSchedule(breakSwitch, breakFromTextView, startBreakTextView, breakToTextView, endBreakTextView);
+                breakSwitch.setEnabled(false);
+            }
         }
+    }
+
+    private void hideBreakSchedule(Switch breakSwitch, TextView breakFromTextView, TextView startBreakTextView, TextView breakToTextView, TextView endBreakTextView) {
+        breakSwitch.setChecked(false);
+
+        breakFromTextView.setText(this.getString(R.string.noBreak));
+
+        startBreakTextView.setVisibility(View.INVISIBLE);
+        setTextViewTextAsTime(startBreakTextView, PreferencesHelper.DEFAULT_BREAK_START_HOUR, PreferencesHelper.DEFAULT_BREAK_START_MINUTE);
+
+        breakToTextView.setVisibility(View.INVISIBLE);
+
+        endBreakTextView.setVisibility(View.INVISIBLE);
+        setTextViewTextAsTime(endBreakTextView, PreferencesHelper.DEFAULT_BREAK_END_HOUR, PreferencesHelper.DEFAULT_BREAK_END_MINUTE);
     }
 
     public void toggleSwitch(View view) {
@@ -387,7 +450,7 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
 
         // Save the new schedule.
         Context context = this.getApplicationContext();
-        boolean isFirstConfiguration = PreferencesHelper.AreScheduleSettingsSet(context);
+        boolean isFirstConfiguration = PreferencesHelper.areScheduleSettingsSet(context);
         PreferencesHelper.setScheduleSettings(allPreferences, context);
 
         // Cancel all pending jobs and restart with the new schedule.

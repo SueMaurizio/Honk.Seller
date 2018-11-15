@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.location.LocationManager;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.LocationSettingsResponse;
@@ -17,6 +18,8 @@ import org.honk.seller.R;
 import org.honk.seller.UI.MainActivity;
 
 public class BootBroadcastReceiver extends BroadcastReceiver {
+
+    private static final String TAG = "BootBroadcastReceiver";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -60,8 +63,7 @@ public class BootBroadcastReceiver extends BroadcastReceiver {
                 }
             }
             catch (Exception x) {
-                // TODO write to log instead.
-                NotificationsHelper.showNotification(context, "debug", "Eccezione: " + x.getMessage());
+                Log.d(TAG, "Exception while starting the app", x);
             }
         }
     }

@@ -1,9 +1,7 @@
 package org.honk.seller.UI;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 import org.honk.seller.PreferencesHelper;
@@ -15,7 +13,7 @@ public class StartupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Intent intent;
-        if (PreferencesHelper.AreScheduleSettingsSet(this.getApplicationContext())) {
+        if (PreferencesHelper.areScheduleSettingsSet(this.getApplicationContext())) {
             // The schedule settings are set: launch the main activity.
             intent = new Intent(this, MainActivity.class);
         } else {

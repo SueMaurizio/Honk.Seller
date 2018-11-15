@@ -51,7 +51,7 @@ public class LocationService extends Service {
 
             // I want to display a notification showing the time stored in settings, not the actual time of the notification, so I try to load it from the app settings.
             Long exactNotificationTime = null;
-            if (PreferencesHelper.AreScheduleSettingsSet(context)) {
+            if (PreferencesHelper.areScheduleSettingsSet(context)) {
                 Hashtable<Integer, DailySchedulePreferences> scheduleSettings = PreferencesHelper.getScheduleSettings(context);
                 DailySchedulePreferences todaySchedule = scheduleSettings.get(Calendar.getInstance().get(Calendar.DAY_OF_WEEK));
                 Calendar todayWorkStart = Calendar.getInstance();
@@ -67,6 +67,6 @@ public class LocationService extends Service {
             sharedPreferences.edit().putInt(PREFERENCE_LAST_DAY, currentDay).apply();
         }
 
-        LocationHelper.setCurrentLocation(context);
+        new LocationHelper().setCurrentLocation(context);
     }
 }

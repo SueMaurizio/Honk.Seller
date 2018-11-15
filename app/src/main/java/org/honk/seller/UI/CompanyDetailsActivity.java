@@ -2,9 +2,7 @@ package org.honk.seller.UI;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -32,7 +30,7 @@ public class CompanyDetailsActivity extends AppCompatActivity {
     public void SaveAndClose(View view) {
 
         Context context = this.getApplicationContext();
-        boolean isFirstConfiguration = PreferencesHelper.AreScheduleSettingsSet(context);
+        boolean isFirstConfiguration = PreferencesHelper.areScheduleSettingsSet(context);
         EditText companyNameEditText = this.findViewById(R.id.companyNameEditText);
         String companyName = companyNameEditText.getText().toString();
         String companyDescription = ((EditText)this.findViewById(R.id.companyDescriptionEditText)).getText().toString();

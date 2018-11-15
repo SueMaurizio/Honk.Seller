@@ -67,7 +67,7 @@ public class PreferencesHelper {
         return  scheduleSettings;
     }
 
-    public static Boolean AreScheduleSettingsSet(Context context) {
+    public static Boolean areScheduleSettingsSet(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return !sharedPreferences.getString(PREFERENCE_SCHEDULE, "").equals("");
     }
