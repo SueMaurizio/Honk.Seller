@@ -33,9 +33,10 @@ public abstract class RequirementsCheckerActivity extends AppCompatActivity {
                         if (!LocationHelper.checkLocationPermission(this)) {
                             // The user has not given permissions to detect location.
                             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                                // The user has denied permission.
-                                UIHelper.showAlert(this.getString(R.string.permissionDeniedAlertMessage), this);
-                                this.finishAffinity();
+                                // The user has denied permission: show an alert message.
+                                UIHelper.showAlert(this.getString(R.string.permissionDeniedAlertMessage), this, (dialog, id) -> {
+                                    this.handlePermissionDeniedMessageClick();
+                                });
                             } else {
                                 // Request the permission.
                                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, ACCESS_COARSE_LOCATION_CODE);
@@ -65,6 +66,10 @@ public abstract class RequirementsCheckerActivity extends AppCompatActivity {
                     });
         }
     }
+
+    /* Defines what should be done when the user accepts the message notifying that the location permission
+     * was denied. */
+    protected abstract void handlePermissionDeniedMessageClick();
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {

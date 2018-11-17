@@ -95,4 +95,9 @@ public class MainActivity extends RequirementsCheckerActivity {
         this.startActivity(intent);
         finish();
     }
+
+    @Override
+    protected void handlePermissionDeniedMessageClick() {
+        this.finishAffinity();
+    }
 }

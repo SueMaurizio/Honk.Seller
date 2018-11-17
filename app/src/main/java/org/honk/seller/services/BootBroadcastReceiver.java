@@ -49,14 +49,15 @@ public class BootBroadcastReceiver extends BroadcastReceiver {
                                     NotificationsHelper.showNotification(context, context.getString(R.string.iNeedHelp), context.getString(R.string.touchToOpenApp));
                                 }
                             },
-                            (e) -> {
-                                if (e instanceof ResolvableApiException) {
+                            (x) -> {
+                                if (x instanceof ResolvableApiException) {
                                     /* Location settings are not satisfied, but this can be fixed
                                      * by showing the user a dialog: make the user start the app. */
                                     NotificationsHelper.showNotification(context, context.getString(R.string.iNeedHelp), context.getString(R.string.touchToOpenApp));
                                 } else {
                                     // The exception is not resolvable.
                                     // TODO Allow the user to send feedback.
+                                    Log.d(TAG, "Exception while starting the app", x);
                                     NotificationsHelper.showNotification(context, context.getString(R.string.somethingWentWrong), context.getString(R.string.cannotDetectLocation));
                                 }
                             });
@@ -64,6 +65,7 @@ public class BootBroadcastReceiver extends BroadcastReceiver {
             }
             catch (Exception x) {
                 Log.d(TAG, "Exception while starting the app", x);
+                NotificationsHelper.showNotification(context, context.getString(R.string.somethingWentWrong), context.getString(R.string.cannotDetectLocation));
             }
         }
     }

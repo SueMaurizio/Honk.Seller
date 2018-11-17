@@ -38,6 +38,11 @@ public class FirstConfigurationActivity extends RequirementsCheckerActivity {
     }
 
     @Override
+    protected void handlePermissionDeniedMessageClick() {
+        this.finishAffinity();
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
