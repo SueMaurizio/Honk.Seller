@@ -3,19 +3,13 @@ package org.honk.seller.services;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentSender;
-import android.location.LocationManager;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.android.gms.common.api.ResolvableApiException;
-import com.google.android.gms.location.LocationSettingsResponse;
-import com.google.android.gms.tasks.OnFailureListener;
 
-import org.honk.seller.LocationHelper;
 import org.honk.seller.NotificationsHelper;
 import org.honk.seller.R;
-import org.honk.seller.UI.MainActivity;
+import org.honk.sharedlibrary.LocationHelper;
 
 public class BootBroadcastReceiver extends BroadcastReceiver {
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="permissionDeniedAlertMessage">Questa app non può funzionare senza conoscere la tua posizione. Se ci ripensi, concedi l\'autorizzazione tramite il pannello Impostazioni del tuo dispositivo.</string>
     <string name="close">Chiudi</string>
     <string name="featureUnavailableAlertMessage">Per poter funzionare, questa app deve accedere alla tua posizione. Sembra che il tuo dispositivo non sia in grado di fornire questa informazione, quindi l\'app non può funzionare.</string>
     <string name="alertTitle">Attenzione</string>
@@ -65,5 +64,4 @@
     <string name="iNeedHelp">Ho bisogno del tuo intervento</string>
     <string name="touchToOpenApp">tocca qui per aprire l\'app</string>
     <string name="somethingWentWrong">Qualcosa non va</string>
-    <string name="cannotDetectLocation">Spiacente, sembra che io non possa rilevare la tua posizione da questo dispositivo</string>
 </resources>

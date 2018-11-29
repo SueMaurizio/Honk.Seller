@@ -8,12 +8,12 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 
-import org.honk.seller.LocationHelper;
 import org.honk.seller.NotificationsHelper;
 import org.honk.seller.PreferencesHelper;
 import org.honk.seller.R;
 import org.honk.seller.UI.StopServiceActivity;
 import org.honk.seller.model.DailySchedulePreferences;
+import org.honk.sharedlibrary.LocationHelper;
 
 import java.util.Calendar;
 import java.util.Hashtable;
@@ -67,6 +67,11 @@ public class LocationService extends Service {
             sharedPreferences.edit().putInt(PREFERENCE_LAST_DAY, currentDay).apply();
         }
 
-        new LocationHelper().setCurrentLocation(context);
+        new LocationHelper().getCurrentLocation(context, (location) -> {
+            // Got last known location. In some rare situations this can be null.
+            if (location != null) {
+                // TODO Send the location to the server.
+            }
+        });
     }
 }

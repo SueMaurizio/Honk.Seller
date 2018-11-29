@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import org.honk.seller.R;
+import org.honk.sharedlibrary.UI.RequirementsCheckerActivity;
 
 public class FirstConfigurationActivity extends RequirementsCheckerActivity {
 

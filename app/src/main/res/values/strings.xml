@@ -2,7 +2,6 @@
 <resources>
     <string name="facebook_app_id">2096124310637072</string>
     <string name="fb_login_protocol_scheme">fb2096124310637072</string>
-    <string name="permissionDeniedAlertMessage">This app can\'t work without knowing your location. If you change your mind, please grant the authorization through the Settings panel of your device.</string>
     <string name="close">Close</string>
     <string name="featureUnavailableAlertMessage">In order to work, this app needs to access your location. Sadly, looks like your device cannot provide this information, so the app can\'t work properly.</string>
     <string name="alertTitle">Alert</string>
@@ -67,5 +66,4 @@
     <string name="iNeedHelp">I need your help</string>
     <string name="touchToOpenApp">Tap here to open the app</string>
     <string name="somethingWentWrong">Something went wrong</string>
-    <string name="cannotDetectLocation">Sorry, looks like I cannot detect your location on this device</string>
 </resources>
