@@ -25,7 +25,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Hashtable;
 
-public class SetScheduleActivity extends AppCompatActivity implements DialogInterface.OnClickListener {
+public class SetScheduleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -463,18 +463,15 @@ public class SetScheduleActivity extends AppCompatActivity implements DialogInte
             new AlertDialog.Builder(this)
                     .setMessage(this.getString(R.string.configurationComplete))
                     .setTitle(R.string.congratulations)
-                    .setPositiveButton(R.string.ok, this)
+                    .setPositiveButton(R.string.ok, (dialog, which) -> {
+                        this.finishAffinity();
+                    })
                     .show();
         } else {
             // Show a toast message and close this activity.
             this.finishAffinity();
             Toast.makeText(this.getApplicationContext(), this.getString(R.string.scheduleSet), Toast.LENGTH_SHORT).show();
         }
-    }
-
-    @Override
-    public void onClick(DialogInterface dialog, int which) {
-        this.finishAffinity();
     }
 
     private TimeSpan getTimeSpanFromTextView(int textViewId) {

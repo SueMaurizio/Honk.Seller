@@ -7,7 +7,9 @@ import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
+import org.honk.seller.BuildConfig;
 import org.honk.seller.NotificationsHelper;
 import org.honk.seller.PreferencesHelper;
 import org.honk.seller.R;
@@ -28,6 +30,8 @@ public class SchedulerJobService extends JobService {
 
     // Can be set if the user decides to stop working for a while.
     public static Calendar pausedUntil = null;
+
+    private static final String TAG = "SchedulerJobService";
 
     @Override
     public boolean onStartJob(JobParameters params) {
@@ -65,12 +69,24 @@ public class SchedulerJobService extends JobService {
             pausedUntil = null;
 
             // Schedule the job.
-            ComponentName serviceComponent = new ComponentName(context, SchedulerJobService.class);
-            JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
-            builder.setMinimumLatency(minimumLatency);
-            builder.setOverrideDeadline(maximumLatency);
-            JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
-            jobScheduler.schedule(builder.build());
+            try {
+                ComponentName serviceComponent = new ComponentName(context, SchedulerJobService.class);
+                JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
+                builder.setMinimumLatency(minimumLatency);
+                builder.setOverrideDeadline(maximumLatency);
+                JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
+                int result = jobScheduler.schedule(builder.build());
+                if (result == JobScheduler.RESULT_FAILURE) {
+                    throw new Exception("Job scheduling failed");
+                }
+            } catch (Exception x) {
+                if(BuildConfig.DEBUG) {
+                    Log.e(TAG, "Exception while starting the app", x);
+                    NotificationsHelper.showNotification(context, "Debug", "Exception in SchedulerJobService");
+                }
+
+                NotificationsHelper.showNotification(context, context.getString(R.string.somethingWentWrong), context.getString(R.string.cannotDetectLocation));
+            }
         }
     }
 

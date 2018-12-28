@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Honk Seller</string>
     <string name="facebook_app_id">2096124310637072</string>
     <string name="fb_login_protocol_scheme">fb2096124310637072</string>
     <string name="close">Close</string>
@@ -66,4 +67,6 @@
     <string name="iNeedHelp">I need your help</string>
     <string name="touchToOpenApp">Tap here to open the app</string>
     <string name="somethingWentWrong">Something went wrong</string>
+    <string name="retry">Retry</string>
+    <string name="loginFailed">Sorry, I couldn\'t log you in. Please check your credentials and try again.</string>
 </resources>

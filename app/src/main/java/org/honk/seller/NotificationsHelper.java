@@ -60,7 +60,7 @@ public class NotificationsHelper {
 
         if (intent != null) {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-            notificationBuilder.addAction(R.drawable.ic_launcher_background, intentLabel, pendingIntent);
+            notificationBuilder.addAction(R.mipmap.ic_launcher, intentLabel, pendingIntent);
         }
 
         // By default, tapping on any notification must start the app.

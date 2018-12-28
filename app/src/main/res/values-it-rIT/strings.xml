@@ -64,4 +64,6 @@
     <string name="iNeedHelp">Ho bisogno del tuo intervento</string>
     <string name="touchToOpenApp">tocca qui per aprire l\'app</string>
     <string name="somethingWentWrong">Qualcosa non va</string>
+    <string name="retry">Riprova</string>
+    <string name="loginFailed">Spacente, l\'autenticazione non è riuscita. Controlla le tue credenziali e riprova.</string>
 </resources>

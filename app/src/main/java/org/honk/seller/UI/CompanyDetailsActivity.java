@@ -24,13 +24,16 @@ public class CompanyDetailsActivity extends AppCompatActivity {
         ((EditText)this.findViewById(R.id.companyNameEditText)).setText(companyDetails.name);
         ((EditText)this.findViewById(R.id.companyDescriptionEditText)).setText(companyDetails.description);
 
-        // TODO It would be nice to show a preview of the Maps placeholder that will be shown to customers
+        // TODO low priority: It would be nice to show a preview of the Maps placeholder that will be shown to customers
     }
 
     public void SaveAndClose(View view) {
 
         Context context = this.getApplicationContext();
-        boolean isFirstConfiguration = PreferencesHelper.areScheduleSettingsSet(context);
+
+        // This is the first configuration if the schedule settings are not set.
+        boolean isFirstConfiguration = !PreferencesHelper.areScheduleSettingsSet(context);
+
         EditText companyNameEditText = this.findViewById(R.id.companyNameEditText);
         String companyName = companyNameEditText.getText().toString();
         String companyDescription = ((EditText)this.findViewById(R.id.companyDescriptionEditText)).getText().toString();

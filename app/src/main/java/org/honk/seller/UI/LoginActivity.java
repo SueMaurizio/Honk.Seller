@@ -1,5 +1,6 @@
 package org.honk.seller.UI;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -94,7 +95,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     @Override
                     public void onError(FacebookException error) {
-                        Log.d(LoginActivity.class.getCanonicalName(), error.getMessage());
+                        Log.e(LoginActivity.class.getCanonicalName(), error.getMessage());
                     }
                 }
         );
@@ -108,7 +109,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             setCurrentUser(new User(object.getString("id"), AuthenticationType.facebook, object.getString("name")));
                             this.goToCompanyDetails();
                         } catch (JSONException x) {
-                            Log.d(LoginActivity.class.getCanonicalName(), x.getMessage());
+                            Log.e(LoginActivity.class.getCanonicalName(), x.getMessage());
                         }
                 });
 
@@ -159,7 +160,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
 
-            // TODO Show error message.
+            new AlertDialog.Builder(this)
+                    .setMessage(this.getString(R.string.loginFailed))
+                    .setTitle(R.string.retry)
+                    .show();
         }
     }
 
