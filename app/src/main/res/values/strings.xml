@@ -69,4 +69,13 @@
     <string name="somethingWentWrong">Something went wrong</string>
     <string name="retry">Retry</string>
     <string name="loginFailed">Sorry, I couldn\'t log you in. Please check your credentials and try again.</string>
+    <string name="setCompanyName">What is the name of your company?</string>
+    <string name="theNameOfYourCompany">This is the name that your customers will see whenever you\'re visible on the map.</string>
+    <string name="describeWhatYouSell">Briefly describe what you\'re selling</string>
+    <string name="writeYourFeedback">Feedback</string>
+    <string name="writeHereYourFeedback">Here you can write your suggestions and complaints.</string>
+    <string name="sendFeedback">I want to send feedback</string>
+    <string name="thanksForFeedback">Thanks for your feedback!</string>
+    <string name="sendMail">Choose an app to send an e-mail…</string>
+    <string name="noMailClients">Could not find an app for sending e-mails</string>
 </resources>

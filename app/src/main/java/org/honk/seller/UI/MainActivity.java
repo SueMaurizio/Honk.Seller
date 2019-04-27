@@ -1,8 +1,10 @@
 package org.honk.seller.UI;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +35,7 @@ public class MainActivity extends RequirementsCheckerActivity {
             btnStop.setVisibility(View.GONE);
         }
 
-        this.checkRequirementsAndPermissions();
+        this.checkRequirementsAndPermissions("android.permission.ACCESS_FINE_LOCATION", PackageManager.FEATURE_LOCATION_GPS);
     }
 
     // Called when the user asks to stop the service indefinitely.
@@ -81,6 +83,21 @@ public class MainActivity extends RequirementsCheckerActivity {
         Intent intent = new Intent(this, CompanyDetailsActivity.class);
         this.startActivity(intent);
         finish();
+    }
+
+    // Sends a feedback e-mail.
+    public void sendFeedback(View view) {
+        Intent sendMailIntent = new Intent(Intent.ACTION_SEND);
+        sendMailIntent.setType("message/rfc822");
+        sendMailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"june.itech@gmail.com"});
+        sendMailIntent.putExtra(Intent.EXTRA_SUBJECT, "Honk feedback");
+        sendMailIntent.putExtra(Intent.EXTRA_TEXT, this.getString(R.string.writeHereYourFeedback));
+        try {
+            startActivity(Intent.createChooser(sendMailIntent, this.getString(R.string.sendMail)));
+            Toast.makeText(this.getApplicationContext(), this.getString(R.string.thanksForFeedback), Toast.LENGTH_SHORT).show();
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(MainActivity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

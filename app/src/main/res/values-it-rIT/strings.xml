@@ -66,4 +66,13 @@
     <string name="somethingWentWrong">Qualcosa non va</string>
     <string name="retry">Riprova</string>
     <string name="loginFailed">Spacente, l\'autenticazione non è riuscita. Controlla le tue credenziali e riprova.</string>
+    <string name="setCompanyName">Qual è il nome della tua attività?</string>
+    <string name="theNameOfYourCompany">Questo è il nome che i tuoi clienti vedranno sulla mappa in corrispondenza della tua posizione.</string>
+    <string name="describeWhatYouSell">Descrivi brevemente ciò che vendi</string>
+    <string name="writeYourFeedback">Suggerimenti</string>
+    <string name="writeHereYourFeedback">Scrivi qui i tuoi suggerimenti e segnalazioni.</string>
+    <string name="sendFeedback">Voglio inviare un suggerimento</string>
+    <string name="thanksForFeedback">Grazie per il tuo aiuto!</string>
+    <string name="sendMail">Scegli un\'app per inviare una e-mail…</string>
+    <string name="noMailClients">Non ho trovato app per l\'invio di e-mail</string>
 </resources>

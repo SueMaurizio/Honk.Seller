@@ -2,6 +2,7 @@ package org.honk.seller.UI;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 
@@ -20,7 +21,7 @@ public class FirstConfigurationActivity extends RequirementsCheckerActivity {
 
     public void openLoginActivity(View view) {
         // Before entering the login activity, check the requirements for location detection.
-        this.checkRequirementsAndPermissions();
+        this.checkRequirementsAndPermissions("android.permission.ACCESS_FINE_LOCATION", PackageManager.FEATURE_LOCATION_GPS);
 
         /* Failure to check requirements or permissions causes the activity to close, so if we reach this line,
          * we can proceed to the next activity. */
